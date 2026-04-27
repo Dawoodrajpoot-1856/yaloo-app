@@ -48,18 +48,34 @@ const GlassForm = () => {
 
           {/* INPUTS */}
           <label className="text-sm font-medium text-black">Name</label>
-          <input className="w-full mb-4 mt-1 p-3 rounded-xl bg-white text-black outline-none" />
+          <input
+            className="w-full mb-4 mt-1 p-3 rounded-xl bg-white text-black outline-none"
+            type="text"
+            placeholder="Enter your name"
+          />
 
           <label className="text-sm font-medium text-black">Email</label>
-          <input className="w-full mb-4 mt-1 p-3 rounded-xl bg-white text-black outline-none" />
+          <input
+            className="w-full mb-4 mt-1 p-3 rounded-xl bg-white text-black outline-none"
+            type="email"
+            placeholder="Enter your Email"
+          />
 
           <label className="text-sm font-medium text-black">Password</label>
-          <input className="w-full mb-4 mt-1 p-3 rounded-xl bg-white text-black outline-none" />
+          <input
+            className="w-full mb-4 mt-1 p-3 rounded-xl bg-white text-black outline-none"
+            type="password"
+            placeholder="Enter your password"
+          />
 
           <label className="text-sm font-medium text-black">
             Confirm Password
           </label>
-          <input className="w-full mb-4 mt-1 p-3 rounded-xl bg-white text-black outline-none" />
+          <input
+            className="w-full mb-4 mt-1 p-3 rounded-xl bg-white text-black outline-none"
+            type="password"
+            placeholder="Confirm your password"
+          />
 
           {/* CAPTCHA */}
           <div className="flex items-center justify-between mb-5 w-full p-4 bg-white/60 border border-gray-300 rounded-xl">
