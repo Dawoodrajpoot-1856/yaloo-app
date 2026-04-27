@@ -5,20 +5,17 @@ const Hero = () => {
   return (
     <>
       <div
-        className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center"
+        className="min-h-screen brightness-110 bg-cover bg-center bg-no-repeat flex items-center"
         style={{
           backgroundImage:
             "url('https://yaalo.com/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2FheroBackground.92b9c510.png&w=1920&q=100')",
         }}
       >
-        <div className="w-full bg-black/10 backdrop-blur-[1px]">
+        <div className="w-full bg-black/10 ">
+          <div className="border mt-30 border-gray-200   text-black p-2 rounded-2xl w-fit mx-auto text-xs sm:text-sm mt-10">
+            Digital Freedom With 3-Step Activation
+          </div>
           <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center">
-            {/* badge */}
-            <div className="border border-gray-200 bg-white/50 p-2 rounded-2xl w-fit mx-auto text-xs sm:text-sm mt-10">
-              Digital Freedom With 3-Step Activation
-            </div>
-
-            {/* heading */}
             <h1 className="font-bold text-3xl sm:text-5xl md:text-6xl mt-6 sm:mt-8 leading-tight">
               <span className="text-yellow-300">Yaalo eSIM</span> Roam the{" "}
               <br />
