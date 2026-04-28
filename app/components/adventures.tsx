@@ -1,4 +1,11 @@
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  ChevronDown,
+  ChevronsLeftRight,
+  ChevronsRight,
+  ChevronsRightIcon,
+} from "lucide-react";
 import React from "react";
 
 const Adventures = () => {
@@ -73,8 +80,9 @@ const Adventures = () => {
 
               <p className="text-sm text-gray-600">Starts at {item.price}</p>
             </div>
-
-            <ArrowRight size={18} className="text-gray-500" />
+            <span className="w-9 h-9 sm:w-10 sm:h-10 bg-amber-200 rounded-full flex items-center justify-center transition-transform group-open:rotate-180">
+              <ChevronsRight size={20} />
+            </span>{" "}
           </div>
         ))}
       </div>
