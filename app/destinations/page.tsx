@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../components/header";
 import Footer from "../components/Footer";
+import { ArrowRight, ArrowUpRight, ChevronsRight, Search } from "lucide-react";
 
 const page = () => {
   return (
@@ -32,6 +33,78 @@ const page = () => {
           </div>
         </div>
       </div>
+
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
+        <h1 className="font-semibold text-3xl sm:text-5xl">
+          Pick Your Adventure
+        </h1>
+
+        <p className="mt-4 font-medium text-gray-700">
+          Find Yaalo eSIMs built for your route
+        </p>
+
+        {/* TOP BAR */}
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mt-8">
+          {/* FILTER BUTTONS */}
+          <div className="border border-gray-200 rounded-2xl p-2 flex flex-wrap gap-2 w-fit">
+            <button className="bg-yellow-400 font-medium px-6 py-2 rounded-2xl">
+              Local
+            </button>
+
+            <button className="px-6 py-2 rounded-2xl hover:bg-gray-100">
+              Regional
+            </button>
+
+            <button className="px-6 py-2 rounded-2xl hover:bg-gray-100">
+              Global
+            </button>
+          </div>
+
+          {/* SEARCH INPUT */}
+          <div className="relative w-full lg:w-[430px] h-12">
+            <input
+              type="text"
+              placeholder="Where are you flying next?"
+              className="w-full h-full pl-5 pr-12 border border-gray-200 rounded-2xl outline-none text-sm"
+            />
+
+            <Search
+              size={18}
+              className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400"
+            />
+          </div>
+        </div>
+
+        {/* CARDS */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+          {[
+            { name: "United Kingdom", price: "$3", flag: "gb" },
+            { name: "Bermuda", price: "$6", flag: "bm" },
+            { name: "Canada", price: "$5", flag: "ca" },
+            { name: "Costa Rica", price: "$8", flag: "cr" },
+          ].map((item, i) => (
+            <div
+              key={i}
+              className="border border-gray-200 rounded-lg p-4 flex items-center justify-between"
+            >
+              <div>
+                <img
+                  src={`https://flagcdn.com/w80/${item.flag}.png`}
+                  className="h-8 rounded"
+                  alt={item.name}
+                />
+
+                <p className="mt-2 text-sm font-medium">{item.name}</p>
+                <p className="text-sm text-gray-600">Starts at {item.price}</p>
+              </div>
+
+              <span className="w-10 h-10 bg-amber-200 rounded-full flex items-center justify-center">
+                <ChevronsRight size={20} />
+              </span>
+            </div>
+          ))}
+        </div>
+      </section>
 
       <Footer />
     </>

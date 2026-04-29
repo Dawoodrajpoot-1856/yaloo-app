@@ -51,9 +51,9 @@ const page = () => {
       </div>
 
       {/* CARDS */}
-      <div className="max-w-5xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="max-w-[1220px] mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* WhatsApp Card */}
-        <div className="flex gap-4 p-8 rounded-2xl bg-white shadow-sm border border-transparent transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:border-amber-400">
+        <div className="flex gap-4 p-8 max-w-4xl rounded-2xl bg-white shadow-sm border border-transparent transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:border-amber-400">
           <img
             className="w-12 h-12"
             src="https://yaalo.com/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2Fwhatsapp.60558702.png&w=96&q=75"
@@ -86,13 +86,14 @@ const page = () => {
       </div>
 
       {/* EMAIL BUTTON */}
-      <div className="max-w-5xl  mx-auto px-4 pb-12">
+      <div className="max-w-[1220px]  mx-auto px-4 pb-12">
         <div className="bg-yellow-400 text-center py-5 rounded-2xl font-medium">
           For Business: sales@yaalo.com
         </div>
       </div>
+
       {/* IMAGE + FORM SECTION */}
-      <div className="max-w-6xl mx-auto px-4 py-16 flex flex-col lg:flex-row items-center gap-12">
+      <div className="max-w-[1220px] mx-auto px-4 py-16 flex flex-col lg:flex-row items-center gap-12">
         {/* Left Image */}
         <div className="w-full lg:w-1/2 flex justify-center">
           <img

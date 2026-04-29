@@ -2,7 +2,7 @@ import React from "react";
 
 const App = () => {
   return (
-    <div className="bg-[#393a36] mx-4 md:mx-10 lg:mx-16 mb-10 rounded-[40px] px-6 md:px-16 py-12 md:py-20 overflow-hidden">
+    <div className="bg-[#393a36] w-full max-w-[1200px] mx-auto mb-10 rounded-[40px] px-6 md:px-16 py-12 md:py-20 overflow-hidden">
       <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
         {/* LEFT CONTENT */}
         <div className="max-w-xl text-center lg:text-left">
@@ -55,7 +55,7 @@ const App = () => {
           <img
             src="https://yaalo.com/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2FappInstallSS.729e81b9.png&w=1920&q=75"
             alt="App preview"
-            className="w-full max-w-[600px] object-contain"
+            className="w-full max-w-[500px] object-contain"
           />
         </div>
       </div>

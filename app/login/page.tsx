@@ -30,13 +30,13 @@ const Login = () => {
             {/* TOP BUTTONS */}
             <div className="flex mb-6 bg-white/30 rounded-2xl p-1">
               <Link href="/login" className="w-1/2">
-                <button className="w-full py-2 rounded-xl font-semibold text-black hover:bg-white/40 transition">
+                <button className="w-full py-2 rounded-xl font-semibold text-black bg-white  transition">
                   Login
                 </button>
               </Link>
 
               <Link href="/register" className="w-1/2">
-                <button className="w-full py-2 bg-white rounded-xl font-semibold text-black">
+                <button className="w-full py-2  rounded-xl font-semibold text-black">
                   Register
                 </button>
               </Link>

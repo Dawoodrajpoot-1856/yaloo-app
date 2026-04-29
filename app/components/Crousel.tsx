@@ -60,7 +60,7 @@ export default function Crousel() {
   }, [emblaApi]);
 
   return (
-    <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
+    <section className="max-w-6xl ml-20">
       {/* HEADER */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10">
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">

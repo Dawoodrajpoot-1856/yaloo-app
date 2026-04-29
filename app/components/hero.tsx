@@ -12,12 +12,14 @@ const Hero = () => {
         }}
       >
         <div className="w-full bg-black/10 ">
-          <div className="border mt-30 border-gray-200   text-black p-2 rounded-2xl w-fit mx-auto text-xs sm:text-sm mt-10">
-            Digital Freedom With 3-Step Activation
+          <div className="border mt-40 border-gray-400 w-80  bg-gray-300   text-black p-2 rounded-4xl  mx-auto text-xs sm:text-sm ">
+            <span className="ml-10">
+              Digital Freedom With 3-Step Activation
+            </span>
           </div>
           <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center">
-            <h1 className="font-bold text-3xl sm:text-5xl md:text-6xl mt-6 sm:mt-8 leading-tight">
-              <span className="text-yellow-300">Yaalo eSIM</span> Roam the{" "}
+            <h1 className="font-semibold text-3xl sm:text-5xl md:text-6xl mt-6 sm:mt-8 leading-tight">
+              <span className="text-yellow-400">Yaalo eSIM</span> Roam the{" "}
               <br />
               World, Not the Fees
             </h1>
@@ -76,8 +78,8 @@ const Hero = () => {
       </div>
 
       {/* CARDS */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-6xl mx-auto px-4 sm:px-6 py-10">
-        <div className="border border-gray-200 rounded-2xl p-4 text-center">
+      <div className="max-w-[1800px] mx-auto px-6 py-11 flex flex-wrap ml-15 gap-8">
+        <div className="w-[280px] sm:w-[270px] border border-gray-200 rounded-2xl p-6 text-center hover:-translate-y-2 transition">
           <img
             className="mx-auto mb-3"
             src="https://yaalo.com/_next/static/media/earth.39b7df47.svg"
@@ -88,7 +90,7 @@ const Hero = () => {
           </p>
         </div>
 
-        <div className="border border-gray-200 rounded-2xl p-4 text-center">
+        <div className="w-[280px] sm:w-[270px] border border-gray-200 rounded-2xl p-6 text-center hover:-translate-y-2 transition">
           <img
             className="mx-auto mb-3"
             src="https://yaalo.com/_next/static/media/clock.3a93caca.svg"
@@ -99,7 +101,7 @@ const Hero = () => {
           </p>
         </div>
 
-        <div className="border border-gray-200 rounded-2xl p-4 text-center">
+        <div className="w-[280px] sm:w-[270px] border border-gray-200 rounded-2xl p-6 text-center hover:-translate-y-2 transition">
           <img
             className="mx-auto mb-3"
             src="https://yaalo.com/_next/static/media/trophy.ed47fe48.svg"
@@ -110,7 +112,7 @@ const Hero = () => {
           </p>
         </div>
 
-        <div className="border border-gray-200 rounded-2xl p-4 text-center">
+        <div className="w-[280px] sm:w-[270px] border border-gray-200 rounded-2xl p-6 text-center hover:-translate-y-2 transition">
           <img
             className="mx-auto mb-3"
             src="https://yaalo.com/_next/static/media/sim.332404b8.svg"
