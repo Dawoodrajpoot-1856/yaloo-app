@@ -102,7 +102,7 @@ const Page = () => {
 
         {/* Right Form */}
         <div className="w-full lg:w-[60%]">
-          <form className="bg-white p-4 sm:p-8 rounded-2xl shadow-sm space-y-5 border border-gray-100">
+          <form className="bg-white p-4 sm:p-8 rounded-2xl space-y-5 border border-gray-100">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="flex flex-col gap-1">
                 <label className="text-sm font-medium">First Name</label>

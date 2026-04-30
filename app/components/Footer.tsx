@@ -100,7 +100,7 @@ const Footer = () => {
             ))}
           </div>
 
-          <h3 className="font-bold text-base sm:text-lg mt-10 mb-6 text-gray-900">
+          <h3 className="font-bold text-base sm:text-lg mt-5 mb-6 text-gray-900">
             Support
           </h3>
           <div className="space-y-3">
