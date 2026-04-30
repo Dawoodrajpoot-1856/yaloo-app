@@ -16,12 +16,12 @@ const Page = () => {
         </p>
       </div>
 
-      {/* STEPS - Added Responsive Margin and Grid Fix */}
+      {/* STEPS - Fixed Center Alignment for Mobile */}
       <div
         className="max-w-[1200px] px-4 py-10 
-        /* ml-16 sirf desktop par, mobile par center rahega ya default padding use karega */
-        ml-0 md:ml-16 
-        grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+        /* Mobile pe auto margin (center), Desktop pe left margin */
+        mx-auto md:ml-16 md:mr-auto
+        grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center md:justify-items-start"
       >
         {[
           { num: "1", title: "Buy a data plan", img: "step1.5f190939.png" },
@@ -30,8 +30,8 @@ const Page = () => {
         ].map((item, i) => (
           <div
             key={i}
-            /* mx-0 ensures it stays left-aligned in its grid cell */
-            className="bg-white w-full max-w-[360px] mx-0 rounded-2xl p-5 shadow-md border border-gray-300 hover:-translate-y-3 hover:border-amber-200 transition-all duration-500 flex flex-col justify-between"
+            /* mx-auto ensures the card itself centers on small screens */
+            className="bg-white w-full max-w-[360px] mx-auto md:mx-0 rounded-2xl p-6 shadow-md border border-gray-300 hover:-translate-y-3 hover:border-amber-200 transition-all duration-500 flex flex-col justify-between"
           >
             <div>
               <div className="flex items-center gap-3 mb-4">
@@ -60,43 +60,40 @@ const Page = () => {
         ))}
       </div>
 
-      {/* CTA - Adjusted to match the same alignment */}
-      <div
-        className="bg-[#393a36] mt-12 sm:mt-16 rounded-3xl px-6 sm:px-10 py-10 sm:py-12 
-  /* Width aur Alignment: mx-auto hataya, ml-16 lagaya */
-  max-w-[1200px]  md:ml-18 mr-4 lg:mr-0
-  flex flex-col lg:flex-row items-center justify-between gap-10 shadow-2xl"
-      >
-        {/* LEFT */}
-        <div className="max-w-xl text-center lg:text-left">
-          <h1 className="text-white text-2xl sm:text-4xl lg:text-5xl font-semibold leading-tight mb-6">
-            Is Your Phone eSIM-Ready?
-          </h1>
+      {/* COMPATIBILITY BANNER - Fixed centering */}
+      <div className="px-4">
+        <div className="bg-[#393a36] mt-12 sm:mt-16 rounded-[2.5rem] px-6 sm:px-10 py-12 max-w-[1200px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-10 shadow-2xl overflow-hidden">
+          {/* LEFT */}
+          <div className="max-w-xl text-center lg:text-left order-1">
+            <h1 className="text-white text-2xl sm:text-4xl lg:text-5xl font-semibold leading-tight mb-6">
+              Is Your Phone eSIM-Ready?
+            </h1>
 
-          <p className="text-gray-200 text-sm sm:text-lg leading-7 mb-6">
-            Check in seconds! Most modern devices are eSIM compatible.
-          </p>
+            <p className="text-gray-300 text-sm sm:text-lg leading-7 mb-6">
+              Check in seconds! Most modern devices are eSIM compatible.
+            </p>
 
-          <p className="text-white text-lg sm:text-xl font-medium mb-6">
-            Check eSIM Compatibility Here:
-          </p>
+            <p className="text-white text-lg sm:text-xl font-medium mb-6">
+              Check eSIM Compatibility Here:
+            </p>
 
-          <button className="group bg-yellow-400 text-black hover:bg-black hover:text-white transition px-6 py-3.5 rounded-2xl flex items-center gap-3 font-bold mx-auto lg:mx-0 shadow-lg">
-            All eSIM-compatible Phones
-            <span className="relative w-5 h-5 flex items-center justify-center overflow-hidden">
-              <ArrowUpRight className="absolute group-hover:opacity-0 group-hover:-translate-y-3 transition" />
-              <ArrowRight className="absolute opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition" />
-            </span>
-          </button>
-        </div>
+            <button className="group bg-yellow-400 text-black hover:bg-black hover:text-white transition px-8 py-4 rounded-2xl flex items-center gap-3 font-bold mx-auto lg:mx-0 shadow-lg">
+              All eSIM-compatible Phones
+              <span className="relative w-5 h-5 flex items-center justify-center overflow-hidden">
+                <ArrowUpRight className="absolute group-hover:opacity-0 group-hover:-translate-y-3 transition" />
+                <ArrowRight className="absolute opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition" />
+              </span>
+            </button>
+          </div>
 
-        {/* RIGHT IMAGE */}
-        <div className="w-full flex justify-center lg:justify-end">
-          <img
-            src="https://yaalo.com/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2FesimSS.07771902.png&w=640&q=70"
-            className="w-[220px] sm:w-[300px] md:w-[360px] lg:w-[450px] hover:scale-105 transition duration-500"
-            alt="Compatibility Check"
-          />
+          {/* RIGHT IMAGE */}
+          <div className="w-full flex justify-center order-2">
+            <img
+              src="https://yaalo.com/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2FesimSS.07771902.png&w=640&q=70"
+              className="w-[200px] sm:w-[280px] md:w-[320px] lg:w-[400px] hover:scale-105 transition duration-500"
+              alt="Compatibility Check"
+            />
+          </div>
         </div>
       </div>
     </div>

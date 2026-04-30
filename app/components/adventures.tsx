@@ -12,16 +12,16 @@ const Adventures = () => {
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
       {/* TITLE */}
-      <h1 className="font-semibold text-3xl  ml-3 sm:text-5xl">
+      <h1 className="font-semibold text-3x ml-2   sm:text-5xl">
         Pick Your Adventure
       </h1>
 
-      <p className="mt-4  ml-3 font-medium text-gray-700">
+      <p className="mt-4  font-medium text-gray-700">
         Find Yaalo eSIMs built for your route
       </p>
 
       {/* TOP BAR */}
-      <div className="flex flex-col ml-3 lg:flex-row lg:justify-between gap-6 mt-8">
+      <div className="flex flex-col ml-2  lg:flex-row lg:justify-between gap-6 mt-8">
         {/* FILTER BUTTONS */}
         <div className="border border-gray-200 rounded-2xl p-2 flex flex-wrap gap-2 w-full sm:w-fit">
           <button className="bg-yellow-400 font-medium px-6 py-2 rounded-2xl">
@@ -38,7 +38,7 @@ const Adventures = () => {
         </div>
 
         {/* SEARCH BUTTON */}
-        <div className="group  inline-flex items-center justify-center gap-2 px-4 h-12 rounded-2xl bg-yellow-300 hover:bg-black transition-all duration-300 cursor-pointer w-full sm:w-fit">
+        <div className="group    inline-flex items-center justify-center gap-2 px-4 h-12 rounded-2xl bg-yellow-300 hover:bg-black transition-all duration-300 cursor-pointer w-full sm:w-fit">
           <span className="text-sm font-medium text-black group-hover:text-white">
             Search your destination
           </span>
@@ -58,7 +58,7 @@ const Adventures = () => {
       </div>
 
       {/* CARDS */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 mt-12 justify-center">
+      <div className="grid grid-cols-1 mr-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 mt-12 justify-center">
         {[
           { name: "United Kingdom", price: "$3", flag: "gb" },
           { name: "Bermuda", price: "$6", flag: "bm" },
@@ -87,13 +87,13 @@ const Adventures = () => {
           </div>
         ))}
       </div>
-      <div className="mt-16 ml-3 ">
-        <h1 className="text-3xl sm:text-5xl font-semibold leading-tight">
+      <div className="mt-16  ">
+        <h1 className="text-3xl ml-2 sm:text-5xl font-semibold leading-tight">
           How Yaalo eSIM Works? <br />
           (Spoiler: It’s Ridiculously Simple)
         </h1>
 
-        <p className="text-sm sm:text-base text-gray-700 mt-6 max-w-3xl">
+        <p className="text-sm ml-2 sm:text-base text-gray-700 mt-6 max-w-3xl">
           Users often assume that technical processes are complex. But
           activating{" "}
           <span className="font-semibold text-black">Yaalo eSIM</span> is like

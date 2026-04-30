@@ -87,9 +87,8 @@ const Hero = () => {
         </div>
       </div>
       <div
-        className="max-w-[1200px] px-4 py-8 
-  /* ml-0 mobile par, ml-16 tablet/desktop par. mx-auto hata diya gaya hai */
-  ml-0 md:ml-16 
+        className="max-w-[1200px] px-4 py-8 mobile par, ml-16 tablet/desktop par. mx-auto hata diya gaya hai */
+ md:ml-16 
   grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-10"
       >
         {[
