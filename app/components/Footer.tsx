@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <footer className="max-w-[1230px] mx-auto px-4 sm:px-6 mt-14 sm:mt-20 pb-10">
       {/* MAIN FOOTER */}
-      <div className="bg-gray-200 rounded-[2.5rem] p-8 sm:p-10 lg:p-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
+      <div className="bg-gray-100 rounded-[2.5rem] p-8 sm:p-10 lg:p-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
         {/* COL 1: LOGO + SOCIAL */}
         <div className="flex flex-col items-start">
           <Link href="/">
