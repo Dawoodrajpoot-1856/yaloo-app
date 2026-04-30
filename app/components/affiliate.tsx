@@ -19,11 +19,6 @@ const images = [
     text: "Secure Payments",
     desc: "100% safe and encrypted payment system for users.",
   },
-  {
-    img: "https://yaalo.com/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2FdedicatedSupport.a74b5502.gif&w=3840&q=75",
-    text: "Dedicated Support",
-    desc: "Our team is available 24/7 to help you anytime.",
-  },
 ];
 
 const Affiliate = () => {
@@ -95,7 +90,7 @@ const Affiliate = () => {
       {/* SLIDER */}
       <div
         ref={sliderRef}
-        className="flex gap-4 sm:gap-6 overflow-hidden scroll-smooth"
+        className="flex gap-4 sm:gap-6 overflow-hidden scroll-smooth justify-center"
       >
         {images.map((item, i) => (
           <div

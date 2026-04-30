@@ -5,10 +5,8 @@ import { ArrowUpRight } from "lucide-react";
 import Header from "../components/header";
 import Footer from "../components/Footer";
 import Link from "next/link";
-import ReCAPTCHA from "react-google-recaptcha";
-
+import * as ReCAPTCHA from "react-google-recaptcha";
 const GlassForm = () => {
-  const recaptchaRef = useRef<ReCAPTCHA | null>(null);
   const [captchaValue, setCaptchaValue] = useState<string>("");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -117,7 +115,7 @@ const GlassForm = () => {
 
             {/* RECAPTCHA */}
             <div className="mt-6 flex justify-center">
-              <ReCAPTCHA
+              <ReCAPTCHA.default
                 sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
                 onChange={(v: any) => setCaptchaValue(v || "")}
               />
