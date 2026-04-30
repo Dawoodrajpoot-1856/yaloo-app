@@ -63,76 +63,81 @@ export default function Crousel() {
   }, [emblaApi]);
 
   return (
-    <section className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
-      {/* HEADER */}
-      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-8 sm:mb-12">
-        <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold leading-tight">
-          Traveller Voices <br />
-          They are Using Yaalo forever!
-        </h1>
+    <section className="py-10 sm:py-16 bg-white">
+      {/* Updated Container with exact same margins as Travels section */}
+      <div className="max-w-[1440px] mx-auto px-6 sm:pl-20 sm:pr-[100px]">
+        {/* HEADER */}
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-8 sm:mb-12">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold leading-tight">
+            Traveller Voices <br />
+            They are Using Yaalo forever!
+          </h1>
 
-        <div className="flex gap-3 sm:gap-4">
-          <a href="https://play.google.com/store/apps/details?id=com.activatewireless.app.yaalo">
-            <img
-              src="https://yaalo.com/_next/static/media/playLink.1cd75698.svg"
-              className="h-9 sm:h-12 hover:scale-105 transition"
-            />
-          </a>
+          <div className="flex gap-3 sm:gap-4">
+            <a href="https://play.google.com/store/apps/details?id=com.activatewireless.app.yaalo">
+              <img
+                src="https://yaalo.com/_next/static/media/playLink.1cd75698.svg"
+                className="h-9 sm:h-12 hover:scale-105 transition"
+                alt="Play Store"
+              />
+            </a>
 
-          <a href="https://apps.apple.com/app/id6753675047">
-            <img
-              src="https://yaalo.com/_next/static/media/appleLink.9011278c.svg"
-              className="h-9 sm:h-12 hover:scale-105 transition"
-            />
-          </a>
+            <a href="https://apps.apple.com/app/id6753675047">
+              <img
+                src="https://yaalo.com/_next/static/media/appleLink.9011278c.svg"
+                className="h-9 sm:h-12 hover:scale-105 transition"
+                alt="App Store"
+              />
+            </a>
+          </div>
         </div>
-      </div>
 
-      {/* CAROUSEL */}
-      <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex">
-          {reviews.map((item, i) => (
-            <div
-              key={i}
-              className="min-w-[85%] sm:min-w-[70%] md:min-w-[50%] lg:min-w-[33.333%] px-2 sm:px-4"
-            >
-              <div className="border border-gray-300 rounded-2xl p-4 sm:p-6 bg-white h-full transition hover:shadow-md">
-                {/* USER */}
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-yellow-300 flex items-center justify-center font-semibold text-xs sm:text-sm text-black">
-                    {item.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")
-                      .slice(0, 2)
-                      .toUpperCase()}
+        {/* CAROUSEL */}
+        <div className="overflow-hidden" ref={emblaRef}>
+          <div className="flex -ml-4">
+            {" "}
+            {/* Counteract slide padding */}
+            {reviews.map((item, i) => (
+              <div
+                key={i}
+                className="flex-[0_0_85%] sm:flex-[0_0_60%] md:flex-[0_0_45%] lg:flex-[0_0_31%] pl-4"
+              >
+                <div className="border border-gray-200 rounded-3xl p-6 bg-white h-full transition hover:shadow-lg">
+                  {/* USER */}
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-yellow-400 flex items-center justify-center font-bold text-sm text-black">
+                      {item.name
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")
+                        .toUpperCase()}
+                    </div>
+
+                    <h3 className="font-bold text-gray-900">{item.name}</h3>
                   </div>
 
-                  <h3 className="font-semibold text-sm sm:text-base">
-                    {item.name}
-                  </h3>
+                  {/* TEXT */}
+                  <p className="text-gray-600 text-sm sm:text-base leading-relaxed italic">
+                    "{item.text}"
+                  </p>
                 </div>
-
-                {/* TEXT */}
-                <p className="text-gray-700 text-xs sm:text-base leading-5 sm:leading-6">
-                  "{item.text}"
-                </p>
               </div>
-            </div>
+            ))}
+          </div>
+        </div>
+
+        {/* DOTS */}
+        <div className="flex justify-center gap-2 mt-8 sm:mt-10">
+          {reviews.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => emblaApi && emblaApi.scrollTo(i)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                i === selectedIndex ? "w-8 bg-yellow-400" : "w-2 bg-gray-300"
+              }`}
+            />
           ))}
         </div>
-      </div>
-
-      {/* DOTS */}
-      <div className="flex justify-center gap-2 mt-6 sm:mt-8">
-        {reviews.map((_, i) => (
-          <div
-            key={i}
-            className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full transition-all duration-300 ${
-              i === selectedIndex ? "bg-yellow-400 scale-125" : "bg-gray-300"
-            }`}
-          />
-        ))}
       </div>
     </section>
   );

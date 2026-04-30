@@ -41,26 +41,10 @@ export default function Travels() {
     align: "start",
   });
 
-  const [activeIndex, setActiveIndex] = useState(0);
-
   useEffect(() => {
     if (!emblaApi) return;
-
-    const onSelect = () => {
-      setActiveIndex(emblaApi.selectedScrollSnap());
-    };
-
-    onSelect();
-    emblaApi.on("select", onSelect);
-
-    const interval = setInterval(() => {
-      emblaApi.scrollNext();
-    }, 3500);
-
-    return () => {
-      clearInterval(interval);
-      emblaApi.off("select", onSelect);
-    };
+    const interval = setInterval(() => emblaApi.scrollNext(), 3500);
+    return () => clearInterval(interval);
   }, [emblaApi]);
 
   const scrollPrev = () => emblaApi && emblaApi.scrollPrev();
@@ -68,14 +52,17 @@ export default function Travels() {
 
   return (
     <section className="py-10 sm:py-16 lg:py-20 bg-[#fffdf7]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      {/* 
+          Left margin (padding) ko 20 units (~80px) rakha hai aur 
+          right ko original 100px taaki left side thodi zyada jagah le.
+      */}
+      <div className="max-w-[1440px] mx-auto px-6 sm:pl-20 sm:pr-[100px]">
         {/* HEADER */}
-        <div className="text-center mb-8 sm:mb-12">
-          <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-3">
+        <div className="text-left mb-8 sm:mb-12">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-4">
             Why Are Travellers Switching to Yaalo?
           </h1>
-
-          <p className="text-xs sm:text-base text-gray-600 max-w-xl mx-auto">
+          <p className="text-sm sm:text-base text-gray-600 max-w-xl">
             Zero roaming fees and 200+ destinations worldwide.
           </p>
         </div>
@@ -84,11 +71,10 @@ export default function Travels() {
         <div className="hidden sm:flex justify-end gap-3 mb-6">
           <button
             onClick={scrollPrev}
-            className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-black hover:text-white transition"
+            className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-black hover:text-white transition"
           >
             <ArrowLeft size={16} />
           </button>
-
           <button
             onClick={scrollNext}
             className="w-10 h-10 rounded-full bg-yellow-400 flex items-center justify-center hover:bg-black hover:text-white transition"
@@ -99,27 +85,24 @@ export default function Travels() {
 
         {/* CAROUSEL */}
         <div className="overflow-hidden" ref={emblaRef}>
-          <div className="flex">
+          <div className="flex -ml-4">
             {cards.map((item, i) => {
               const Icon = item.icon;
-
               return (
                 <div
                   key={i}
-                  className="min-w-[90%] sm:min-w-[75%] md:min-w-[55%] lg:min-w-[40%] px-2 sm:px-3"
+                  className="flex-[0_0_90%] sm:flex-[0_0_45%] lg:flex-[0_0_31%] pl-4"
                 >
-                  <div className="min-h-[240px] sm:min-h-[260px] rounded-3xl p-4 sm:p-6 border border-gray-200 bg-white hover:shadow-xl transition">
+                  <div className="min-h-[240px] sm:min-h-[260px] rounded-3xl p-6 border border-gray-200 bg-white hover:shadow-xl transition shadow-sm">
                     <div className="flex flex-col gap-4 h-full">
-                      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full text-yellow-400 flex items-center justify-center">
+                      <div className="w-12 h-12 rounded-full bg-yellow-50 text-yellow-500 flex items-center justify-center">
                         <Icon size={22} />
                       </div>
-
                       <div>
-                        <h3 className="text-base sm:text-xl font-semibold text-gray-900">
+                        <h3 className="text-lg sm:text-xl font-semibold text-gray-900">
                           {item.title}
                         </h3>
-
-                        <p className="text-xs sm:text-base text-gray-600 mt-2 leading-5 sm:leading-6">
+                        <p className="text-sm sm:text-base text-gray-600 mt-2 leading-relaxed">
                           {item.desc}
                         </p>
                       </div>
@@ -132,14 +115,13 @@ export default function Travels() {
         </div>
 
         {/* CTA */}
-        <div className="flex justify-center sm:justify-start mt-6 sm:mt-10">
-          <div className="group inline-flex items-center gap-2 px-5 sm:px-6 h-10 sm:h-12 rounded-2xl bg-yellow-300 hover:bg-black transition cursor-pointer">
-            <span className="text-xs sm:text-sm font-medium text-black group-hover:text-white">
+        <div className="flex justify-start mt-8 sm:mt-12">
+          <div className="group inline-flex items-center gap-2 px-6 h-12 rounded-2xl bg-yellow-300 hover:bg-black transition cursor-pointer">
+            <span className="text-sm font-medium text-black group-hover:text-white">
               Show me eSIM plans
             </span>
-
             <ArrowUpRight
-              size={14}
+              size={16}
               className="text-black group-hover:text-white"
             />
           </div>
