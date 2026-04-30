@@ -20,17 +20,17 @@ const cards = [
   },
   {
     title: "Tether & Hotspot",
-    desc: "No restrictions or data throttling for you. Tether your laptop or hotspot other devices without stress. Yaalo keeps things straight without interruption in connectivity.",
+    desc: "No restrictions or data throttling for you. Tether your laptop or hotspot other devices without stress.",
     icon: UserRound,
   },
   {
     title: "Your Data Passport",
-    desc: "No more holes in the pocket, because there are no sudden charges. Pay as you go with Local rates, fair prices, and full transparency. Roam the World with peace!",
+    desc: "No more sudden charges. Pay as you go with local rates and full transparency.",
     icon: Plane,
   },
   {
     title: "Travel Light, Stay Connected",
-    desc: "Instant coverage in 200+ countries, including Local, Regional, and Global eSIM Plans. Get online in seconds by sitting on your home couch or arriving at an international airport.",
+    desc: "Instant coverage in 200+ countries. Get online in seconds anywhere.",
     icon: Handshake,
   },
 ];
@@ -55,7 +55,7 @@ export default function Travels() {
 
     const interval = setInterval(() => {
       emblaApi.scrollNext();
-    }, 3000);
+    }, 3500);
 
     return () => {
       clearInterval(interval);
@@ -67,38 +67,33 @@ export default function Travels() {
   const scrollNext = () => emblaApi && emblaApi.scrollNext();
 
   return (
-    <section
-      className=" mr-20
-    
-    
-    sm:py-20 bg-[#fffdf7]"
-    >
+    <section className="py-10 sm:py-16 lg:py-20 bg-[#fffdf7]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* HEADER */}
-        <div className="text-center mb-10">
-          <h1 className="text-3xl sm:text-5xl font-bold mb-3">
+        <div className="text-center mb-8 sm:mb-12">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-3">
             Why Are Travellers Switching to Yaalo?
           </h1>
 
-          <p className="text-sm sm:text-lg text-gray-600 max-w-2xl mx-auto">
-            Zero roaming fees and 200+ destinations eSIM worldwide.
+          <p className="text-xs sm:text-base text-gray-600 max-w-xl mx-auto">
+            Zero roaming fees and 200+ destinations worldwide.
           </p>
         </div>
 
         {/* NAV BUTTONS */}
-        <div className="flex justify-end gap-3 mb-6">
+        <div className="hidden sm:flex justify-end gap-3 mb-6">
           <button
             onClick={scrollPrev}
-            className="w-11 h-11 rounded-full  flex items-center justify-center hover:bg-black hover:text-white transition"
+            className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-black hover:text-white transition"
           >
-            <ArrowLeft size={18} />
+            <ArrowLeft size={16} />
           </button>
 
           <button
             onClick={scrollNext}
-            className="w-11 h-11 rounded-full bg-yellow-400 flex items-center justify-center hover:bg-black hover:text-white transition"
+            className="w-10 h-10 rounded-full bg-yellow-400 flex items-center justify-center hover:bg-black hover:text-white transition"
           >
-            <ArrowRight size={18} />
+            <ArrowRight size={16} />
           </button>
         </div>
 
@@ -111,21 +106,20 @@ export default function Travels() {
               return (
                 <div
                   key={i}
-                  className="min-w-full sm:min-w-[80%] md:min-w-[55%] lg:min-w-[40%] px-3"
+                  className="min-w-[90%] sm:min-w-[75%] md:min-w-[55%] lg:min-w-[40%] px-2 sm:px-3"
                 >
-                  <div className="h-[280px] rounded-3xl p-6 border border-gray-200 bg-white hover:shadow-xl transition">
-                    <div className="flex items-star flex-col gap-5 h-full">
-                      <div className="w-14 h-14 rounded-full text-yellow-400 flex items-center justify-center flex-shrink-0">
-                        <Icon size={24} />
+                  <div className="min-h-[240px] sm:min-h-[260px] rounded-3xl p-4 sm:p-6 border border-gray-200 bg-white hover:shadow-xl transition">
+                    <div className="flex flex-col gap-4 h-full">
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full text-yellow-400 flex items-center justify-center">
+                        <Icon size={22} />
                       </div>
 
-                      {/* TEXT */}
-                      <div className="flex flex-col">
-                        <h3 className="text-lg sm:text-2xl font-semibold text-gray-900">
+                      <div>
+                        <h3 className="text-base sm:text-xl font-semibold text-gray-900">
                           {item.title}
                         </h3>
 
-                        <p className="text-sm sm:text-base text-gray-600 mt-3 leading-6">
+                        <p className="text-xs sm:text-base text-gray-600 mt-2 leading-5 sm:leading-6">
                           {item.desc}
                         </p>
                       </div>
@@ -138,14 +132,14 @@ export default function Travels() {
         </div>
 
         {/* CTA */}
-        <div className="flex justify-start mt-8">
-          <div className="group inline-flex items-center gap-2 px-6 h-12 rounded-2xl bg-yellow-300 hover:bg-black transition cursor-pointer">
-            <span className="text-sm font-medium text-black group-hover:text-white">
+        <div className="flex justify-center sm:justify-start mt-6 sm:mt-10">
+          <div className="group inline-flex items-center gap-2 px-5 sm:px-6 h-10 sm:h-12 rounded-2xl bg-yellow-300 hover:bg-black transition cursor-pointer">
+            <span className="text-xs sm:text-sm font-medium text-black group-hover:text-white">
               Show me eSIM plans
             </span>
 
             <ArrowUpRight
-              size={16}
+              size={14}
               className="text-black group-hover:text-white"
             />
           </div>

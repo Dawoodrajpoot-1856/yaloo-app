@@ -1,74 +1,84 @@
+"use client";
+
 import { Search } from "lucide-react";
 import React from "react";
 
 const Hero = () => {
   return (
     <>
+      {/* HERO */}
       <div
-        className="min-h-screen brightness-110 bg-cover bg-center bg-no-repeat flex items-center"
+        className="min-h-[70svh] sm:min-h-screen brightness-110 bg-cover bg-center bg-no-repeat flex items-center"
         style={{
           backgroundImage:
             "url('https://yaalo.com/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2FheroBackground.92b9c510.png&w=1920&q=100')",
         }}
       >
-        <div className="w-full bg-black/10 ">
-          <div className="border mt-40 border-gray-400 w-80  bg-gray-300   text-black p-2 rounded-4xl  mx-auto text-xs sm:text-sm ">
-            <span className="ml-10">
-              Digital Freedom With 3-Step Activation
-            </span>
+        <div className="w-full bg-black/10 py-6 sm:py-0">
+          {/* badge */}
+          <div
+            className="border mt-24 sm:mt-40 border-gray-400 
+          w-[85%] sm:w-80 bg-gray-300 text-black py-1 px-2 
+          rounded-full mx-auto text-[10px] sm:text-sm text-center"
+          >
+            Digital Freedom With 3-Step Activation
           </div>
+
           <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center">
-            <h1 className="font-semibold text-3xl sm:text-5xl md:text-6xl mt-6 sm:mt-8 leading-tight">
-              <span className="text-yellow-400">Yaalo eSIM</span> Roam the{" "}
+            {/* heading */}
+            <h1 className="font-semibold text-2xl sm:text-5xl md:text-6xl mt-4 sm:mt-8 leading-tight">
+              <span className="text-yellow-400">Yaalo eSIM</span>
+              <br className="sm:hidden" />
+              Roam the World,
               <br />
-              World, Not the Fees
+              Not the Fees
             </h1>
 
             {/* search */}
-            <div className="relative h-12 sm:h-14 w-full max-w-xl mx-auto mt-6 sm:mt-8">
+            <div className="relative h-10 sm:h-14 w-full max-w-xl mx-auto mt-5 sm:mt-8">
               <input
                 type="text"
                 placeholder="Where are you flying next?"
-                className="w-full pl-4 pr-10 py-2 sm:py-3 border border-gray-200 rounded-3xl bg-white outline-none text-sm sm:text-base"
+                className="w-full pl-3 pr-10 py-2 sm:py-3 border border-gray-200 rounded-3xl bg-white outline-none text-xs sm:text-base"
               />
-
               <Search
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"
-                size={18}
+                className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-400"
+                size={16}
               />
             </div>
 
             {/* description */}
-            <p className="font-medium mt-6 sm:mt-8 text-gray-700 text-sm sm:text-base px-2">
+            <p className="font-medium mt-4 sm:mt-8 text-gray-700 text-xs sm:text-base px-2">
               Your trips just got easier. With Yaalo eSIM, you land, connect,
-              and get <br className="hidden sm:block" />
+              and get
+              <br className="hidden sm:block" />
               instant 5G data in 200+ destinations at local rates.
             </p>
 
             {/* download */}
-            <h2 className="font-semibold text-base sm:text-lg mt-8 sm:mt-10">
+            <h2 className="font-semibold text-sm sm:text-lg mt-6 sm:mt-10">
               Download the App Now
             </h2>
 
             {/* buttons */}
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 mt-6 mb-10">
+            <div className="flex flex-row sm:flex-row justify-center items-center gap-2 sm:gap-4 mt-4 sm:mt-6 mb-6 sm:mb-10">
               <a
                 href="https://play.google.com/store/apps/details?id=com.activatewireless.app.yaalo"
                 target="_blank"
               >
-                <div className="bg-white rounded-3xl shadow-sm">
+                <div className="bg-white rounded-3xl shadow-sm px-2 py-1">
                   <img
                     src="https://yaalo.com/_next/static/media/g-play.8d7b1a46.svg"
-                    className="h-12 sm:h-auto"
+                    className="h-9 sm:h-12"
                   />
                 </div>
               </a>
 
               <a href="https://apps.apple.com/app/id6753675047" target="_blank">
-                <div className="bg-white rounded-3xl shadow-sm">
+                <div className="bg-white rounded-3xl shadow-sm px-2 py-1">
                   <img
                     src="https://yaalo.com/_next/static/media/apple-store.8102bba3.svg"
-                    className="h-12 sm:h-auto"
+                    className="h-9 sm:h-12"
                   />
                 </div>
               </a>
@@ -78,50 +88,46 @@ const Hero = () => {
       </div>
 
       {/* CARDS */}
-      <div className="max-w-[1800px] mx-auto px-6 py-11 flex flex-wrap ml-15 gap-8">
-        <div className="w-[280px] sm:w-[270px] border border-gray-200 rounded-2xl p-6 text-center hover:-translate-y-2 transition">
-          <img
-            className="mx-auto mb-3"
-            src="https://yaalo.com/_next/static/media/earth.39b7df47.svg"
-          />
-          <h3 className="font-semibold">Local Rates</h3>
-          <p className="text-sm text-gray-600 mt-2">
-            Data plans focusing on travellers’ style, not roaming premiums.
-          </p>
-        </div>
-
-        <div className="w-[280px] sm:w-[270px] border border-gray-200 rounded-2xl p-6 text-center hover:-translate-y-2 transition">
-          <img
-            className="mx-auto mb-3"
-            src="https://yaalo.com/_next/static/media/clock.3a93caca.svg"
-          />
-          <h3 className="font-semibold">Plug & Get Online</h3>
-          <p className="text-sm text-gray-600 mt-2">
-            Instant connectivity with simple activation.
-          </p>
-        </div>
-
-        <div className="w-[280px] sm:w-[270px] border border-gray-200 rounded-2xl p-6 text-center hover:-translate-y-2 transition">
-          <img
-            className="mx-auto mb-3"
-            src="https://yaalo.com/_next/static/media/trophy.ed47fe48.svg"
-          />
-          <h3 className="font-semibold">Buy Online</h3>
-          <p className="text-sm text-gray-600 mt-2">
-            No SIM swapping required anywhere.
-          </p>
-        </div>
-
-        <div className="w-[280px] sm:w-[270px] border border-gray-200 rounded-2xl p-6 text-center hover:-translate-y-2 transition">
-          <img
-            className="mx-auto mb-3"
-            src="https://yaalo.com/_next/static/media/sim.332404b8.svg"
-          />
-          <h3 className="font-semibold">24/7 Support</h3>
-          <p className="text-sm text-gray-600 mt-2">
-            We’re always here when you need help.
-          </p>
-        </div>
+      <div
+        className="max-w-[1200px] mx-auto px-4 sm:px-6 py-8 
+      grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6"
+      >
+        {[
+          {
+            img: "earth.39b7df47.svg",
+            title: "Local Rates",
+            desc: "No roaming premiums",
+          },
+          {
+            img: "clock.3a93caca.svg",
+            title: "Plug & Online",
+            desc: "Instant activation",
+          },
+          {
+            img: "trophy.ed47fe48.svg",
+            title: "Buy Online",
+            desc: "No SIM swap",
+          },
+          {
+            img: "sim.332404b8.svg",
+            title: "24/7 Support",
+            desc: "Always available",
+          },
+        ].map((card, i) => (
+          <div
+            key={i}
+            className="border border-gray-200 rounded-xl p-3 sm:p-6 text-center hover:-translate-y-1 transition"
+          >
+            <img
+              className="mx-auto mb-2 w-7 sm:w-auto"
+              src={`https://yaalo.com/_next/static/media/${card.img}`}
+            />
+            <h3 className="font-semibold text-xs sm:text-base">{card.title}</h3>
+            <p className="text-[10px] sm:text-sm text-gray-600 mt-1">
+              {card.desc}
+            </p>
+          </div>
+        ))}
       </div>
     </>
   );

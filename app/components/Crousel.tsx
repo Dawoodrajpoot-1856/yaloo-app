@@ -24,7 +24,10 @@ const reviews = [
     name: "Luca Italy",
     text: "Used from Rome to Berlin. Never lost signal once.",
   },
-  { name: "Ravi Kumar", text: "Cheaper than roaming. Support is super fast." },
+  {
+    name: "Ravi Kumar",
+    text: "Cheaper than roaming. Support is super fast.",
+  },
   {
     name: "Clara Spain",
     text: "Activated on flight. Worked instantly after landing.",
@@ -34,7 +37,7 @@ const reviews = [
 export default function Crousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
-    align: "center",
+    align: "start",
   });
 
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -51,7 +54,7 @@ export default function Crousel() {
 
     const interval = setInterval(() => {
       emblaApi.scrollNext();
-    }, 2500);
+    }, 3000);
 
     return () => {
       clearInterval(interval);
@@ -60,10 +63,10 @@ export default function Crousel() {
   }, [emblaApi]);
 
   return (
-    <section className="max-w-6xl ml-20">
+    <section className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-16">
       {/* HEADER */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
+      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-8 sm:mb-12">
+        <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold leading-tight">
           Traveller Voices <br />
           They are Using Yaalo forever!
         </h1>
@@ -72,14 +75,14 @@ export default function Crousel() {
           <a href="https://play.google.com/store/apps/details?id=com.activatewireless.app.yaalo">
             <img
               src="https://yaalo.com/_next/static/media/playLink.1cd75698.svg"
-              className="h-10 sm:h-12 hover:scale-105 transition"
+              className="h-9 sm:h-12 hover:scale-105 transition"
             />
           </a>
 
           <a href="https://apps.apple.com/app/id6753675047">
             <img
               src="https://yaalo.com/_next/static/media/appleLink.9011278c.svg"
-              className="h-10 sm:h-12 hover:scale-105 transition"
+              className="h-9 sm:h-12 hover:scale-105 transition"
             />
           </a>
         </div>
@@ -91,9 +94,9 @@ export default function Crousel() {
           {reviews.map((item, i) => (
             <div
               key={i}
-              className="min-w-full sm:min-w-[80%] md:min-w-[50%] lg:min-w-[33.333%] px-3 sm:px-4"
+              className="min-w-[85%] sm:min-w-[70%] md:min-w-[50%] lg:min-w-[33.333%] px-2 sm:px-4"
             >
-              <div className="border border-gray-300 rounded-2xl p-5 sm:p-6 bg-white h-full transition">
+              <div className="border border-gray-300 rounded-2xl p-4 sm:p-6 bg-white h-full transition hover:shadow-md">
                 {/* USER */}
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-yellow-300 flex items-center justify-center font-semibold text-xs sm:text-sm text-black">
@@ -111,7 +114,7 @@ export default function Crousel() {
                 </div>
 
                 {/* TEXT */}
-                <p className="text-gray-700 text-sm sm:text-base">
+                <p className="text-gray-700 text-xs sm:text-base leading-5 sm:leading-6">
                   "{item.text}"
                 </p>
               </div>
@@ -121,11 +124,11 @@ export default function Crousel() {
       </div>
 
       {/* DOTS */}
-      <div className="flex justify-center gap-2 mt-6">
+      <div className="flex justify-center gap-2 mt-6 sm:mt-8">
         {reviews.map((_, i) => (
           <div
             key={i}
-            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+            className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full transition-all duration-300 ${
               i === selectedIndex ? "bg-yellow-400 scale-125" : "bg-gray-300"
             }`}
           />

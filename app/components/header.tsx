@@ -89,21 +89,22 @@ export default function Header() {
       >
         <header
           className={`
-                        flex items-center justify-between
-                        px-6 lg:px-8 py-5
-                        bg-white/30 backdrop-blur-xl
-                        border border-white/40
-                        shadow-xl rounded-2xl
-                        transition-all duration-500
-                        ${scrolled ? "scale-[0.98]" : "scale-100"}
-                    `}
+    flex items-center justify-between
+    px-6 lg:px-8 py-5
+    transition-all duration-500
+    ${
+      scrolled
+        ? "bg-white/30 backdrop-blur-xl border border-white/40  rounded-2xl scale-[0.98]"
+        : "bg-transparent backdrop-blur-0 border-transparent shadow-none rounded-none scale-100"
+    }
+  `}
         >
           {/* Logo */}
           <Link href="/">
             <img
               src="https://yaalo.com/_next/static/media/yaalo-logo-dark.43dca0d6.svg"
               alt="Yaalo Logo"
-              className="h-8 md:h-10"
+              className="h-8  ml-10 md:h-10"
             />
           </Link>
 

@@ -7,17 +7,17 @@ const Page = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-100">
       {/* HERO */}
-      <div className="text-center  px-6">
-        <h1 className="text-4xl md:text-6xl font-bold">
+      <div className="text-center px-6 pt-10">
+        <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold">
           Simple eSIM Experience
         </h1>
-        <p className="mt-4 text-gray-600 text-lg">
+        <p className="mt-4 text-gray-600 text-base sm:text-lg">
           Buy, install and activate your eSIM in minutes
         </p>
       </div>
 
       {/* STEPS */}
-      <div className="max-w-6xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {[
           { num: "1", title: "Buy a data plan", img: "step1.5f190939.png" },
           { num: "2", title: "Install the eSIM", img: "step2.865ddb77.png" },
@@ -25,13 +25,13 @@ const Page = () => {
         ].map((item, i) => (
           <div
             key={i}
-            className="bg-white w-[360px] mx-auto rounded-2xl p-5 shadow-md border border-gray-300 hover:-translate-y-3 hover:border-amber-200 transition-all duration-500"
+            className="bg-white w-full max-w-[360px] mx-auto rounded-2xl p-5 shadow-md border border-gray-300 hover:-translate-y-3 hover:border-amber-200 transition-all duration-500"
           >
             <div className="flex items-center gap-3 mb-4">
-              <span className="w-10 h-10 rounded-full text-gray-500 flex items-center justify-center text-xl font-bold">
+              <span className="w-9 h-9 sm:w-10 sm:h-10 rounded-full text-gray-500 flex items-center justify-center text-lg sm:text-xl font-bold">
                 {item.num}
               </span>
-              <h1 className="text-xl font-semibold">{item.title}</h1>
+              <h1 className="text-lg sm:text-xl font-semibold">{item.title}</h1>
             </div>
 
             <p className="text-gray-600 text-sm leading-6 mb-4">
@@ -39,10 +39,10 @@ const Page = () => {
               for your needs.
             </p>
 
-            <div className="h-60 flex items-center justify-center">
+            <div className="h-48 sm:h-56 md:h-60 flex items-center justify-center">
               <img
                 src={`https://yaalo.com/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2F${item.img}&w=640&q=75`}
-                className="h-full object-contain hover:scale-105 transition duration-500"
+                className="h-full w-full object-contain hover:scale-105 transition duration-500"
               />
             </div>
           </div>
@@ -50,10 +50,10 @@ const Page = () => {
       </div>
 
       {/* CTA */}
-      <div className="bg-[#393a36] mt-16 rounded-3xl px-6 sm:px-10 py-12 max-w-[1180px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-10">
+      <div className="bg-[#393a36] mt-12 sm:mt-16 rounded-3xl px-6 sm:px-10 py-10 sm:py-12 max-w-[1180px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-10">
         {/* LEFT */}
-        <div className="max-w-xl">
-          <h1 className="text-white text-3xl sm:text-5xl font-semibold leading-tight mb-6">
+        <div className="max-w-xl text-center lg:text-left">
+          <h1 className="text-white text-2xl sm:text-4xl lg:text-5xl font-semibold leading-tight mb-6">
             Is Your Phone eSIM-Ready?
           </h1>
 
@@ -65,7 +65,7 @@ const Page = () => {
             Check eSIM Compatibility Here:
           </p>
 
-          <button className="group bg-yellow-400 text-black hover:bg-black hover:text-white transition px-5 py-3 rounded-2xl flex items-center gap-3 font-semibold">
+          <button className="group bg-yellow-400 text-black hover:bg-black hover:text-white transition px-5 py-3 rounded-2xl flex items-center gap-3 font-semibold mx-auto lg:mx-0">
             All eSIM-compatible Phones
             <span className="relative w-5 h-5 flex items-center justify-center overflow-hidden">
               <ArrowUpRight className="absolute group-hover:opacity-0 group-hover:-translate-y-3 transition" />
@@ -75,10 +75,10 @@ const Page = () => {
         </div>
 
         {/* RIGHT IMAGE */}
-        <div className="w-full lg:w-auto flex justify-center">
+        <div className="w-full flex justify-center">
           <img
             src="https://yaalo.com/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2FesimSS.07771902.png&w=640&q=70"
-            className="w-[280px] sm:w-[400px] lg:w-[500px] hover:scale-105 transition duration-500"
+            className="w-[240px] sm:w-[320px] md:w-[400px] lg:w-[500px] hover:scale-105 transition duration-500"
           />
         </div>
       </div>
