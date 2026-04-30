@@ -83,7 +83,7 @@ export default function Header() {
   return (
     <>
       <div
-        className={`fixed top-0 left-0 w-full z-50 px-4 md:px-8 lg:px-14 transition-all duration-500 ${
+        className={`fixed top-0 left-0  ml-3 w-335 z-50 px-4 md:px-8 lg:px-14 transition-all duration-500 ${
           scrolled ? "pt-4" : "pt-0"
         }`}
       >
