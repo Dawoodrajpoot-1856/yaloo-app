@@ -165,7 +165,7 @@ const Footer = () => {
       </div>
 
       {/* BOTTOM BAR */}
-      <div className="bg-gray-50 border border-gray-100 rounded-[1.5rem] mt-6 p-5 sm:p-6 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div className="bg-gray-100 border border-gray-100 rounded-[1.5rem] mt-6 p-5 sm:p-6 flex flex-col md:flex-row items-center justify-between gap-6">
         <p className="text-xs sm:text-sm text-gray-500 font-medium">
           © 2026 Yaalo. All Rights Reserved
         </p>
