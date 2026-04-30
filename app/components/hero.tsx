@@ -86,11 +86,11 @@ const Hero = () => {
           </div>
         </div>
       </div>
-
-      {/* CARDS */}
       <div
-        className="max-w-[1200px] mx-auto px-4 sm:px-6 py-8 
-      grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6"
+        className="max-w-[1200px] px-4 py-8 
+  /* ml-0 mobile par, ml-16 tablet/desktop par. mx-auto hata diya gaya hai */
+  ml-0 md:ml-16 
+  grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-10"
       >
         {[
           {
@@ -116,11 +116,12 @@ const Hero = () => {
         ].map((card, i) => (
           <div
             key={i}
-            className="border border-gray-200 rounded-xl p-3 sm:p-6 text-center hover:-translate-y-1 transition"
+            className="border border-gray-200 rounded-xl p-3 sm:p-6 text-center hover:-translate-y-1 transition bg-white/50 backdrop-blur-sm"
           >
             <img
               className="mx-auto mb-2 w-7 sm:w-auto"
               src={`https://yaalo.com/_next/static/media/${card.img}`}
+              alt={card.title}
             />
             <h3 className="font-semibold text-xs sm:text-base">{card.title}</h3>
             <p className="text-[10px] sm:text-sm text-gray-600 mt-1">

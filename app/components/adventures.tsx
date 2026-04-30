@@ -12,16 +12,16 @@ const Adventures = () => {
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
       {/* TITLE */}
-      <h1 className="font-semibold text-3xl  ml-5 sm:text-5xl">
+      <h1 className="font-semibold text-3xl  ml-3 sm:text-5xl">
         Pick Your Adventure
       </h1>
 
-      <p className="mt-4  ml-5 font-medium text-gray-700">
+      <p className="mt-4  ml-3 font-medium text-gray-700">
         Find Yaalo eSIMs built for your route
       </p>
 
       {/* TOP BAR */}
-      <div className="flex flex-col ml-5 lg:flex-row lg:justify-between gap-6 mt-8">
+      <div className="flex flex-col ml-3 lg:flex-row lg:justify-between gap-6 mt-8">
         {/* FILTER BUTTONS */}
         <div className="border border-gray-200 rounded-2xl p-2 flex flex-wrap gap-2 w-full sm:w-fit">
           <button className="bg-yellow-400 font-medium px-6 py-2 rounded-2xl">
@@ -87,7 +87,7 @@ const Adventures = () => {
           </div>
         ))}
       </div>
-      <div className="mt-16 ml-5 ">
+      <div className="mt-16 ml-3 ">
         <h1 className="text-3xl sm:text-5xl font-semibold leading-tight">
           How Yaalo eSIM Works? <br />
           (Spoiler: It’s Ridiculously Simple)
