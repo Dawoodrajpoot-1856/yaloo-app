@@ -155,7 +155,7 @@ export default function Header() {
                   {[
                     { label: "About", href: "/about-us" },
                     {
-                      label: "Compatible Phones",
+                      label: "eSIM Compatible Phones",
                       href: "/esim-compatible-devices",
                     },
                     { label: "FAQ", href: "/faq" },
