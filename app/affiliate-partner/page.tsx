@@ -66,7 +66,7 @@ const Page = () => {
 
       {/* WHO CAN JOIN SECTION */}
       <div className="bg-gray-100 py-16">
-        <div className="max-w-[1200px] mx-auto px-6">
+        <div className="max-w-[1230px] mx-auto px-6">
           <h1 className="text-3xl md:text-4xl font-semibold text-gray-900">
             Who can be Yaalo Affiliate Partners?
           </h1>
@@ -132,7 +132,7 @@ const Page = () => {
       </div>
 
       {/* HOW IT WORKS SECTION */}
-      <div className="max-w-[1200px] mx-auto px-6 py-16">
+      <div className="max-w-[1230px] mx-auto px-6 py-16">
         <h1 className="text-3xl md:text-4xl font-semibold">
           How the Affiliate Program Works?
         </h1>
@@ -182,7 +182,7 @@ const Page = () => {
 
       {/* SPECIAL SECTION (Visual Grids) */}
       <div className="bg-orange-50/50 py-16">
-        <div className="max-w-[1200px] mx-auto px-6">
+        <div className="max-w-[1230px] mx-auto px-6">
           <div className="flex flex-col md:flex-row gap-6 items-start mb-10">
             <h1 className="text-4xl md:text-6xl font-semibold flex-1">
               What Makes Yaalo eSIM Special
@@ -214,7 +214,7 @@ const Page = () => {
       </div>
 
       {/* FORM SECTION */}
-      <div className="max-w-[1200px] mx-auto px-6 py-16">
+      <div className="max-w-[1230px] mx-auto px-6 py-16">
         <div className="flex flex-col lg:flex-row gap-12 items-center">
           <div className="lg:w-1/2">
             <h2 className="text-3xl md:text-4xl font-bold">

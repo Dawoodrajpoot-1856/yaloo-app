@@ -53,7 +53,7 @@ const Affiliate = () => {
   };
 
   return (
-    <div className="max-w-[1150px] mx-auto px-4 sm:px-6 py-10">
+    <div className="max-w-[1200px] mx-auto px-4 sm:px-6 py-10">
       {/* HEADER */}
       <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6 mb-8">
         {/* TEXT */}
@@ -96,7 +96,7 @@ const Affiliate = () => {
           <div
             key={i}
             className="
-              min-w-[240px] sm:min-w-[280px] md:min-w-[300px]
+              min-w-[240px] sm:min-w-[280px] md:min-w-[350px]
               h-[320px] sm:h-[380px] md:h-[420px]
               rounded-2xl overflow-hidden shadow-lg relative
               transition-all duration-500 ease-in-out

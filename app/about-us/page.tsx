@@ -14,7 +14,7 @@ const Page = () => {
 
         {/* HERO SECTION */}
         <div
-          className="min-h-[60vh] md:min-h-[70vh] bg-cover bg-center bg-no-repeat flex items-center justify-center relative px-6 pt-20"
+          className="min-h-[50vh] md:min-h-[70vh] bg-cover bg-center bg-no-repeat flex items-center justify-center relative px-6 pt-20"
           style={{
             backgroundImage:
               "url('https://yaalo.com/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2FheroBackground.92b9c510.png&w=1920&q=100')",
@@ -50,7 +50,7 @@ const Page = () => {
       </div>
 
       {/* BIG STORY IMAGE */}
-      <div className="max-w-[1400px] mx-auto px-4 md:px-10 pb-12">
+      <div className="max-w-[1280px] mx-auto px-4 md:px-10 pb-12">
         <img
           src="https://yaalo.com/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2FaboutUs.f80216a4.png&w=1920&q=100"
           alt="About Us"
@@ -92,54 +92,61 @@ const Page = () => {
       </div>
 
       {/* TIMELINE SECTION */}
-      <div className="max-w-[1200px] mx-auto px-6 py-16">
+      {/* TIMELINE SECTION - Balanced Alignment */}
+      <div className="max-w-[1100px] mx-auto px-6 py-16">
         <h2 className="font-bold text-3xl md:text-5xl text-center mb-16">
           Built for Simplicity, Powered by Freedom
         </h2>
-        <div className="flex flex-col lg:flex-row gap-12 items-center">
-          {/* LEFT IMAGE */}
-          <div className="w-full lg:w-1/2">
+
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center lg:items-start">
+          {/* LEFT IMAGE - Fixed for less empty space */}
+          <div className="w-full lg:w-[45%]">
             <img
               src="https://yaalo.com/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2Fcontact.03ff1c67.png&w=640&q=75"
               alt="Contact"
-              className="w-full max-w-md mx-auto rounded-3xl object-contain"
+              className="w-full  max-w-sm lg:max-w-md mx-auto lg:mx-0 rounded-3xl object-contain"
             />
           </div>
 
-          {/* RIGHT TIMELINE */}
-          <div className="w-full lg:w-1/2 space-y-10">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
+          {/* RIGHT TIMELINE - Content shifted slightly left */}
+          <div className="w-full lg:w-[55%] space-y-10 ">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-10">
+              {/* 2021 */}
               <div className="flex flex-col items-center md:items-start text-center md:text-left">
                 <img
                   src="https://yaalo.com/_next/static/media/android.b8a31fd9.svg"
                   alt="2021"
-                  className="w-12 mb-4"
+                  className="w-10 mb-3"
                 />
                 <h3 className="text-2xl font-bold text-yellow-500">2021</h3>
-                <p className="text-gray-600 mt-2">
+                <p className="text-gray-600 mt-2 text-sm md:text-base">
                   Yaalo launched its first travel eSIM globally.
                 </p>
               </div>
+
+              {/* 2022 */}
               <div className="flex flex-col items-center md:items-start text-center md:text-left">
                 <img
                   src="https://yaalo.com/_next/static/media/ios.2fbf1f26.svg"
                   alt="2022"
-                  className="w-12 mb-4"
+                  className="w-10 mb-3"
                 />
                 <h3 className="text-2xl font-bold text-yellow-500">2022</h3>
-                <p className="text-gray-600 mt-2">
+                <p className="text-gray-600 mt-2 text-sm md:text-base">
                   Expanded across continents with affordable regional plans.
                 </p>
               </div>
             </div>
-            <div className="flex flex-col items-center md:items-start text-center md:text-left pt-6 border-t border-gray-100">
+
+            {/* 2026 */}
+            <div className="flex flex-col items-center md:items-start text-center md:text-left pt-8 border-t border-gray-100">
               <img
                 src="https://yaalo.com/_next/static/media/globe.2623edcb.svg"
                 alt="2026"
-                className="w-12 mb-4"
+                className="w-10 mb-3"
               />
               <h3 className="text-2xl font-bold text-yellow-500">2026</h3>
-              <p className="text-gray-600 mt-2 max-w-sm">
+              <p className="text-gray-600 mt-2 max-w-sm text-sm md:text-base leading-relaxed">
                 Making global connections as easy as unlocking your phone.
               </p>
             </div>

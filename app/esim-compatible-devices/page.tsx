@@ -52,8 +52,8 @@ const Page = () => {
           <Header />
         </div>
 
-        <div className="relative z-10 text-center max-w-4xl px-6 text-black">
-          <h1 className="font-bold text-3xl sm:text-5xl md:text-6xl leading-tight">
+        <div className="relative z-10 text-center max-w-3xl px-6 text-black">
+          <h1 className="font-bold text-3xl sm:text-5xl md:text-5xl mx-auto leading-tight">
             Yaalo eSIM Compatible <br className="hidden md:block" /> Devices
           </h1>
 
@@ -73,7 +73,7 @@ const Page = () => {
       </div>
 
       {/* MAIN CONTENT WRAPPER */}
-      <div className="max-w-7xl mx-auto px-6 py-12 md:py-20">
+      <div className="max-w-[1230px] mx-auto px-6 py-12 md:py-20">
         {/* COMPATIBILITY INTRO */}
         <div className="mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">

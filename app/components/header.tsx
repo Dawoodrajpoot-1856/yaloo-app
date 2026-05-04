@@ -6,7 +6,7 @@ import {
   Handshake,
   Mail,
   Search,
-  ShoppingCart,
+  ShoppingCart, // Wapis add kiya
   User,
   Menu,
   X,
@@ -61,6 +61,7 @@ const NavItem = ({
 );
 
 export default function Header() {
+  const [cartOpen, setCartOpen] = useState(false); // Cart state
   const [open, setOpen] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -72,8 +73,9 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = mobileMenu ? "hidden" : "unset";
-  }, [mobileMenu]);
+    // Scroll lock jab cart ya menu open ho
+    document.body.style.overflow = mobileMenu || cartOpen ? "hidden" : "unset";
+  }, [mobileMenu, cartOpen]);
 
   return (
     <>
@@ -93,7 +95,6 @@ export default function Header() {
       }
     `}
         >
-          {/* Baki saara logo aur nav ka code yahan aayega... */}
           {/* Logo */}
           <Link href="/">
             <img
@@ -130,6 +131,7 @@ export default function Header() {
               />
             </Link>
 
+            {/* More Dropdown */}
             <li
               className="relative cursor-pointer group list-none"
               onMouseEnter={() => setOpen(true)}
@@ -149,23 +151,24 @@ export default function Header() {
                   </div>
                 </div>
               </div>
-
               {open && (
-                <div className="absolute top-8 left-0 bg-white rounded-2xl p-3 w-60 space-y-1 border border-gray-100 shadow-xl animate-in fade-in slide-in-from-top-2 duration-300 z-20">
+                <div className="absolute top-8 left-0 bg-white rounded-2xl p-3 w-60 space-y-1 border border-gray-100 shadow-xl z-20">
                   {[
-                    { label: "About", href: "/about-us" },
+                    { name: "About Us", link: "/about-us" },
                     {
-                      label: "eSIM Compatible Phones",
-                      href: "/esim-compatible-devices",
+                      name: "eSIM Compatible Phones",
+                      link: "/esim-compatible-devices",
                     },
-                    { label: "FAQ", href: "/faq" },
-                    { label: "Blog", href: "/blog" },
+                    { name: "FAQ", link: "/faq" },
+                    { name: "Blog", link: "/blog" },
                   ].map((item) => (
-                    <Link href={item.href} key={item.label}>
-                      <div className="px-4 py-2 text-xs text-black hover:bg-orange-50 hover:text-orange-600 rounded-xl cursor-pointer transition-all font-bold">
-                        {item.label}
-                      </div>
-                    </Link>
+                    <a
+                      href={item.link}
+                      key={item.name}
+                      className="block px-4 py-2 text-xs text-black hover:bg-orange-50 hover:text-orange-600 rounded-xl cursor-pointer transition-all font-bold"
+                    >
+                      {item.name}
+                    </a>
                   ))}
                 </div>
               )}
@@ -179,7 +182,16 @@ export default function Header() {
               <NavItem icon={User} label="Login" hoverColor="text-indigo-500" />
             </Link>
             <div className="flex items-center gap-4 border-l pl-6 border-gray-200">
-              <ShoppingCart className="w-5 h-5 cursor-pointer hover:text-blue-500 transition-colors" />
+              {/* Desktop Cart Trigger */}
+              <button
+                onClick={() => setCartOpen(true)}
+                className="relative group p-1"
+              >
+                <ShoppingCart className="w-5 h-5 cursor-pointer group-hover:text-blue-500 transition-colors" />
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
+                  0
+                </span>
+              </button>
               <button className="flex items-center gap-1 font-semibold text-sm">
                 EN <ChevronDown size={14} />
               </button>
@@ -188,7 +200,11 @@ export default function Header() {
 
           {/* Mobile UI */}
           <div className="flex lg:hidden items-center gap-4">
-            <ShoppingCart size={22} className="cursor-pointer" />
+            {/* Mobile Cart Trigger */}
+            <ShoppingCart
+              onClick={() => setCartOpen(true)}
+              className="w-6 h-6 cursor-pointer text-black"
+            />
             <button onClick={() => setMobileMenu(true)} className="p-1">
               <Menu size={32} />
             </button>
@@ -196,65 +212,73 @@ export default function Header() {
         </header>
       </div>
 
-      {/* MOBILE MENU (SAME AS BEFORE) */}
+      {/* CART OVERLAY */}
+      <div
+        className={`fixed inset-0 z-[100] bg-black/40 transition-opacity duration-300 ${
+          cartOpen ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
+        onClick={() => setCartOpen(false)}
+      />
+
+      {/* CART PANEL (Choti Height & Clean Look) */}
+      <div
+        className={`fixed top-2 right-4 w-[90%] max-w-[350px] h-[570px] bg-white z-[101] rounded-2xl shadow-2xl transition-all duration-300 ease-in-out ${
+          cartOpen
+            ? "translate-x-0 opacity-100"
+            : "translate-x-10 opacity-0 pointer-events-none"
+        } flex flex-col overflow-hidden`}
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between p-5 border-b border-gray-50">
+          <h2 className="font-bold text-base text-black">My Cart</h2>
+          <button
+            onClick={() => setCartOpen(false)}
+            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+          >
+            <X size={18} className="text-gray-500" />
+          </button>
+        </div>
+
+        {/* Simple Empty Content */}
+        <div className="p-8 flex flex-col items-center justify-center text-center">
+          <div className="w-14 h-14 bg-gray-50 rounded-full flex items-center justify-center mb-3">
+            <ShoppingCart size={24} className="text-gray-300" />
+          </div>
+          <p className="text-black font-semibold text-sm">Your cart is empty</p>
+        </div>
+      </div>
+
+      {/* MOBILE MENU SIDEBAR (Same as before) */}
       <div
         className={`fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
           mobileMenu ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
         onClick={() => setMobileMenu(false)}
       />
-
       <div
         className={`fixed top-0 right-0 h-full w-[80%] max-w-[350px] bg-white z-[101] shadow-2xl transition-transform duration-500 ease-out lg:hidden p-6 flex flex-col ${
           mobileMenu ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        {/* ... Sidebar Content ... */}
         <div className="flex items-center justify-between mb-10">
           <img
             src="https://yaalo.com/_next/static/media/yaalo-logo-dark.43dca0d6.svg"
             alt="Yaalo"
             className="h-8"
           />
-          <button
-            onClick={() => setMobileMenu(false)}
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-          >
+          <button onClick={() => setMobileMenu(false)} className="p-2">
             <X size={28} />
           </button>
         </div>
-        <nav className="flex flex-col gap-2 overflow-y-auto">
-          {[
-            { label: "Buy eSIM", href: "/destinations", icon: CardSim },
-            { label: "Contact Info", href: "/contact-us", icon: Mail },
-            {
-              label: "Affiliate Partner",
-              href: "/affiliate-partner",
-              icon: Handshake,
-            },
-            { label: "About Us", href: "/about-us", icon: User },
-            { label: "FAQ", href: "/faq", icon: Globe },
-          ].map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              onClick={() => setMobileMenu(false)}
-              className="flex items-center gap-4 px-4 py-4 text-gray-700 font-bold hover:bg-gray-50 rounded-2xl transition-all"
-            >
-              <item.icon size={20} className="text-orange-500" />
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-        <div className="mt-auto pt-6 border-t border-gray-100 space-y-4">
+        <nav className="flex flex-col gap-2">
+          {/* Nav links yahan aayenge */}
           <Link
-            href="/login"
-            onClick={() => setMobileMenu(false)}
-            className="flex items-center justify-center gap-2 w-full py-4 bg-black text-white font-bold rounded-2xl"
+            href="/destinations"
+            className="flex items-center gap-4 px-4 py-4 text-gray-700 font-bold hover:bg-gray-50 rounded-2xl"
           >
-            <LogIn size={20} /> Login
+            <CardSim size={20} className="text-orange-500" /> Buy eSIM
           </Link>
-        </div>
+        </nav>
       </div>
     </>
   );

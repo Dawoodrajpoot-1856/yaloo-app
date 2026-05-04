@@ -6,7 +6,6 @@ import { Search, ChevronsRight } from "lucide-react";
 const page = () => {
   return (
     <>
-      {/* HEADER (fixed properly) */}
       <div className="fixed top-0 left-0 w-full z-[999]">
         <Header />
       </div>
@@ -37,7 +36,8 @@ const page = () => {
       </div>
 
       {/* SECTION */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+      {/* Optimized Section: Clean & Centered */}
+      <section className="max-w-7xl mx-auto px-6 sm:px-10 py-12 sm:py-16">
         <h1 className="font-semibold text-2xl sm:text-4xl lg:text-5xl">
           Pick Your Adventure
         </h1>
@@ -49,37 +49,34 @@ const page = () => {
         {/* TOP BAR */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mt-8">
           {/* FILTERS */}
-          <div className="border border-gray-200 rounded-2xl p-2 flex flex-wrap gap-2 w-full lg:w-fit">
-            <button className="bg-yellow-400 font-medium px-4 sm:px-6 py-2 rounded-2xl text-sm sm:text-base">
+          <div className="border border-gray-200 rounded-2xl p-1.5 flex flex-wrap gap-2 w-full lg:w-fit">
+            <button className="bg-yellow-400 font-medium px-4 sm:px-6 py-2 rounded-xl text-sm sm:text-base">
               Local
             </button>
-
-            <button className="px-4 sm:px-6 py-2 rounded-2xl hover:bg-gray-100 text-sm sm:text-base">
+            <button className="px-4 sm:px-6 py-2 rounded-xl hover:bg-gray-100 text-sm sm:text-base transition-colors">
               Regional
             </button>
-
-            <button className="px-4 sm:px-6 py-2 rounded-2xl hover:bg-gray-100 text-sm sm:text-base">
+            <button className="px-4 sm:px-6 py-2 rounded-xl hover:bg-gray-100 text-sm sm:text-base transition-colors">
               Global
             </button>
           </div>
 
           {/* SEARCH */}
-          <div className="relative w-full lg:w-[430px] h-11 sm:h-12">
+          <div className="relative w-full lg:w-[400px] h-12">
             <input
               type="text"
               placeholder="Where are you flying next?"
-              className="w-full h-full pl-4 sm:pl-5 pr-10 border border-gray-200 rounded-2xl outline-none text-sm"
+              className="w-full h-full pl-5 pr-12 border border-gray-200 rounded-2xl outline-none text-sm focus:border-yellow-400 transition-all"
             />
-
             <Search
               size={18}
-              className="absolute right-4 sm:right-5 top-1/2 -translate-y-1/2 text-gray-400"
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"
             />
           </div>
         </div>
 
-        {/* CARDS */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-10 sm:mt-12">
+        {/* CARDS GRID */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-10">
           {[
             { name: "United Kingdom", price: "$3", flag: "gb" },
             { name: "Bermuda", price: "$6", flag: "bm" },
@@ -88,30 +85,34 @@ const page = () => {
           ].map((item, i) => (
             <div
               key={i}
-              className="border border-gray-200 rounded-lg p-4 flex items-center justify-between
-              hover:shadow-md transition"
+              className="border border-gray-100 rounded-2xl p-5 flex items-center justify-between
+        hover:shadow-lg hover:-translate-y-1 transition-all duration-300 bg-white cursor-pointer group"
             >
               <div>
                 <img
                   src={`https://flagcdn.com/w80/${item.flag}.png`}
-                  className="h-6 sm:h-8 rounded"
+                  className="h-6 rounded-sm shadow-sm"
                   alt={item.name}
                 />
-
-                <p className="mt-2 text-sm font-medium">{item.name}</p>
-                <p className="text-xs sm:text-sm text-gray-600">
-                  Starts at {item.price}
+                <p className="mt-3 text-sm font-bold text-gray-900">
+                  {item.name}
+                </p>
+                <p className="text-xs text-gray-500 mt-0.5">
+                  Starts at{" "}
+                  <span className="text-black font-semibold">{item.price}</span>
                 </p>
               </div>
 
-              <span className="w-8 h-8 sm:w-10 sm:h-10 bg-amber-200 rounded-full flex items-center justify-center">
-                <ChevronsRight size={18} />
+              <span className="w-9 h-9 bg-gray-50 group-hover:bg-yellow-400 rounded-full flex items-center justify-center transition-colors">
+                <ChevronsRight
+                  size={16}
+                  className="text-gray-400 group-hover:text-black"
+                />
               </span>
             </div>
           ))}
         </div>
       </section>
-
       <Footer />
     </>
   );
