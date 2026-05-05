@@ -248,37 +248,101 @@ export default function Header() {
         </div>
       </div>
 
-      {/* MOBILE MENU SIDEBAR (Same as before) */}
+      {/* MOBILE MENU SIDEBAR */}
       <div
-        className={`fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 z-[110] bg-black/50 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
           mobileMenu ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
         onClick={() => setMobileMenu(false)}
       />
       <div
-        className={`fixed top-0 right-0 h-full w-[80%] max-w-[350px] bg-white z-[101] shadow-2xl transition-transform duration-500 ease-out lg:hidden p-6 flex flex-col ${
+        className={`fixed top-0 right-0 h-full w-[85%] max-w-[350px] bg-white z-[120] shadow-2xl transition-transform duration-500 ease-out lg:hidden flex flex-col ${
           mobileMenu ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex items-center justify-between mb-10">
+        {/* Header inside Sidebar */}
+        <div className="flex items-center justify-between p-6 border-b border-gray-100">
           <img
             src="https://yaalo.com/_next/static/media/yaalo-logo-dark.43dca0d6.svg"
             alt="Yaalo"
-            className="h-8"
+            className="h-7"
           />
-          <button onClick={() => setMobileMenu(false)} className="p-2">
-            <X size={28} />
+          <button
+            onClick={() => setMobileMenu(false)}
+            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+          >
+            <X size={24} className="text-gray-600" />
           </button>
         </div>
-        <nav className="flex flex-col gap-2">
-          {/* Nav links yahan aayenge */}
+
+        {/* Scrollable Content */}
+        <div className="flex-1 overflow-y-auto py-4">
+          <nav className="flex flex-col px-4 gap-1">
+            {/* Primary Links */}
+            <Link
+              href="/destinations"
+              onClick={() => setMobileMenu(false)}
+              className="flex items-center gap-4 px-4 py-4 text-black font-bold hover:bg-blue-50 rounded-2xl transition-all"
+            >
+              <CardSim size={20} className="text-blue-500" /> Buy eSIM
+            </Link>
+
+            <Link
+              href="/contact-us"
+              onClick={() => setMobileMenu(false)}
+              className="flex items-center gap-4 px-4 py-4 text-black font-bold hover:bg-green-50 rounded-2xl transition-all"
+            >
+              <Mail size={20} className="text-green-500" /> Contact Info
+            </Link>
+
+            <Link
+              href="/affiliate-partner"
+              onClick={() => setMobileMenu(false)}
+              className="flex items-center gap-4 px-4 py-4 text-black font-bold hover:bg-red-50 rounded-2xl transition-all"
+            >
+              <Handshake size={20} className="text-red-500" /> Affiliate Partner
+            </Link>
+
+            <hr className="my-2 border-gray-100" />
+
+            {/* Dropdown/More Items directly listed for mobile */}
+            <p className="px-4 py-2 text-[10px] uppercase tracking-widest text-gray-400 font-bold">
+              Quick Links
+            </p>
+            {[
+              { name: "About Us", link: "/about-us" },
+              { name: "Compatible Phones", link: "/esim-compatible-devices" },
+              { name: "FAQ", link: "/faq" },
+              { name: "Blog", link: "/blog" },
+            ].map((item) => (
+              <Link
+                key={item.name}
+                href={item.link}
+                onClick={() => setMobileMenu(false)}
+                className="block px-4 py-3 text-sm text-gray-700 hover:text-orange-600 font-bold"
+              >
+                {item.name}
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        {/* Footer Actions inside Sidebar */}
+        <div className="p-6 bg-gray-50 border-t border-gray-100 grid grid-cols-2 gap-3">
+          <button className="flex items-center justify-center gap-2 bg-white border border-gray-200 py-3 rounded-xl font-bold text-sm shadow-sm active:scale-95 transition-all">
+            <Search size={18} /> Search
+          </button>
           <Link
-            href="/destinations"
-            className="flex items-center gap-4 px-4 py-4 text-gray-700 font-bold hover:bg-gray-50 rounded-2xl"
+            href="/login"
+            onClick={() => setMobileMenu(false)}
+            className="flex items-center justify-center gap-2 bg-black text-white py-3 rounded-xl font-bold text-sm shadow-lg active:scale-95 transition-all"
           >
-            <CardSim size={20} className="text-orange-500" /> Buy eSIM
+            <User size={18} /> Login
           </Link>
-        </nav>
+          <button className="col-span-2 flex items-center justify-center gap-2 py-2 text-gray-500 font-bold text-xs">
+            <Globe size={14} /> Language: EN (English)
+          </button>
+        </div>
       </div>
     </>
   );
