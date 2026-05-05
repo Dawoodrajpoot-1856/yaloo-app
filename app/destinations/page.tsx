@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../components/header";
 import Footer from "../components/Footer";
-import { Search, ChevronsRight } from "lucide-react";
+import { Search, ChevronsRight, ChevronRight } from "lucide-react";
 
 const page = () => {
   return (
@@ -103,11 +103,8 @@ const page = () => {
                 </p>
               </div>
 
-              <span className="w-9 h-9 bg-gray-50 group-hover:bg-yellow-400 rounded-full flex items-center justify-center transition-colors">
-                <ChevronsRight
-                  size={16}
-                  className="text-gray-400 group-hover:text-black"
-                />
+              <span className="w-9 h-9 bg-amber-200  rounded-full flex items-center justify-center ">
+                <ChevronRight size={16} className="text-black" />
               </span>
             </div>
           ))}

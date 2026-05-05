@@ -327,7 +327,6 @@ export default function Header() {
           </nav>
         </div>
 
-        {/* Footer Actions inside Sidebar */}
         <div className="p-6 bg-gray-50 border-t border-gray-100 grid grid-cols-2 gap-3">
           <button className="flex items-center justify-center gap-2 bg-white border border-gray-200 py-3 rounded-xl font-bold text-sm shadow-sm active:scale-95 transition-all">
             <Search size={18} /> Search
