@@ -56,7 +56,7 @@ export default function Faqs() {
       </section>
 
       {/* FAQ LIST */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6">
+      <section className="max-w-3xl mx-auto px-4 sm:px-6">
         <div className="space-y-4 sm:space-y-5">
           {faqs.map((item, i) => (
             <details

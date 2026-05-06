@@ -10,6 +10,8 @@ import {
   ArrowLeft,
   ArrowRight,
   ArrowUpRight,
+  ChevronRight,
+  ChevronLeft,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -21,12 +23,12 @@ const cards = [
   },
   {
     title: "Tether & Hotspot",
-    desc: "No restrictions or data throttling for you. Tether your laptop or hotspot other devices without stress.",
+    desc: "People care for their planet, and Yaalo makes sure you go green. So, no more plastic waste from physical SIM cards. Stress-free purchasing and usage.",
     icon: UserRound,
   },
   {
     title: "Your Data Passport",
-    desc: "No more sudden charges. Pay as you go with local rates and full transparency.",
+    desc: "Track usage, top-up anywhere, switch plans on the fly. Travel-tech made it easy with the Yaalo App Dashboard. Available on Apple and Google Play Stores!",
     icon: Plane,
   },
   {
@@ -52,37 +54,36 @@ export default function Travels() {
   const scrollNext = () => emblaApi && emblaApi.scrollNext();
 
   return (
-    <section className="py-10 sm:py-16 lg:py-20 bg-[#fffdf7]">
-      {/* 
-          Left margin (padding) ko 20 units (~80px) rakha hai aur 
-          right ko original 100px taaki left side thodi zyada jagah le.
-      */}
-      <div className="max-w-[1440px] mx-auto px-6 sm:pl-20 sm:pr-[100px]">
-        {/* HEADER */}
-        <div className="text-left mb-8 sm:mb-12">
-          <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-4">
-            Why Are Travellers Switching to Yaalo?
-          </h1>
-          <p className="text-sm sm:text-base text-gray-600 max-w-xl">
-            Zero roaming fees and 200+ destinations worldwide.
-          </p>
+    <section className="py-10 sm:py-16 lg:py-20 ">
+      <div className="max-w-[1450px] mx-auto px-6 sm:pl-20 sm:pr-[100px]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-6">
+          {/* Text Content */}
+          <div className="text-left max-w-3xl">
+            <h1 className="text-2xl sm:text-3xl md:text-6xl font-semibold mb-2 sm:mb-4">
+              Why Are Travellers Switching to Yaalo?
+            </h1>
+            <p className="text-sm sm:text-base text-gray-600">
+              Because of zero roaming fees and international travel eSIM for
+              200+ destinations, Yaalo is the best choice.
+            </p>
+          </div>
+
+          {/* NAV BUTTONS - Now part of the same row on desktop */}
+          <div className="flex justify-start md:justify-end gap-3 min-w-fit">
+            <button
+              onClick={scrollPrev}
+              className="w-11 h-11 rounded-full   flex items-center justify-center bg-yellow-400   transition"
+            >
+              <ChevronLeft size={20} />
+            </button>
+            <button
+              onClick={scrollNext}
+              className="w-11 h-11 rounded-full bg-yellow-400 flex items-center justify-center  transition"
+            >
+              <ChevronRight size={20} />
+            </button>
+          </div>
         </div>
-        {/* NAV BUTTONS */}
-        <div className="hidden sm:flex justify-end gap-3 mb-6">
-          <button
-            onClick={scrollPrev}
-            className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-black hover:text-white transition"
-          >
-            <ArrowLeft size={16} />
-          </button>
-          <button
-            onClick={scrollNext}
-            className="w-10 h-10 rounded-full bg-yellow-400 flex items-center justify-center hover:bg-black hover:text-white transition"
-          >
-            <ArrowRight size={16} />
-          </button>
-        </div>
-        {/* CAROUSEL */}
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex -ml-4">
             {cards.map((item, i) => {
@@ -92,7 +93,7 @@ export default function Travels() {
                   key={i}
                   className="flex-[0_0_90%] sm:flex-[0_0_45%] lg:flex-[0_0_31%] pl-4"
                 >
-                  <div className="min-h-[240px] sm:min-h-[260px] rounded-3xl p-6 border border-gray-200 bg-white hover:shadow-xl transition shadow-sm">
+                  <div className="min-h-[240px] sm:min-h-[280px] rounded-3xl p-6 border border-gray-200 bg-white hover:shadow-xl transition shadow-sm">
                     <div className="flex flex-col gap-4 h-full">
                       <div className="w-12 h-12 rounded-full bg-yellow-50 text-yellow-500 flex items-center justify-center">
                         <Icon size={22} />

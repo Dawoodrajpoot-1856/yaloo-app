@@ -132,6 +132,12 @@ const Footer = () => {
               href="tel:+17417392256"
               className="hover:text-black flex items-center gap-2"
             >
+              <span className="text-gray-400">L:</span> Yaalo LLC
+            </a>{" "}
+            <a
+              href="tel:+17417392256"
+              className="hover:text-black flex items-center gap-2"
+            >
               <span className="text-gray-400">P:</span> +1 741 739 2256
             </a>
             <a
@@ -140,12 +146,27 @@ const Footer = () => {
             >
               <span className="text-gray-400">E:</span> support@yaloo.com
             </a>
+            <a
+              href="mailto:support@yaloo.com"
+              className="hover:text-black flex items-center gap-2"
+            >
+              <span className="text-gray-400">T:</span> tickets@yaloo.com
+            </a>
+            <a
+              href="mailto:support@yaloo.com"
+              className="hover:text-black flex items-center gap-2"
+            >
+              <span className="text-gray-400">S:</span> sales@yaloo.com
+            </a>
+            <a
+              href="mailto:support@yaloo.com"
+              className="hover:text-black flex items-center gap-2"
+            >
+              <span className="text-gray-400">O:</span> Orlando, FL
+            </a>
           </div>
 
-          <h3 className="font-bold text-base sm:text-lg mt-10 mb-5 text-gray-900">
-            Orlando, FL
-          </h3>
-          <div className="flex gap-3 flex-wrap sm:flex-nowrap">
+          <div className="flex gap-3 mt-6 flex-wrap sm:flex-nowrap">
             <a href="#" className="hover:opacity-80 transition active:scale-95">
               <img
                 src="https://yaalo.com/_next/static/media/playLink.1cd75698.svg"

@@ -66,19 +66,19 @@ const Hero = () => {
                 href="https://play.google.com/store/apps/details?id=com.activatewireless.app.yaalo"
                 target="_blank"
               >
-                <div className="bg-white rounded-3xl shadow-sm px-2 py-1">
+                <div className="rounded-2xl bg-white shadow-sm">
                   <img
                     src="https://yaalo.com/_next/static/media/g-play.8d7b1a46.svg"
-                    className="h-9 sm:h-12"
+                    className="h-9 sm:h-10"
                   />
                 </div>
               </a>
 
               <a href="https://apps.apple.com/app/id6753675047" target="_blank">
-                <div className="bg-white rounded-3xl shadow-sm px-2 py-1">
+                <div className="rounded-2xl bg-white shadow-sm ">
                   <img
                     src="https://yaalo.com/_next/static/media/apple-store.8102bba3.svg"
-                    className="h-9 sm:h-12"
+                    className="h-9 sm:h-10"
                   />
                 </div>
               </a>
@@ -87,7 +87,7 @@ const Hero = () => {
         </div>
       </div>
       <div
-        className="max-w-[1200px] px-4 py-8 mobile par,  tablet/desktop par. mx-auto hata diya gaya hai */
+        className="max-w-[1225px] px-4 py-8 mobile par,  tablet/desktop par. mx-auto hata diya gaya hai */
  md:ml-15 
   grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-10"
       >

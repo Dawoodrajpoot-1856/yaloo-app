@@ -23,18 +23,16 @@ const Adventures = () => {
       </p>
 
       <div className="flex flex-col ml-4  lg:flex-row lg:justify-between gap-6 mt-8">
-        <div className="border border-gray-200 rounded-2xl p-2 flex flex-wrap gap-2 w-full sm:w-fit">
-          <button className="bg-yellow-400 font-medium px-6 py-2 rounded-2xl">
+        <div className="border border-gray-200 p-1 rounded-2xl flex flex-wrap gap-1 w-full sm:w-[415px]">
+          <button className="bg-yellow-300 font-medium p-2 w-33 rounded-2xl">
             Local
           </button>
 
-          <button className="px-6 py-2 rounded-2xl hover:bg-gray-100">
+          <button className=" font-medium p-3 w-33 rounded-2xl">
             Regional
           </button>
 
-          <button className="px-6 py-2 rounded-2xl hover:bg-gray-100">
-            Global
-          </button>
+          <button className=" font-medium p-3 w-33 rounded-2xl">Global</button>
         </div>
         <Link href="/destinations">
           <div className="group    inline-flex items-center justify-center mr-5 gap-2 px-4 h-12 rounded-2xl bg-yellow-300 hover:bg-black transition-all duration-300 cursor-pointer w-full sm:w-fit">

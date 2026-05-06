@@ -7,18 +7,7 @@ import React from "react";
 const Page = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 pb-20">
-      {/* HERO */}
-      <div className="text-center px-6 pt-16">
-        <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight text-gray-900">
-          Simple eSIM Experience
-        </h1>
-        <p className="mt-4 text-gray-600 text-base sm:text-lg">
-          Buy, install and activate your eSIM in minutes
-        </p>
-      </div>
-
-      {/* STEPS - Width Increased, Shadow Reduced, ML Fixed */}
-      <div className="max-w-[1230px] mx-auto px-4 py-12">
+      <div className="max-w-[1230px] mx-auto px-4 py-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
             {
@@ -42,7 +31,6 @@ const Page = () => {
           ].map((item, i) => (
             <div
               key={i}
-              /* w-full aur shadow-sm se width barh gayi aur shadow halki ho gayi */
               className="bg-white w-full rounded-2xl p-7 shadow-sm border border-gray-100 hover:border-amber-300 transition-all duration-500 flex flex-col group"
             >
               <div className="flex items-center gap-4 mb-5">
@@ -70,9 +58,16 @@ const Page = () => {
         </div>
       </div>
 
-      {/* COMPATIBILITY BANNER */}
-      <div className="px-4">
-        <div className="bg-[#1a1a1a] rounded-[2rem] px-8 sm:px-12 py-12 max-w-[1200px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-10 shadow-lg overflow-hidden">
+      {/* 1. Parent div ko hamesha w-full rakhein */}
+      <div className="w-full ">
+        <div
+          className=" bg-[#1a1a1ad5]    px-8 sm:px-12    py-12    w-full     mx-auto 
+    flex flex-col lg:flex-row 
+    items-center justify-between 
+    gap-10 
+    shadow-lg 
+    overflow-hidden"
+        >
           <div className="max-w-xl text-center lg:text-left z-10">
             <h2 className="text-white text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-6">
               Is Your Phone <span className="text-amber-400">eSIM-Ready?</span>
@@ -81,6 +76,7 @@ const Page = () => {
             <p className="text-gray-400 text-base mb-8">
               Check in seconds! Most modern devices are eSIM compatible.
             </p>
+
             <Link href="/esim-compatible-devices">
               <button className="group bg-amber-400 hover:text-white hover:bg-black transition-all duration-300 px-8 py-4 rounded-xl flex items-center gap-3 font-bold mx-auto lg:mx-0">
                 All eSIM compatible-phones{" "}
@@ -92,10 +88,11 @@ const Page = () => {
             </Link>
           </div>
 
-          <div className="w-full max-w-[380px] flex justify-center z-10">
+          {/* 3. Image container ki width ko manage karein */}
+          <div className="w-full lg:w-1/2 flex justify-center lg:justify-end z-10">
             <img
               src="https://yaalo.com/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2FesimSS.07771902.png&w=640&q=70"
-              className="w-full h-auto drop-shadow-2xl"
+              className="max-w-full h-auto drop-shadow-2xl"
               alt="Compatibility Check"
             />
           </div>
