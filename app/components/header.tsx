@@ -73,7 +73,6 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    // Scroll lock jab cart ya menu open ho
     document.body.style.overflow = mobileMenu || cartOpen ? "hidden" : "unset";
   }, [mobileMenu, cartOpen]);
 
@@ -86,7 +85,7 @@ export default function Header() {
         <header
           className={`
       w-full max-w-[1200px] flex items-center justify-between
-      px-6 lg:px-10 py-4
+      px-6 lg:px-12 py-4
       transition-all duration-500
       ${
         scrolled
@@ -100,7 +99,7 @@ export default function Header() {
             <img
               src="https://yaalo.com/_next/static/media/yaalo-logo-dark.43dca0d6.svg"
               alt="Yaalo Logo"
-              className="h-8 md:h-10"
+              className="h-8 md:h-12"
             />
           </Link>
 
@@ -188,7 +187,7 @@ export default function Header() {
                 className="relative group p-1"
               >
                 <ShoppingCart className="w-5 h-5 cursor-pointer group-hover:text-blue-500 transition-colors" />
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-yellow-400 text-black text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
                   0
                 </span>
               </button>
@@ -222,7 +221,7 @@ export default function Header() {
 
       {/* CART PANEL (Choti Height & Clean Look) */}
       <div
-        className={`fixed top-2 right-4 w-[90%] max-w-[350px] h-[570px] bg-white z-[101] rounded-2xl shadow-2xl transition-all duration-300 ease-in-out ${
+        className={`fixed  right-2 w-[90%] max-w-[500px] h-[590px] bg-white z-[101] rounded-l-2xl  shadow-2xl transition-all duration-300 ease-in-out ${
           cartOpen
             ? "translate-x-0 opacity-100"
             : "translate-x-10 opacity-0 pointer-events-none"

@@ -11,6 +11,7 @@ import {
   ArrowRight,
   ArrowUpRight,
 } from "lucide-react";
+import Link from "next/link";
 
 const cards = [
   {
@@ -66,7 +67,6 @@ export default function Travels() {
             Zero roaming fees and 200+ destinations worldwide.
           </p>
         </div>
-
         {/* NAV BUTTONS */}
         <div className="hidden sm:flex justify-end gap-3 mb-6">
           <button
@@ -82,7 +82,6 @@ export default function Travels() {
             <ArrowRight size={16} />
           </button>
         </div>
-
         {/* CAROUSEL */}
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex -ml-4">
@@ -113,19 +112,19 @@ export default function Travels() {
             })}
           </div>
         </div>
-
-        {/* CTA */}
-        <div className="flex justify-start mt-8 sm:mt-12">
-          <div className="group inline-flex items-center gap-2 px-6 h-12 rounded-2xl bg-yellow-300 hover:bg-black transition cursor-pointer">
-            <span className="text-sm font-medium text-black group-hover:text-white">
-              Show me eSIM plans
-            </span>
-            <ArrowUpRight
-              size={16}
-              className="text-black group-hover:text-white"
-            />
+        <Link href="/destinations">
+          <div className="flex justify-start mt-8 sm:mt-12">
+            <div className="group inline-flex items-center gap-2 px-6 h-12 rounded-2xl bg-yellow-300 hover:bg-black transition cursor-pointer">
+              <span className="text-sm font-medium text-black group-hover:text-white">
+                Show me eSIM plans
+              </span>
+              <ArrowUpRight
+                size={16}
+                className="text-black group-hover:text-white"
+              />
+            </div>
           </div>
-        </div>
+        </Link>
       </div>
     </section>
   );

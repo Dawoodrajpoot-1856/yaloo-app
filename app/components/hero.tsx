@@ -29,9 +29,9 @@ const Hero = () => {
             <h1 className="font-semibold text-2xl sm:text-5xl md:text-6xl mt-4 sm:mt-8 leading-tight">
               <span className="text-yellow-400">Yaalo eSIM</span>
               <br className="sm:hidden" />
-              Roam the World,
+              Roam the
               <br />
-              Not the Fees
+              World, Not the Fees
             </h1>
 
             {/* search */}

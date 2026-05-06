@@ -7,6 +7,7 @@ import {
   ChevronsRight,
   ChevronsRightIcon,
 } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 
 const Adventures = () => {
@@ -21,9 +22,7 @@ const Adventures = () => {
         Find Yaalo eSIMs built for your route
       </p>
 
-      {/* TOP BAR */}
       <div className="flex flex-col ml-4  lg:flex-row lg:justify-between gap-6 mt-8">
-        {/* FILTER BUTTONS */}
         <div className="border border-gray-200 rounded-2xl p-2 flex flex-wrap gap-2 w-full sm:w-fit">
           <button className="bg-yellow-400 font-medium px-6 py-2 rounded-2xl">
             Local
@@ -37,29 +36,29 @@ const Adventures = () => {
             Global
           </button>
         </div>
+        <Link href="/destinations">
+          <div className="group    inline-flex items-center justify-center mr-5 gap-2 px-4 h-12 rounded-2xl bg-yellow-300 hover:bg-black transition-all duration-300 cursor-pointer w-full sm:w-fit">
+            <span className="text-sm font-medium text-black group-hover:text-white">
+              Search your destination
+            </span>
 
-        {/* SEARCH BUTTON */}
-        <div className="group    inline-flex items-center justify-center gap-2 px-4 h-12 rounded-2xl bg-yellow-300 hover:bg-black transition-all duration-300 cursor-pointer w-full sm:w-fit">
-          <span className="text-sm font-medium text-black group-hover:text-white">
-            Search your destination
-          </span>
+            <span className="relative w-5 h-5 flex items-center justify-center overflow-hidden">
+              <ArrowUpRight
+                size={16}
+                className="absolute text-black group-hover:opacity-0 group-hover:-translate-y-3 transition-all"
+              />
 
-          <span className="relative w-5 h-5 flex items-center justify-center overflow-hidden">
-            <ArrowUpRight
-              size={16}
-              className="absolute text-black group-hover:opacity-0 group-hover:-translate-y-3 transition-all"
-            />
-
-            <ArrowRight
-              size={16}
-              className="absolute opacity-0 translate-y-3 text-white group-hover:opacity-100 group-hover:translate-y-0 transition-all"
-            />
-          </span>
-        </div>
+              <ArrowRight
+                size={16}
+                className="absolute opacity-0 translate-y-3 text-white group-hover:opacity-100 group-hover:translate-y-0 transition-all"
+              />
+            </span>
+          </div>
+        </Link>
       </div>
 
       {/* CARDS */}
-      <div className="grid grid-cols-1 mr-3 sm:grid-cols-2 lg:grid-cols-4 gap-2 mt-12 justify-center">
+      <div className="grid grid-cols-1 mr-3 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-12 justify-center">
         {[
           { name: "United Kingdom", price: "$3", flag: "gb" },
           { name: "Bermuda", price: "$6", flag: "bm" },
@@ -82,7 +81,7 @@ const Adventures = () => {
               <p className="text-sm text-gray-600">Starts at {item.price}</p>
             </div>
 
-            <span className="w-9 h-9 sm:w-10 sm:h-10 bg-amber-200 rounded-full flex items-center justify-center">
+            <span className="w-9 h-9 sm:mt-12 sm:w-8 sm:h-8 bg-amber-200 rounded-full flex items-center justify-center">
               <ChevronRight />{" "}
             </span>
           </div>
