@@ -36,7 +36,7 @@ const NavItem = ({
     <span
       className="pointer-events-none absolute opacity-0 group-hover:opacity-100 transition-opacity duration-300"
       style={{
-        background: `radial-gradient(ellipse 200% 450% at 50% 50%, ${glowColor} 15%, transparent 23%)`,
+        background: `radial-gradient(ellipse 200% 450% at 50% 50%, ${glowColor} 15%, transparent 25%)`,
         inset: "-110% -80%",
         zIndex: 0,
       }}
@@ -79,14 +79,14 @@ export default function Header() {
   return (
     <>
       <div
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 flex justify-center
-    ${scrolled ? "pt-4 px-4 lg:px-16" : "pt-0 px-0 lg:px-16"}`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] flex justify-center
+    ${scrolled ? "pt-4 px-4 lg:px-16" : "pt-0 px-0 lg:px-0"}`}
       >
         <header
           className={`
       w-full max-w-[1200px] flex items-center justify-between
-      px-6 lg:px-12 py-4
-      transition-all duration-500
+      px-6 lg:px-12 py-3
+      transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]
       ${
         scrolled
           ? "bg-white/80 backdrop-blur-xl border border-white/40 shadow-lg rounded-2xl"
