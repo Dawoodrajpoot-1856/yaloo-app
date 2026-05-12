@@ -6,16 +6,21 @@ const Adventures = async () => {
   // 1. API Fetching
   const data = await fetch(
     "https://test.esimwhitelabel.com/api/packages/country",
-    { next: { revalidate: 3600 } }, // Cache performance ke liye
+    { next: { revalidate: 3600 } },
   );
   const res = await data.json();
 
-  // 2. Data extraction (Aapke structure ke mutabiq)
-  const CountryList = res.data;
+  const rawData = res.data || [];
+
+  const uniqueCountries = Array.from(
+    new Map(rawData.map((item: any) => [item.name, item])).values(),
+  );
+
+  
+  const CountryList = uniqueCountries.sort(() => 0.5 - Math.random());
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
-      {/* TITLE */}
       <h1 className="font-semibold text-3xl ml-4 sm:text-5xl">
         Pick Your Adventure
       </h1>
@@ -24,14 +29,18 @@ const Adventures = async () => {
         Find Yaalo eSIMs built for your route
       </p>
 
-      {/* TABS & SEARCH BUTTON */}
+      {/* TABS & SEARCH */}
       <div className="flex flex-col ml-4 lg:flex-row lg:justify-between gap-6 mt-8">
         <div className="border border-gray-200 p-1 rounded-2xl flex flex-wrap gap-1 w-full sm:w-[415px]">
           <button className="bg-yellow-300 font-medium p-2 w-33 rounded-2xl">
             Local
           </button>
-          <button className="font-medium p-3 w-33 rounded-2xl">Regional</button>
-          <button className="font-medium p-3 w-33 rounded-2xl">Global</button>
+          <button className="font-medium p-3 w-33 rounded-2xl hover:bg-gray-50 transition">
+            Regional
+          </button>
+          <button className="font-medium p-3 w-33 rounded-2xl hover:bg-gray-50 transition">
+            Global
+          </button>
         </div>
 
         <Link href="/destinations">
@@ -53,51 +62,50 @@ const Adventures = async () => {
         </Link>
       </div>
 
-      {/* CARDS SECTION - Yahan Data Show ho raha hai */}
-      <div className="grid grid-cols-1 mr-3 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-12 justify-center">
-        {CountryList.map((item: any, i: number) => (
+      {/* CARDS SECTION - Unique 16 Countries */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-12 px-4">
+        {CountryList.slice(0, 20).map((item: any, i: number) => (
           <div
-            key={i}
-            className="w-[240px] sm:w-[260px] border border-gray-200 rounded-3xl p-4 flex items-center justify-between hover:shadow-sm transition mx-auto"
+            key={item.id || i}
+            className="w-full border border-gray-200 rounded-3xl p-5 flex items-center justify-between hover:shadow-lg hover:-translate-y-1 transition-all duration-300 bg-white group cursor-pointer"
           >
             <div className="flex flex-col items-start">
-              {/* Flag: API se image le rahe hain, agar na ho toh flagcdn use hoga */}
               <img
                 src={
                   item.image ||
-                  `https://flagcdn.com/w80/${item.slug.slice(0, 2)}.png`
+                  `https://flagcdn.com/w80/${item.slug?.slice(0, 2).toLowerCase()}.png`
                 }
-                className="h-8 rounded object-cover"
+                className="h-7 w-10 rounded object-cover shadow-sm mb-3"
                 alt={item.name}
               />
-
-              {/* Country Name from API */}
-              <p className="mt-2 text-sm font-medium">{item.name}</p>
-
-              {/* Price from API (agar price field alag hai toh woh lagayein) */}
-              <p className="text-sm text-gray-600">
+              <p className="text-sm font-bold text-gray-900">{item.name}</p>
+              <p className="text-xs text-gray-500 font-medium">
                 Starts at {item.starting_price || "$5"}
               </p>
             </div>
 
-            <span className="w-9 h-9 sm:mt-12 sm:w-8 sm:h-8 bg-amber-200 rounded-full flex items-center justify-center">
-              <ChevronRight size={18} />
+            <span className="w-10 h-10 bg-amber-100 group-hover:bg-yellow-300 rounded-full flex items-center justify-center transition-colors">
+              <ChevronRight size={18} className="text-black" />
             </span>
           </div>
         ))}
       </div>
 
-      {/* FOOTER TEXT */}
-      <div className="mt-16">
-        <h1 className="text-3xl ml-3 sm:text-5xl font-semibold leading-tight">
+      {/* INFO FOOTER */}
+      <div className="mt-20 px-4">
+        <h2 className="text-3xl sm:text-5xl font-semibold leading-tight text-gray-900">
           How Yaalo eSIM Works? <br />
-          (Spoiler: It’s Ridiculously Simple)
-        </h1>
-        <p className="text-sm ml-2 sm:text-base text-gray-700 mt-6 max-w-3xl">
+          <span className="text-gray-400">
+            (Spoiler: It’s Ridiculously Simple)
+          </span>
+        </h2>
+        <p className="text-base text-gray-600 mt-6 max-w-3xl leading-relaxed">
           Users often assume that technical processes are complex. But
           activating{" "}
-          <span className="font-semibold text-black">Yaalo eSIM</span> is like
-          1, 2, 3 and connected!
+          <span className="font-semibold text-black underline decoration-yellow-400">
+            Yaalo eSIM
+          </span>{" "}
+          is like 1, 2, 3 and connected!
         </p>
       </div>
     </section>

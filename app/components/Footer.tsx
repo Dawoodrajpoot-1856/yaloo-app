@@ -18,7 +18,7 @@ const Footer = () => {
             />
           </Link>
 
-          <h3 className="text-base sm:text-lg mt-8 font-bold text-gray-900">
+          <h3 className="text-lg sm:text-xl mt-8 font-bold text-gray-900">
             Follow us
           </h3>
 
@@ -35,14 +35,15 @@ const Footer = () => {
                 href="#"
                 className="flex items-center gap-3 text-gray-600 hover:text-black transition-colors group"
               >
-                <div className="p-1.5 bg-white/50 rounded-lg group-hover:bg-white transition-all">
+                <div className="p-2 bg-white/50 rounded-lg group-hover:bg-white transition-all">
                   <img
                     src={`https://img.icons8.com/material-outlined/24/${item.icon}.png`}
-                    className="w-4 h-4"
+                    className="w-5 h-5"
                     alt={item.name}
                   />
                 </div>
-                <span className="text-xs sm:text-sm font-medium">
+                {/* Font size increased to text-sm/text-base */}
+                <span className="text-sm sm:text-base font-medium">
                   {item.name}
                 </span>
               </a>
@@ -52,10 +53,10 @@ const Footer = () => {
 
         {/* COL 2: DESTINATIONS */}
         <div>
-          <h3 className="font-bold text-base sm:text-lg mb-6 text-gray-900">
+          <h3 className="font-bold text-lg sm:text-xl mb-6 text-gray-900">
             Popular Destinations
           </h3>
-          <div className="grid grid-cols-1 gap-3">
+          <div className="grid grid-cols-1 gap-4">
             {[
               "United States",
               "Canada",
@@ -69,7 +70,7 @@ const Footer = () => {
               <Link
                 key={i}
                 href={`/destinations/${item.toLowerCase().replace(/ /g, "-")}`}
-                className="text-xs sm:text-sm text-gray-600 hover:text-black hover:translate-x-1 transition-all block"
+                className="text-sm sm:text-base text-gray-600 hover:text-black hover:translate-x-1 transition-all block"
               >
                 {item}
               </Link>
@@ -79,10 +80,10 @@ const Footer = () => {
 
         {/* COL 3: QUICK LINKS & SUPPORT */}
         <div>
-          <h3 className="font-bold text-base sm:text-lg mb-6 text-gray-900">
+          <h3 className="font-bold text-lg sm:text-xl mb-6 text-gray-900">
             Quick Links
           </h3>
-          <div className="space-y-3">
+          <div className="space-y-4">
             {[
               { name: "Home", path: "/" },
               { name: "About Us", path: "/about-us" },
@@ -93,17 +94,17 @@ const Footer = () => {
               <Link
                 key={i}
                 href={item.path}
-                className="block text-xs sm:text-sm text-gray-600 hover:text-black hover:translate-x-1 transition-all"
+                className="block text-sm sm:text-base text-gray-600 hover:text-black hover:translate-x-1 transition-all"
               >
                 {item.name}
               </Link>
             ))}
           </div>
 
-          <h3 className="font-bold text-base sm:text-lg mt-5 mb-6 text-gray-900">
+          <h3 className="font-bold text-lg sm:text-xl mt-8 mb-6 text-gray-900">
             Support
           </h3>
-          <div className="space-y-3">
+          <div className="space-y-4">
             {[
               {
                 name: "eSIM Compatible Phones",
@@ -114,7 +115,7 @@ const Footer = () => {
               <Link
                 key={i}
                 href={item.path}
-                className="block text-xs sm:text-sm text-gray-600 hover:text-black hover:translate-x-1 transition-all"
+                className="block text-sm sm:text-base text-gray-600 hover:text-black hover:translate-x-1 transition-all"
               >
                 {item.name}
               </Link>
@@ -124,60 +125,58 @@ const Footer = () => {
 
         {/* COL 4: CONTACT & APP LINKS */}
         <div>
-          <h3 className="font-bold text-base sm:text-lg mb-6 text-gray-900">
+          <h3 className="font-bold text-lg sm:text-xl mb-6 text-gray-900">
             Contact Info
           </h3>
-          <div className="space-y-3 text-xs sm:text-sm text-gray-600 font-medium">
+          <div className="space-y-4 text-sm sm:text-base text-gray-600 font-medium">
+            <div className="flex items-center gap-2">
+              <span className="text-gray-400 font-bold">L:</span> Yaalo LLC
+            </div>
             <a
               href="tel:+17417392256"
               className="hover:text-black flex items-center gap-2"
             >
-              <span className="text-gray-400">L:</span> Yaalo LLC
-            </a>{" "}
-            <a
-              href="tel:+17417392256"
-              className="hover:text-black flex items-center gap-2"
-            >
-              <span className="text-gray-400">P:</span> +1 741 739 2256
+              <span className="text-gray-400 font-bold">P:</span> +1 741 739
+              2256
             </a>
             <a
               href="mailto:support@yaloo.com"
               className="hover:text-black flex items-center gap-2"
             >
-              <span className="text-gray-400">E:</span> support@yaloo.com
+              <span className="text-gray-400 font-bold">E:</span>{" "}
+              support@yaloo.com
             </a>
             <a
-              href="mailto:support@yaloo.com"
+              href="mailto:tickets@yaloo.com"
               className="hover:text-black flex items-center gap-2"
             >
-              <span className="text-gray-400">T:</span> tickets@yaloo.com
+              <span className="text-gray-400 font-bold">T:</span>{" "}
+              tickets@yaloo.com
             </a>
             <a
-              href="mailto:support@yaloo.com"
+              href="mailto:sales@yaloo.com"
               className="hover:text-black flex items-center gap-2"
             >
-              <span className="text-gray-400">S:</span> sales@yaloo.com
+              <span className="text-gray-400 font-bold">S:</span>{" "}
+              sales@yaloo.com
             </a>
-            <a
-              href="mailto:support@yaloo.com"
-              className="hover:text-black flex items-center gap-2"
-            >
-              <span className="text-gray-400">O:</span> Orlando, FL
-            </a>
+            <div className="flex items-center gap-2">
+              <span className="text-gray-400 font-bold">O:</span> Orlando, FL
+            </div>
           </div>
 
-          <div className="flex gap-3 mt-6 flex-wrap sm:flex-nowrap">
+          <div className="flex gap-3 mt-8 flex-wrap">
             <a href="#" className="hover:opacity-80 transition active:scale-95">
               <img
                 src="https://yaalo.com/_next/static/media/playLink.1cd75698.svg"
-                className="w-28 sm:w-32"
+                className="w-32 sm:w-36"
                 alt="Google Play"
               />
             </a>
             <a href="#" className="hover:opacity-80 transition active:scale-95">
               <img
                 src="https://yaalo.com/_next/static/media/appleLink.9011278c.svg"
-                className="w-28 sm:w-32"
+                className="w-32 sm:w-36"
                 alt="App Store"
               />
             </a>
@@ -186,13 +185,13 @@ const Footer = () => {
       </div>
 
       {/* BOTTOM BAR */}
-      <div className="bg-gray-100 border border-gray-100 rounded-[1.5rem] mt-6 p-5 sm:p-6 flex flex-col md:flex-row items-center justify-between gap-6">
-        <p className="text-xs sm:text-sm text-gray-500 font-medium">
+      <div className="bg-gray-100 border border-gray-100 rounded-[1.5rem] mt-6 p-4 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        <p className="text-sm sm:text-base text-gray-500 font-medium">
           © 2026 Yaalo. All Rights Reserved
         </p>
 
         {/* PAYMENT ICONS */}
-        <div className="flex items-center gap-4 flex-wrap justify-center bg-white/50 px-4 py-2 rounded-xl">
+        <div className="flex items-center gap-5 flex-wrap justify-center bg-white/50 px-6 py-3 rounded-xl">
           {[
             "https://cdn-icons-png.flaticon.com/512/5977/5977576.png",
             "https://cdn-icons-png.flaticon.com/512/5968/5968299.png",
@@ -202,19 +201,19 @@ const Footer = () => {
             <img
               key={i}
               src={img}
-              className="h-4 sm:h-5 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all"
+              className="h-6 sm:h-7 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all"
               alt="payment provider"
             />
           ))}
         </div>
 
         {/* LEGAL LINKS */}
-        <div className="flex gap-6 text-xs sm:text-sm text-gray-500">
+        <div className="flex gap-8 text-sm sm:text-base text-gray-500">
           {["Terms", "Privacy", "Refund"].map((item, i) => (
             <Link
               key={i}
               href={`/${item.toLowerCase()}`}
-              className="hover:text-black font-medium transition-colors"
+              className="hover:text-black font-semibold transition-colors"
             >
               {item}
             </Link>
