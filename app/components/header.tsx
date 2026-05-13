@@ -104,12 +104,12 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <ul className="hidden lg:flex items-center gap-8 font-semibold">
+          <ul className="hidden lg:flex items-center gap-8 md:text-xl font-bold">
             <Link href="/destinations">
               <NavItem
                 icon={CardSim}
                 label="Buy eSIM"
-                hoverColor="text-blue-500"
+                hoverColor="text-blue-400"
                 glowColor="rgba(59,130,246,0.3)"
               />
             </Link>

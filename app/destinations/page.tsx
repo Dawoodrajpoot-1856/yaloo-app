@@ -89,12 +89,12 @@ const Page = async () => {
             CountryList.map((item: any, i: number) => (
               <div
                 key={i}
-                className="border border-gray-100 rounded-2xl p-5 flex items-center justify-between
-                hover:shadow-lg hover:-translate-y-1 transition-all duration-300 bg-white cursor-pointer group"
+                /* Yahan se 'items-center' hata diya hai */
+                className="border border-gray-100 rounded-2xl p-5 flex justify-between
+        hover:shadow-lg hover:-translate-y-1 transition-all duration-300 bg-white cursor-pointer group"
               >
                 <div>
                   <img
-                    // API se image le raha hai, fallback ke liye flagcdn use kiya
                     src={
                       item.image ||
                       `https://flagcdn.com/w80/${item.slug?.slice(0, 2).toLowerCase()}.png`
@@ -113,7 +113,8 @@ const Page = async () => {
                   </p>
                 </div>
 
-                <span className="w-9 h-9 bg-amber-200 rounded-full flex items-center justify-center group-hover:bg-yellow-400 transition-colors">
+                {/* self-end se arrow niche right corner mein set ho jayega */}
+                <span className="w-9 h-9 bg-amber-200 rounded-full flex items-center justify-center self-end transition-colors">
                   <ChevronRight size={16} className="text-black" />
                 </span>
               </div>

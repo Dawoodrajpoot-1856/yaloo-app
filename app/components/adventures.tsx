@@ -3,7 +3,6 @@ import Link from "next/link";
 import React from "react";
 
 const Adventures = async () => {
-  // 1. API Fetching
   const data = await fetch(
     "https://test.esimwhitelabel.com/api/packages/country",
     { next: { revalidate: 3600 } },
@@ -16,7 +15,6 @@ const Adventures = async () => {
     new Map(rawData.map((item: any) => [item.name, item])).values(),
   );
 
-  
   const CountryList = uniqueCountries.sort(() => 0.5 - Math.random());
 
   return (
@@ -67,7 +65,8 @@ const Adventures = async () => {
         {CountryList.slice(0, 20).map((item: any, i: number) => (
           <div
             key={item.id || i}
-            className="w-full border border-gray-200 rounded-3xl p-5 flex items-center justify-between hover:shadow-lg hover:-translate-y-1 transition-all duration-300 bg-white group cursor-pointer"
+            /* items-center yahan se hata diya hai taake content niche align ho sake */
+            className="w-full border border-gray-200 rounded-2xl p-5 flex justify-between hover:shadow-lg hover:-translate-y-1 transition-all duration-300 bg-white group cursor-pointer"
           >
             <div className="flex flex-col items-start">
               <img
@@ -84,13 +83,13 @@ const Adventures = async () => {
               </p>
             </div>
 
-            <span className="w-10 h-10 bg-amber-100 group-hover:bg-yellow-300 rounded-full flex items-center justify-center transition-colors">
+            {/* self-end add kiya hai arrow ko niche lane ke liye */}
+            <span className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center self-end transition-colors">
               <ChevronRight size={18} className="text-black" />
             </span>
           </div>
         ))}
       </div>
-
       {/* INFO FOOTER */}
       <div className="mt-20 px-4">
         <h2 className="text-3xl sm:text-5xl font-semibold leading-tight text-gray-900">
