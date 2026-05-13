@@ -35,15 +35,15 @@ const Hero = () => {
             </h1>
 
             {/* search */}
-            <div className="relative h-10 sm:h-14 w-full max-w-xl mx-auto mt-5 sm:mt-8">
+            <div className="relative h-10 sm:h-14 w-full max-w-2xl mx-auto mt-5 sm:mt-8">
               <input
                 type="text"
                 placeholder="Where are you flying next?"
                 className="w-full pl-3 pr-10 py-2 sm:py-3 border border-gray-200 rounded-3xl bg-white outline-none text-xs sm:text-base"
               />
               <Search
-                className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-400"
-                size={16}
+                className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-black"
+                size={20}
               />
             </div>
 
