@@ -110,7 +110,7 @@ export default function Header() {
                 icon={CardSim}
                 label="Buy eSIM"
                 hoverColor="text-blue-400"
-                glowColor="rgba(59,130,246,0.3)"
+                glowColor="rgba(50,130,246,0.3)"
               />
             </Link>
             <Link href="/contact-us">
@@ -118,7 +118,7 @@ export default function Header() {
                 icon={Mail}
                 label="Contact Info"
                 hoverColor="text-green-500"
-                glowColor="rgba(34,197,94,0.2)"
+                glowColor="rgba(30,197,94,0.2)"
               />
             </Link>
             <Link href="/affiliate-partner">
@@ -126,7 +126,7 @@ export default function Header() {
                 icon={Handshake}
                 label="Affiliate Partner"
                 hoverColor="text-red-500"
-                glowColor="rgba(239,68,68,0.18)"
+                glowColor="rgba(230,68,68,0.18)"
               />
             </Link>
 
