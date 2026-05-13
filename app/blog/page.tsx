@@ -52,8 +52,9 @@ const page = async () => {
         </div>
       </div>
 
-      <div className="w-[1320px]  bg-gray-50 border border-gray-200 rounded-2xl mt-5 mx-auto">
-        <div className="flex gap-3 p-4 min-w-full   ">
+      {/* CATEGORIES SECTION */}
+      <div className="max-w-[1320px] w-full bg-gray-50 border border-gray-200 rounded-2xl mt-5 mx-auto overflow-hidden">
+        <div className="flex gap-3 p-4 overflow-x-auto no-scrollbar scroll-smooth">
           <button className="px-5 py-3 bg-white text-black rounded-lg shadow-sm hover:shadow-md transition-shadow shrink-0">
             All Blogs
           </button>
@@ -67,7 +68,7 @@ const page = async () => {
             Android
           </button>
           <button className="px-5 py-3 bg-white text-black rounded-lg shadow-sm hover:shadow-md transition-shadow shrink-0">
-            Iphone{" "}
+            Iphone
           </button>
           <button className="px-5 py-3 bg-white text-black rounded-lg shadow-sm hover:shadow-md transition-shadow shrink-0">
             How To
@@ -82,36 +83,40 @@ const page = async () => {
             Travel Tips
           </button>
           <button className="px-5 py-3 bg-white text-black rounded-lg shadow-sm hover:shadow-md transition-shadow shrink-0">
-            Visas{" "}
+            Visas
           </button>
           <button className="px-5 py-3 bg-white text-black rounded-lg shadow-sm hover:shadow-md transition-shadow shrink-0">
             SIM Card Guides
           </button>
         </div>
       </div>
-      <div className="w-[1320px] mx-auto mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      {/* BLOG GRID SECTION */}
+      <div className="max-w-[1320px] w-full mx-auto mt-10 px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {blogList.map((item: any, index: any) => (
           <div
             key={index}
-            className="bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-md transition overflow-hidden"
+            className="bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 overflow-hidden flex flex-col cursor-pointer"
           >
             {item.image && (
-              <img
-                src={`https://test.esimwhitelabel.com/${item.image}`}
-                alt={item.title}
-                className="w-full h-48 object-cover"
-              />
+              <div className="relative overflow-hidden">
+                <img
+                  src={`https://test.esimwhitelabel.com/${item.image}`}
+                  alt={item.title}
+                  className="w-full h-48 object-cover transition-transform duration-500 hover:scale-110"
+                />
+              </div>
             )}
 
-            <div className="p-4">
-              <h2 className="text-lg font-semibold text-black line-clamp-2">
+            <div className="p-4 flex flex-col flex-grow">
+              <h2 className="text-lg font-semibold text-black line-clamp-2 group-hover:text-yellow-600 transition-colors">
                 {item.name}
               </h2>
-              <p className="text-sm text-gray-600 mt-2 line-clamp-3">
+              <p className="text-sm text-gray-600 mt-2 line-clamp-3 flex-grow">
                 {item.sub_content || item.content}
               </p>
               <Link href={`/blog/${item.slug}`}>
-                <button className="mt-4 px-4 py-2 bg-black text-white rounded-lg text-sm">
+                <button className="mt-4 w-full sm:w-auto px-4 py-2 bg-black text-white rounded-lg text-sm hover:bg-gray-800 transition-colors active:scale-95 duration-200">
                   Read More
                 </button>
               </Link>
@@ -119,6 +124,7 @@ const page = async () => {
           </div>
         ))}
       </div>
+
       <Footer />
     </>
   );
