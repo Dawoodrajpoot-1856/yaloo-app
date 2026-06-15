@@ -40,43 +40,46 @@ export default function Travels() {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: "start",
+    containScroll: "trimSnaps",
   });
 
   useEffect(() => {
     if (!emblaApi) return;
-    const interval = setInterval(() => emblaApi.scrollNext(), 3500);
+
+    const interval = setInterval(() => {
+      emblaApi.scrollNext();
+    }, 3500);
+
     return () => clearInterval(interval);
   }, [emblaApi]);
 
-  const scrollPrev = () => emblaApi && emblaApi.scrollPrev();
-  const scrollNext = () => emblaApi && emblaApi.scrollNext();
+  const scrollPrev = () => emblaApi?.scrollPrev();
+  const scrollNext = () => emblaApi?.scrollNext();
 
   return (
-    <section className="py-10 sm:py-16 lg:py-20 w-full overflow-hidden">
-      {/* 1400px Main Wrapper */}
-      <div className="max-w-[1400px] mx-auto px-6 sm:px-12 md:px-16 w-full">
-        
-        {/* HEADER SECTION */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-5">
-          {/* Text Content */}
-          <div className="text-left max-w-3xl">
-            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-semibold mb-2 sm:mb-4 leading-tight">
+    <section className="w-full py-12 sm:py-16 lg:py-20 overflow-hidden">
+      <div className="max-w-[1470px] mx-auto px-4 sm:px-8 lg:px-12">
+        {/* HEADER */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+          <div className="max-w-3xl">
+            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-semibold leading-tight">
               Why Are Travellers Switching to Yaalo?
-            </h1>
-            <p className="text-sm sm:text-base text-gray-600">
+            </h2>
+
+            <p className="mt-4 text-gray-600 text-sm sm:text-base">
               Because of zero roaming fees and international travel eSIM for
               200+ destinations, Yaalo is the best choice.
             </p>
           </div>
 
-          {/* NAV BUTTONS */}
-          <div className="flex justify-start md:justify-end gap-3 min-w-fit">
+          <div className="flex gap-3">
             <button
               onClick={scrollPrev}
-              className="w-11 h-11 rounded-full flex items-center justify-center bg-yellow-400 hover:scale-105 transition"
+              className="w-11 h-11 rounded-full bg-yellow-400 flex items-center justify-center hover:scale-105 transition"
             >
               <ChevronLeft size={20} />
             </button>
+
             <button
               onClick={scrollNext}
               className="w-11 h-11 rounded-full bg-yellow-400 flex items-center justify-center hover:scale-105 transition"
@@ -86,36 +89,34 @@ export default function Travels() {
           </div>
         </div>
 
-        {/* CAROUSEL CONTAINER */}
-        <div className="overflow-hidden w-full" ref={emblaRef}>
-          {/* 
-            -ml-6 (Negative Margin) wrapper ko thoda left push karta hai 
-            taake pehla card text ke bilkul exact neeche straight zero-margin line me aaye.
-          */}
-          <div className="flex -ml-6">
+        {/* CAROUSEL */}
+        <div className="max-w-[1450px] overflow-hidden" ref={emblaRef}>
+          <div className="flex gap-2">
             {cards.map((item, i) => {
               const Icon = item.icon;
+
               return (
                 <div
                   key={i}
-                  /* 
-                    FIXED WIDTHS: 
-                    Desktop (lg): exact 33.333% space block.
-                    Tablet (sm): exact 50% block (2 cards visible).
-                    Mobile: 85% block (taake agli slide thodi si nazar aaye glance ke liye).
-                  */
-                  className="flex-[0_0_85%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] pl-6"
+                  className="
+                    flex-[0_0_90%]
+                    sm:flex-[0_0_50%]
+                    lg:flex-[0_0_33.333%]
+                    px-3
+                  "
                 >
-                  <div className="min-h-[240px] sm:min-h-[280px] rounded-3xl p-6 border border-gray-200 bg-white hover:shadow-xl transition shadow-sm flex flex-col justify-between h-full">
-                    <div className="flex flex-col gap-4">
-                      <div className="w-12 h-12 rounded-full bg-yellow-50 text-yellow-500 flex items-center justify-center shrink-0">
+                  <div className="h-full min-h-[280px] rounded-3xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-xl transition-all duration-300">
+                    <div className="flex flex-col gap-5">
+                      <div className="w-12 h-12 rounded-full bg-yellow-50 text-yellow-500 flex items-center justify-center">
                         <Icon size={22} />
                       </div>
+
                       <div>
-                        <h3 className="text-lg sm:text-xl font-semibold text-gray-900">
+                        <h3 className="text-xl font-semibold text-gray-900">
                           {item.title}
                         </h3>
-                        <p className="text-sm sm:text-base text-gray-600 mt-2 leading-relaxed">
+
+                        <p className="mt-3 text-gray-600 leading-relaxed text-sm sm:text-base">
                           {item.desc}
                         </p>
                       </div>
@@ -127,20 +128,21 @@ export default function Travels() {
           </div>
         </div>
 
-        {/* BUTTON SECTION */}
-        <Link href="/destinations">
-          <div className="flex justify-start mt-8 sm:mt-12">
-            <div className="group inline-flex items-center gap-2 px-6 h-12 rounded-2xl bg-yellow-300 hover:bg-black transition cursor-pointer">
+        {/* BUTTON */}
+        <div className="mt-10">
+          <Link href="/destinations">
+            <button className="group inline-flex items-center gap-2 px-6 h-12 rounded-2xl bg-yellow-300 hover:bg-black transition-all">
               <span className="text-sm font-medium text-black group-hover:text-white">
                 Show me eSIM plans
               </span>
+
               <ArrowUpRight
                 size={16}
                 className="text-black group-hover:text-white"
               />
-            </div>
-          </div>
-        </Link>
+            </button>
+          </Link>
+        </div>
       </div>
     </section>
   );
