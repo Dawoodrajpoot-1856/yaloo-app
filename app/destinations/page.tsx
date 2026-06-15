@@ -3,9 +3,7 @@ import Header from "../components/header";
 import Footer from "../components/Footer";
 import { Search, ChevronRight } from "lucide-react";
 
-// Page component ko async banaya taake fetch kaam kare
 const Page = async () => {
-  // 1. API Fetching direct Page ke andar
   let CountryList = [];
   try {
     const response = await fetch(
@@ -13,7 +11,6 @@ const Page = async () => {
       { next: { revalidate: 3600 } },
     );
     const res = await response.json();
-    // API structure ke mutabiq data nikaalna
     CountryList = res.blogs?.data || res.data || [];
   } catch (error) {
     console.error("Fetch error:", error);
@@ -25,7 +22,6 @@ const Page = async () => {
         <Header />
       </div>
 
-      {/* HERO */}
       <div
         className="h-[60vh] sm:h-[70vh] lg:h-[80vh] 
         brightness-110 bg-cover bg-center bg-no-repeat 

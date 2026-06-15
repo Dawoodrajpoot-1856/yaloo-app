@@ -6,11 +6,10 @@ import {
   Handshake,
   Mail,
   Search,
-  ShoppingCart, // Wapis add kiya
+  ShoppingCart,
   User,
   Menu,
   X,
-  LogIn,
   Globe,
 } from "lucide-react";
 
@@ -46,14 +45,14 @@ const NavItem = ({
       <div className="relative transition-transform duration-500 ease-out group-hover:-translate-y-7">
         <div className="flex items-center gap-2 h-7 text-black">
           <Icon size={18} />
-          <span className="font-semibold text-sm">{label}</span>
+          <span className="font-semibold text-sm xl:text-base">{label}</span>
         </div>
         <div className="flex items-center gap-2 h-7 text-black">
           <Icon
             size={18}
             className={`${hoverColor} transition-colors duration-300`}
           />
-          <span className="font-semibold text-sm">{label}</span>
+          <span className="font-semibold text-sm xl:text-base">{label}</span>
         </div>
       </div>
     </div>
@@ -61,7 +60,7 @@ const NavItem = ({
 );
 
 export default function Header() {
-  const [cartOpen, setCartOpen] = useState(false); // Cart state
+  const [cartOpen, setCartOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -79,32 +78,31 @@ export default function Header() {
   return (
     <>
       <div
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] flex justify-center
-    ${scrolled ? "pt-4 px-4 lg:px-16" : "pt-0 px-0 lg:px-0"}`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out flex justify-center w-full px-4 sm:px-6 md:px-8`}
       >
         <header
           className={`
-      w-full max-w-[1200px] flex items-center justify-between
-      px-6 lg:px-12 py-3
-      transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]
-      ${
-        scrolled
-          ? "bg-white/80 backdrop-blur-xl border border-white/40 shadow-lg rounded-2xl"
-          : "bg-transparent backdrop-blur-0 border-transparent shadow-none rounded-none"
-      }
-    `}
+            w-full max-w-[1400px] flex items-center justify-between
+            px-4 sm:px-6 lg:px-8 xl:px-12 py-3 mt-0
+            transition-all duration-500 ease-out
+            ${
+              scrolled
+                ? "bg-white/90 backdrop-blur-xl border border-white/40 shadow-lg rounded-2xl mt-3 sm:mt-4"
+                : "bg-transparent backdrop-blur-0 border-transparent shadow-none rounded-none"
+            }
+          `}
         >
-          {/* Logo */}
-          <Link href="/">
+          {/* Logo Section */}
+          <Link href="/" className="flex-shrink-0">
             <img
-              src="https://yaalo.com/_next/static/media/yaalo-logo-dark.43dca0d6.svg"
+              src="https://yaalo.com/_next/static/media/yaalo-logo-dark.053tvj4_btjsj.svg"
               alt="Yaalo Logo"
-              className="h-8 md:h-12"
+              className="h-7 sm:h-8 md:h-10 lg:h-11 transition-all"
             />
           </Link>
 
-          {/* Desktop Navigation */}
-          <ul className="hidden lg:flex items-center gap-8 font-semibold">
+          {/* Desktop & Laptop Navigation Menu */}
+          <ul className="hidden lg:flex items-center gap-4 xl:gap-8 font-semibold list-none m-0 p-0">
             <Link href="/destinations">
               <NavItem
                 icon={CardSim}
@@ -138,10 +136,10 @@ export default function Header() {
             >
               <div className="relative h-7 overflow-hidden z-10 transition-all duration-300 group-hover:drop-shadow-[0_0_10px_rgba(249,115,22,0.6)]">
                 <div className="relative transition-transform duration-500 ease-out group-hover:-translate-y-7">
-                  <div className="flex items-center gap-1 h-7 text-black font-semibold text-sm">
+                  <div className="flex items-center gap-1 h-7 text-black font-semibold text-sm xl:text-base">
                     <span>More</span> <ChevronDown size={16} />
                   </div>
-                  <div className="flex items-center gap-1 h-7 text-black font-semibold text-sm">
+                  <div className="flex items-center gap-1 h-7 text-black font-semibold text-sm xl:text-base">
                     <span>More</span>{" "}
                     <ChevronDown
                       size={16}
@@ -174,38 +172,47 @@ export default function Header() {
             </li>
           </ul>
 
-          {/* Right Side Desktop */}
-          <div className="hidden lg:flex items-center gap-6">
+          {/* Desktop Right Side CTA Actions */}
+          <div className="hidden lg:flex items-center gap-4 xl:gap-6">
             <NavItem icon={Search} label="Search" hoverColor="text-blue-400" />
             <Link href="/login">
               <NavItem icon={User} label="Login" hoverColor="text-indigo-500" />
             </Link>
-            <div className="flex items-center gap-4 border-l pl-6 border-gray-200">
+            <div className="flex items-center gap-4 border-l pl-4 xl:pl-6 border-gray-200">
               {/* Desktop Cart Trigger */}
               <button
                 onClick={() => setCartOpen(true)}
-                className="relative group p-1"
+                className="relative group p-1 flex-shrink-0"
               >
                 <ShoppingCart className="w-5 h-5 cursor-pointer group-hover:text-blue-500 transition-colors" />
-                <span className="absolute -top-1 -right-1 bg-yellow-400 text-black text-[10px] w-4 h-4 rounded-full flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-yellow-400 text-black text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
                   0
                 </span>
               </button>
-              <button className="flex items-center gap-1 font-semibold text-sm">
+              <button className="flex items-center gap-1 font-semibold text-sm xl:text-base whitespace-nowrap">
                 EN <ChevronDown size={14} />
               </button>
             </div>
           </div>
 
-          {/* Mobile UI */}
-          <div className="flex lg:hidden items-center gap-4">
+          {/* Tablets and Mobile Quick Actions */}
+          <div className="flex lg:hidden items-center gap-3 sm:gap-5">
             {/* Mobile Cart Trigger */}
-            <ShoppingCart
+            <button
               onClick={() => setCartOpen(true)}
-              className="w-6 h-6 cursor-pointer text-black"
-            />
-            <button onClick={() => setMobileMenu(true)} className="p-1">
-              <Menu size={32} />
+              className="relative p-2 text-black active:scale-95 transition-transform"
+            >
+              <ShoppingCart className="w-6 h-6" />
+              <span className="absolute top-0 right-0 bg-yellow-400 text-black text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
+                0
+              </span>
+            </button>
+            <button
+              onClick={() => setMobileMenu(true)}
+              className="p-1 text-black active:scale-95 transition-transform"
+              aria-label="Open Menu"
+            >
+              <Menu size={28} className="sm:w-8 sm:h-8" />
             </button>
           </div>
         </header>
@@ -213,23 +220,23 @@ export default function Header() {
 
       {/* CART OVERLAY */}
       <div
-        className={`fixed inset-0 z-[100] bg-black/40 transition-opacity duration-300 ${
+        className={`fixed inset-0 z-[100] bg-black/40 backdrop-blur-sm transition-opacity duration-300 ${
           cartOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
         onClick={() => setCartOpen(false)}
       />
 
-      {/* CART PANEL (Choti Height & Clean Look) */}
+      {/* CART PANEL (Fully Responsive Drawer Width & Height) */}
       <div
-        className={`fixed  right-2 w-[90%] max-w-[500px] h-[590px] bg-white z-[101] rounded-l-2xl  shadow-2xl transition-all duration-300 ease-in-out ${
+        className={`fixed right-0 bottom-0 top-0 sm:right-3 sm:top-3 sm:bottom-3 w-full sm:w-[90%] sm:max-w-[450px] h-full sm:h-[calc(100vh-24px)] bg-white z-[101] rounded-none sm:rounded-2xl shadow-2xl transition-all duration-300 ease-in-out ${
           cartOpen
             ? "translate-x-0 opacity-100"
-            : "translate-x-10 opacity-0 pointer-events-none"
+            : "translate-x-full opacity-0 pointer-events-none"
         } flex flex-col overflow-hidden`}
       >
-        {/* Header */}
-        <div className="flex items-center justify-between p-5 border-b border-gray-50">
-          <h2 className="font-bold text-base text-black">My Cart</h2>
+        {/* Cart Header */}
+        <div className="flex items-center justify-between p-4 sm:p-5 border-b border-gray-100">
+          <h2 className="font-bold text-base sm:text-lg text-black">My Cart</h2>
           <button
             onClick={() => setCartOpen(false)}
             className="p-2 hover:bg-gray-100 rounded-full transition-colors"
@@ -238,8 +245,8 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Simple Empty Content */}
-        <div className="p-8 flex flex-col items-center justify-center text-center">
+        {/* Cart Content Area */}
+        <div className="flex-1 p-6 sm:p-8 flex flex-col items-center justify-center text-center">
           <div className="w-14 h-14 bg-gray-50 rounded-full flex items-center justify-center mb-3">
             <ShoppingCart size={24} className="text-gray-300" />
           </div>
@@ -247,7 +254,6 @@ export default function Header() {
         </div>
       </div>
 
-      {/* MOBILE MENU SIDEBAR */}
       <div
         className={`fixed inset-0 z-[110] bg-black/50 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
           mobileMenu ? "opacity-100 visible" : "opacity-0 invisible"
@@ -255,57 +261,58 @@ export default function Header() {
         onClick={() => setMobileMenu(false)}
       />
       <div
-        className={`fixed top-0 right-0 h-full w-[85%] max-w-[350px] bg-white z-[120] shadow-2xl transition-transform duration-500 ease-out lg:hidden flex flex-col ${
+        className={`fixed top-0 right-0 h-full w-[85%] sm:w-[70%] max-w-[360px] bg-white z-[120] shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] lg:hidden flex flex-col ${
           mobileMenu ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        {/* Header inside Sidebar */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-100">
+        {/* Mobile Header */}
+        <div className="flex items-center justify-between p-5 sm:p-6 border-b border-gray-100">
           <img
             src="https://yaalo.com/_next/static/media/yaalo-logo-dark.43dca0d6.svg"
             alt="Yaalo"
-            className="h-7"
+            className="h-6 sm:h-7"
           />
           <button
             onClick={() => setMobileMenu(false)}
             className="p-2 hover:bg-gray-100 rounded-full transition-colors"
           >
-            <X size={24} className="text-gray-600" />
+            <X size={22} className="text-gray-600" />
           </button>
         </div>
 
-        {/* Scrollable Content */}
-        <div className="flex-1 overflow-y-auto py-4">
-          <nav className="flex flex-col px-4 gap-1">
-            {/* Primary Links */}
+        {/* Scrollable Navigation Items */}
+        <div className="flex-1 overflow-y-auto py-3">
+          <nav className="flex flex-col px-3 gap-0.5">
             <Link
               href="/destinations"
               onClick={() => setMobileMenu(false)}
-              className="flex items-center gap-4 px-4 py-4 text-black font-bold hover:bg-blue-50 rounded-2xl transition-all"
+              className="flex items-center gap-4 px-4 py-3.5 text-black font-bold hover:bg-blue-50 rounded-xl transition-all text-sm sm:text-base"
             >
-              <CardSim size={20} className="text-blue-500" /> Buy eSIM
+              <CardSim size={20} className="text-blue-500 flex-shrink-0" /> Buy
+              eSIM
             </Link>
 
             <Link
               href="/contact-us"
               onClick={() => setMobileMenu(false)}
-              className="flex items-center gap-4 px-4 py-4 text-black font-bold hover:bg-green-50 rounded-2xl transition-all"
+              className="flex items-center gap-4 px-4 py-3.5 text-black font-bold hover:bg-green-50 rounded-xl transition-all text-sm sm:text-base"
             >
-              <Mail size={20} className="text-green-500" /> Contact Info
+              <Mail size={20} className="text-green-500 flex-shrink-0" />{" "}
+              Contact Info
             </Link>
 
             <Link
               href="/affiliate-partner"
               onClick={() => setMobileMenu(false)}
-              className="flex items-center gap-4 px-4 py-4 text-black font-bold hover:bg-red-50 rounded-2xl transition-all"
+              className="flex items-center gap-4 px-4 py-3.5 text-black font-bold hover:bg-red-50 rounded-xl transition-all text-sm sm:text-base"
             >
-              <Handshake size={20} className="text-red-500" /> Affiliate Partner
+              <Handshake size={20} className="text-red-500 flex-shrink-0" />{" "}
+              Affiliate Partner
             </Link>
 
-            <hr className="my-2 border-gray-100" />
+            <hr className="my-3 border-gray-100" />
 
-            {/* Dropdown/More Items directly listed for mobile */}
-            <p className="px-4 py-2 text-[10px] uppercase tracking-widest text-gray-400 font-bold">
+            <p className="px-4 py-1 text-[10px] uppercase tracking-widest text-gray-400 font-bold">
               Quick Links
             </p>
             {[
@@ -318,7 +325,7 @@ export default function Header() {
                 key={item.name}
                 href={item.link}
                 onClick={() => setMobileMenu(false)}
-                className="block px-4 py-3 text-sm text-gray-700 hover:text-orange-600 font-bold"
+                className="block px-4 py-2.5 text-sm text-gray-700 hover:text-orange-600 font-bold transition-colors"
               >
                 {item.name}
               </Link>
@@ -326,18 +333,19 @@ export default function Header() {
           </nav>
         </div>
 
-        <div className="p-6 bg-gray-50 border-t border-gray-100 grid grid-cols-2 gap-3">
-          <button className="flex items-center justify-center gap-2 bg-white border border-gray-200 py-3 rounded-xl font-bold text-sm shadow-sm active:scale-95 transition-all">
-            <Search size={18} /> Search
+        {/* Footer Actions inside Mobile Drawer */}
+        <div className="p-4 sm:p-6 bg-gray-50 border-t border-gray-100 grid grid-cols-2 gap-3">
+          <button className="flex items-center justify-center gap-2 bg-white border border-gray-200 py-2.5 sm:py-3 rounded-xl font-bold text-xs sm:text-sm shadow-sm active:scale-95 transition-all">
+            <Search size={16} /> Search
           </button>
           <Link
             href="/login"
             onClick={() => setMobileMenu(false)}
-            className="flex items-center justify-center gap-2 bg-black text-white py-3 rounded-xl font-bold text-sm shadow-lg active:scale-95 transition-all"
+            className="flex items-center justify-center gap-2 bg-black text-white py-2.5 sm:py-3 rounded-xl font-bold text-xs sm:text-sm shadow-lg active:scale-95 transition-all"
           >
-            <User size={18} /> Login
+            <User size={16} /> Login
           </Link>
-          <button className="col-span-2 flex items-center justify-center gap-2 py-2 text-gray-500 font-bold text-xs">
+          <button className="col-span-2 flex items-center justify-center gap-2 py-1 text-gray-500 font-bold text-xs">
             <Globe size={14} /> Language: EN (English)
           </button>
         </div>

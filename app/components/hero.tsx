@@ -6,79 +6,80 @@ import React from "react";
 const Hero = () => {
   return (
     <>
-      {/* HERO */}
+      {/* HERO SECTION */}
       <div
-        className="min-h-[70svh] sm:min-h-screen brightness-110 bg-cover bg-center bg-no-repeat flex items-center"
+        className="min-h-[75svh] sm:min-h-[85svh] lg:min-h-screen brightness-110 bg-cover bg-center bg-no-repeat flex items-center justify-center w-full pt-16 sm:pt-20"
         style={{
           backgroundImage:
             "url('https://yaalo.com/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2FheroBackground.92b9c510.png&w=1920&q=100')",
         }}
       >
-        <div className="w-full bg-black/10 py-6 sm:py-0">
-          {/* badge */}
-          <div
-            className="border mt-24 sm:mt-40 border-gray-400 
-          w-[85%] sm:w-80 bg-gray-300 text-black py-1 px-2 
-          rounded-full mx-auto text-[10px] sm:text-sm text-center"
-          >
+        <div className="w-full bg-black/5 py-8 sm:py-12 md:py-16">
+          {/* Badge */}
+          <div className=" w-90 max-w-[90%] bg-gray-300 text-black font-medium py-1.5 px-4 rounded-full mx-auto text-[6px] sm:text-xs md:text-sm text-center tracking-wide shadow-sm backdrop-blur-sm">
             Digital Freedom With 3-Step Activation
           </div>
 
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center">
-            {/* heading */}
-            <h1 className="font-semibold text-2xl sm:text-5xl md:text-6xl mt-4 sm:mt-8 leading-tight">
-              <span className="text-yellow-400">Yaalo eSIM</span>
-              <br className="sm:hidden" />
-              Roam the
-              <br />
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            {/* Heading (Optimized Size and Breaks) */}
+            <h1 className="font-semibold text-2xl sm:text-4xl md:text-5xl lg:text-6xl mt-5 sm:mt-8 leading-[1.2] sm:leading-tight text-black tracking-tight max-w-4xl mx-auto">
+              <span className="text-yellow-400 drop-shadow-sm">Yaalo eSIM</span>
+              <br className="block sm:hidden" /> Roam the{" "}
+              <br className="hidden sm:block" />
               World, Not the Fees
             </h1>
 
-            {/* search */}
-            <div className="relative h-10 sm:h-14 w-full max-w-2xl mx-auto mt-5 sm:mt-8">
+            {/* Search Bar Container */}
+            <div className="relative h-11 sm:h-14 w-full max-w-xl md:max-w-2xl mx-auto mt-6 sm:mt-8 shadow-md rounded-3xl">
               <input
                 type="text"
                 placeholder="Where are you flying next?"
-                className="w-full pl-3 pr-10 py-2 sm:py-3 border border-gray-200 rounded-3xl bg-white outline-none text-xs sm:text-base"
+                className="w-full h-full pl-5 pr-12 py-2 sm:py-3 border border-gray-200 rounded-3xl bg-white outline-none text-xs sm:text-sm md:text-base focus:border-yellow-400 transition-colors text-black placeholder-gray-400"
               />
-              <Search
-                className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-black"
-                size={20}
-              />
+              <div className="absolute right-4 top-1/2 -translate-y-1/2 bg-yellow-400 sm:bg-transparent p-1.5 sm:p-0 rounded-full text-black cursor-pointer active:scale-95 transition-transform">
+                <Search size={18} className="sm:w-5 sm:h-5" />
+              </div>
             </div>
 
-            {/* description */}
-            <p className="font-medium mt-4 sm:mt-8 text-gray-700 text-xs sm:text-base px-2">
+            {/* Description */}
+            <p className="font-medium mt-6 sm:mt-8 text-gray-800 text-xs sm:text-sm md:text-base max-w-2xl mx-auto leading-relaxed px-2">
               Your trips just got easier. With Yaalo eSIM, you land, connect,
-              and get
-              <br className="hidden sm:block" />
-              instant 5G data in 200+ destinations at local rates.
+              and get <br className="hidden md:block" /> instant 5G data in 200+
+              destinations at local rates.
             </p>
 
-            {/* download */}
-            <h2 className="font-semibold text-sm sm:text-lg mt-6 sm:mt-10">
+            {/* App Download Headline */}
+            <h2 className="font-bold text-xs sm:text-sm md:text-base mt-8 sm:mt-12 text-black uppercase tracking-wider">
               Download the App Now
             </h2>
 
-            {/* buttons */}
-            <div className="flex flex-row sm:flex-row justify-center items-center gap-2 sm:gap-4 mt-4 sm:mt-6 mb-6 sm:mb-10">
+            <div className="flex flex-row justify-center items-center gap-3 sm:gap-4 mt-4 mb-2">
               <a
                 href="https://play.google.com/store/apps/details?id=com.activatewireless.app.yaalo"
                 target="_blank"
+                rel="noopener noreferrer"
+                className="hover:scale-105 active:scale-95 transition-transform"
               >
-                <div className="rounded-2xl bg-white shadow-sm">
+                <div className="rounded-full sm:rounded-3xl bg-white shadow-md p-0.5">
                   <img
-                    src="https://yaalo.com/_next/static/media/g-play.8d7b1a46.svg"
-                    className="h-9 sm:h-10"
+                    src="https://yaalo.com/_next/static/media/g-play.0a5z_2.z1n1vh.svg"
+                    alt="Google Play Store"
+                    className="h-8 sm:h-10 md:h-11 object-contain"
                   />
                 </div>
               </a>
 
-              <a href="https://apps.apple.com/app/id6753675047" target="_blank">
-                <div className="rounded-2xl bg-white shadow-sm ">
+              <a
+                href="https://apps.apple.com/app/id6753675047"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:scale-105 active:scale-95 transition-transform"
+              >
+                <div className="rounded-full sm:rounded-3xl bg-white shadow-md p-0.5">
                   <img
-                    src="https://yaalo.com/_next/static/media/apple-store.8102bba3.svg"
-                    className="h-9 sm:h-10"
+                    src="https://yaalo.com/_next/static/media/apple-store.0i14txqxrjnx8.svg"
+                    alt="Apple App Store"
+                    className="h-8 sm:h-10 md:h-11 object-contain"
                   />
                 </div>
               </a>
@@ -86,48 +87,52 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <div
-        className="max-w-[1225px] px-4 py-8 mobile par,  tablet/desktop par. mx-auto hata diya gaya hai */
- md:ml-15 
-  grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-10"
-      >
-        {[
-          {
-            img: "earth.39b7df47.svg",
-            title: "Local Rates",
-            desc: "No roaming premiums",
-          },
-          {
-            img: "clock.3a93caca.svg",
-            title: "Plug & Online",
-            desc: "Instant activation",
-          },
-          {
-            img: "trophy.ed47fe48.svg",
-            title: "Buy Online",
-            desc: "No SIM swap",
-          },
-          {
-            img: "sim.332404b8.svg",
-            title: "24/7 Support",
-            desc: "Always available",
-          },
-        ].map((card, i) => (
-          <div
-            key={i}
-            className="border border-gray-200 rounded-xl p-3 sm:p-6 text-center hover:-translate-y-1 transition bg-white/50 backdrop-blur-sm"
-          >
-            <img
-              className="mx-auto mb-2 w-7 sm:w-auto"
-              src={`https://yaalo.com/_next/static/media/${card.img}`}
-              alt={card.title}
-            />
-            <h3 className="font-semibold text-xs sm:text-base">{card.title}</h3>
-            <p className="text-[10px] sm:text-sm text-gray-600 mt-1">
-              {card.desc}
-            </p>
-          </div>
-        ))}
+
+      {/* FEATURES INFO GRID */}
+      <div className="w-full bg-gray-50/50 py-10 sm:py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1240px] mx-auto grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 md:gap-8">
+          {[
+            {
+              img: "earth.39b7df47.svg",
+              title: "Local Rates",
+              desc: "No roaming premiums",
+            },
+            {
+              img: "clock.3a93caca.svg",
+              title: "Plug & Online",
+              desc: "Instant activation",
+            },
+            {
+              img: "trophy.ed47fe48.svg",
+              title: "Buy Online",
+              desc: "No SIM swap",
+            },
+            {
+              img: "sim.332404b8.svg",
+              title: "24/7 Support",
+              desc: "Always available",
+            },
+          ].map((card, i) => (
+            <div
+              key={i}
+              className="border border-gray-100 rounded-xl sm:rounded-2xl p-3 sm:p-5 h-24 sm:h-32 md:h-36 text-center hover:-translate-y-1.5 transition-all duration-300 bg-white shadow-sm hover:shadow-md flex flex-col items-center justify-center"
+            >
+              <div className="w-7 h-7 sm:w-12 sm:h-12 flex items-center justify-center mb-1.5 sm:mb-3 bg-yellow-50/50 rounded-full">
+                <img
+                  className="w-4 h-4 sm:w-6 sm:h-6 object-contain"
+                  src={`https://yaalo.com/_next/static/media/${card.img}`}
+                  alt={card.title}
+                />
+              </div>
+              <h3 className="font-bold text-[11px] sm:text-base text-black leading-tight">
+                {card.title}
+              </h3>
+              <p className="text-[9px] sm:text-sm text-gray-500 mt-0.5 font-medium leading-tight">
+                {card.desc}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );
