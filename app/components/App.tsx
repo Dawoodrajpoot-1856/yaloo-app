@@ -4,7 +4,7 @@ const App = () => {
   return (
     <div
       className="
-      bg-[#393a36] w-full max-w-[1200px] mx-auto mb-10
+      bg-[#393a36] w-full max-w-[1400px] mx-auto mb-10
       px-6 md:px-16 py-12 md:py-20 overflow-hidden
 
       rounded-none md:rounded-[40px]
@@ -41,7 +41,7 @@ const App = () => {
           <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 md:gap-4 mt-6 md:mt-8">
             <a href="https://play.google.com/store/apps/details?id=com.activatewireless.app.yaalo">
               <img
-                src="https://yaalo.com/_next/static/media/playLink.1cd75698.svg"
+                src="https://yaalo.com/_next/static/media/playLink.0hhnjxn3~uuaj.svg"
                 alt="Google Play"
                 className="h-10 md:h-12 hover:scale-105 transition"
               />
@@ -49,7 +49,7 @@ const App = () => {
 
             <a href="https://apps.apple.com/app/id6753675047">
               <img
-                src="https://yaalo.com/_next/static/media/appleLink.9011278c.svg"
+                src="https://yaalo.com/_next/static/media/appleLink.0jfeh4f2_t3bl.svg"
                 alt="App Store"
                 className="h-10 md:h-12 hover:scale-105 transition"
               />

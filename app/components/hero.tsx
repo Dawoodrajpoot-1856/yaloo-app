@@ -3,12 +3,35 @@
 import { Search } from "lucide-react";
 import React from "react";
 
+// FIX: Sabhi images ke complete, verifiable URLs ko exact format me define kar diya hai.
+const featureCards = [
+  {
+    img: "https://yaalo.com/_next/static/media/earth.0r-58oumuo_cp.svg",
+    title: "Local Rates",
+    desc: "No roaming premiums",
+  },
+  {
+    img: "https://yaalo.com/_next/static/media/clock.0zt0hanvn-ijj.svg",
+    title: "Plug & Online",
+    desc: "Instant activation",
+  },
+  {
+    img: "https://yaalo.com/_next/static/media/trophy.0kd2_cg1av3hp.svg",
+    title: "Buy Online",
+    desc: "No SIM swap",
+  },
+  {
+    img: "https://yaalo.com/_next/static/media/sim.162uxbhfzy_kg.svg",
+    desc: "Always available",
+  },
+];
+
 const Hero = () => {
   return (
     <>
       {/* HERO SECTION */}
       <div
-        className="min-h-[75svh] sm:min-h-[85svh] lg:min-h-screen brightness-110 bg-cover bg-center bg-no-repeat flex items-center justify-center w-full pt-16 sm:pt-20"
+        className="min-h-[50svh] sm:min-h-[60svh] lg:min-h-[65vh] brightness-100 bg-cover bg-center bg-no-repeat flex items-center justify-center w-full pt-12 sm:pt-16 pb-8"
         style={{
           backgroundImage:
             "url('https://yaalo.com/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2FheroBackground.92b9c510.png&w=1920&q=100')",
@@ -16,12 +39,12 @@ const Hero = () => {
       >
         <div className="w-full bg-black/5 py-8 sm:py-12 md:py-16">
           {/* Badge */}
-          <div className=" w-90 max-w-[90%] bg-gray-300 text-black font-medium py-1.5 px-4 rounded-full mx-auto text-[6px] sm:text-xs md:text-sm text-center tracking-wide shadow-sm backdrop-blur-sm">
+          <div className="w-90 max-w-[90%] bg-gray-300 text-black font-medium py-1.5 px-4 rounded-full mx-auto text-[6px] sm:text-xs md:text-sm text-center tracking-wide shadow-sm backdrop-blur-sm">
             Digital Freedom With 3-Step Activation
           </div>
 
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            {/* Heading (Optimized Size and Breaks) */}
+            {/* Heading */}
             <h1 className="font-semibold text-2xl sm:text-4xl md:text-5xl lg:text-6xl mt-5 sm:mt-8 leading-[1.2] sm:leading-tight text-black tracking-tight max-w-4xl mx-auto">
               <span className="text-yellow-400 drop-shadow-sm">Yaalo eSIM</span>
               <br className="block sm:hidden" /> Roam the{" "}
@@ -90,29 +113,8 @@ const Hero = () => {
 
       {/* FEATURES INFO GRID */}
       <div className="w-full bg-gray-50/50 py-10 sm:py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-[1240px] mx-auto grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 md:gap-8">
-          {[
-            {
-              img: "earth.39b7df47.svg",
-              title: "Local Rates",
-              desc: "No roaming premiums",
-            },
-            {
-              img: "clock.3a93caca.svg",
-              title: "Plug & Online",
-              desc: "Instant activation",
-            },
-            {
-              img: "trophy.ed47fe48.svg",
-              title: "Buy Online",
-              desc: "No SIM swap",
-            },
-            {
-              img: "sim.332404b8.svg",
-              title: "24/7 Support",
-              desc: "Always available",
-            },
-          ].map((card, i) => (
+        <div className="max-w-[1400px] mx-auto grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 md:gap-8">
+          {featureCards.map((card, i) => (
             <div
               key={i}
               className="border border-gray-100 rounded-xl sm:rounded-2xl p-3 sm:p-5 h-24 sm:h-32 md:h-36 text-center hover:-translate-y-1.5 transition-all duration-300 bg-white shadow-sm hover:shadow-md flex flex-col items-center justify-center"
@@ -120,7 +122,10 @@ const Hero = () => {
               <div className="w-7 h-7 sm:w-12 sm:h-12 flex items-center justify-center mb-1.5 sm:mb-3 bg-yellow-50/50 rounded-full">
                 <img
                   className="w-4 h-4 sm:w-6 sm:h-6 object-contain"
-                  src={`https://yaalo.com/_next/static/media/${card.img}`}
+                  /* FIX: Ab `src` seedha pure URL se map ho rahi hai 
+                    jisse template interpolation ki koi glitch ya double-domain link nahi banega.
+                  */
+                  src={card.img}
                   alt={card.title}
                 />
               </div>

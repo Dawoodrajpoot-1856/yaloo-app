@@ -1,14 +1,12 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import {
   Handshake,
   UserRound,
   Globe2,
   Plane,
-  ArrowLeft,
-  ArrowRight,
   ArrowUpRight,
   ChevronRight,
   ChevronLeft,
@@ -54,12 +52,15 @@ export default function Travels() {
   const scrollNext = () => emblaApi && emblaApi.scrollNext();
 
   return (
-    <section className="py-10 sm:py-16 lg:py-20 ">
-      <div className="max-w-[1450px] mx-auto px-6 sm:pl-20 sm:pr-[100px]">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-6">
+    <section className="py-10 sm:py-16 lg:py-20 w-full overflow-hidden">
+      {/* 1400px Main Wrapper */}
+      <div className="max-w-[1400px] mx-auto px-6 sm:px-12 md:px-16 w-full">
+        
+        {/* HEADER SECTION */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-5">
           {/* Text Content */}
           <div className="text-left max-w-3xl">
-            <h1 className="text-2xl sm:text-3xl md:text-6xl font-semibold mb-2 sm:mb-4">
+            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-semibold mb-2 sm:mb-4 leading-tight">
               Why Are Travellers Switching to Yaalo?
             </h1>
             <p className="text-sm sm:text-base text-gray-600">
@@ -68,34 +69,46 @@ export default function Travels() {
             </p>
           </div>
 
-          {/* NAV BUTTONS - Now part of the same row on desktop */}
+          {/* NAV BUTTONS */}
           <div className="flex justify-start md:justify-end gap-3 min-w-fit">
             <button
               onClick={scrollPrev}
-              className="w-11 h-11 rounded-full   flex items-center justify-center bg-yellow-400   transition"
+              className="w-11 h-11 rounded-full flex items-center justify-center bg-yellow-400 hover:scale-105 transition"
             >
               <ChevronLeft size={20} />
             </button>
             <button
               onClick={scrollNext}
-              className="w-11 h-11 rounded-full bg-yellow-400 flex items-center justify-center  transition"
+              className="w-11 h-11 rounded-full bg-yellow-400 flex items-center justify-center hover:scale-105 transition"
             >
               <ChevronRight size={20} />
             </button>
           </div>
         </div>
-        <div className="overflow-hidden" ref={emblaRef}>
-          <div className="flex -ml-4">
+
+        {/* CAROUSEL CONTAINER */}
+        <div className="overflow-hidden w-full" ref={emblaRef}>
+          {/* 
+            -ml-6 (Negative Margin) wrapper ko thoda left push karta hai 
+            taake pehla card text ke bilkul exact neeche straight zero-margin line me aaye.
+          */}
+          <div className="flex -ml-6">
             {cards.map((item, i) => {
               const Icon = item.icon;
               return (
                 <div
                   key={i}
-                  className="flex-[0_0_90%] sm:flex-[0_0_45%] lg:flex-[0_0_31%] pl-4"
+                  /* 
+                    FIXED WIDTHS: 
+                    Desktop (lg): exact 33.333% space block.
+                    Tablet (sm): exact 50% block (2 cards visible).
+                    Mobile: 85% block (taake agli slide thodi si nazar aaye glance ke liye).
+                  */
+                  className="flex-[0_0_85%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] pl-6"
                 >
-                  <div className="min-h-[240px] sm:min-h-[280px] rounded-3xl p-6 border border-gray-200 bg-white hover:shadow-xl transition shadow-sm">
-                    <div className="flex flex-col gap-4 h-full">
-                      <div className="w-12 h-12 rounded-full bg-yellow-50 text-yellow-500 flex items-center justify-center">
+                  <div className="min-h-[240px] sm:min-h-[280px] rounded-3xl p-6 border border-gray-200 bg-white hover:shadow-xl transition shadow-sm flex flex-col justify-between h-full">
+                    <div className="flex flex-col gap-4">
+                      <div className="w-12 h-12 rounded-full bg-yellow-50 text-yellow-500 flex items-center justify-center shrink-0">
                         <Icon size={22} />
                       </div>
                       <div>
@@ -113,6 +126,8 @@ export default function Travels() {
             })}
           </div>
         </div>
+
+        {/* BUTTON SECTION */}
         <Link href="/destinations">
           <div className="flex justify-start mt-8 sm:mt-12">
             <div className="group inline-flex items-center gap-2 px-6 h-12 rounded-2xl bg-yellow-300 hover:bg-black transition cursor-pointer">

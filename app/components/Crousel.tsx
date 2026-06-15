@@ -48,13 +48,23 @@ export default function Crousel() {
   });
 
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [scrollSnaps, setScrollSnaps] = useState([]);
 
   useEffect(() => {
     if (!emblaApi) return;
+
     const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
+
+    // Snaps list set ki taake extra blank dots na banen
+    setScrollSnaps(emblaApi.scrollSnapList());
+
     emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", () => setScrollSnaps(emblaApi.scrollSnapList()));
+
     onSelect();
+
     const interval = setInterval(() => emblaApi.scrollNext(), 3000);
+
     return () => {
       clearInterval(interval);
       emblaApi.off("select", onSelect);
@@ -62,9 +72,8 @@ export default function Crousel() {
   }, [emblaApi]);
 
   return (
-    <section className="py-10 sm:py-16 bg-white">
-      <div className="max-w-[1440px] mx-auto px-6 sm:pl-20 sm:pr-[100px]">
-        {/* HEADER */}
+    <section className="py-10 sm:py-16 bg-white w-full overflow-hidden">
+      <div className="max-w-[1480px] mx-auto px-6 sm:px-12 md:px-16 w-full">
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-8 sm:mb-12">
           <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold leading-tight">
             Traveller Voices <br />
@@ -73,14 +82,14 @@ export default function Crousel() {
           <div className="flex gap-3 sm:gap-4">
             <a href="https://play.google.com/store/apps/details?id=com.activatewireless.app.yaalo">
               <img
-                src="https://yaalo.com/_next/static/media/playLink.1cd75698.svg"
+                src="https://yaalo.com/_next/static/media/playLink.0hhnjxn3~uuaj.svg"
                 className="h-9 sm:h-12 hover:scale-105 transition"
                 alt="Play Store"
               />
             </a>
             <a href="https://apps.apple.com/app/id6753675047">
               <img
-                src="https://yaalo.com/_next/static/media/appleLink.9011278c.svg"
+                src="https://yaalo.com/_next/static/media/appleLink.0jfeh4f2_t3bl.svg"
                 className="h-9 sm:h-12 hover:scale-105 transition"
                 alt="App Store"
               />
@@ -88,8 +97,7 @@ export default function Crousel() {
           </div>
         </div>
 
-        {/* CAROUSEL */}
-        <div className="overflow-hidden" ref={emblaRef}>
+        <div className="overflow-hidden w-full" ref={emblaRef}>
           <div className="flex -ml-4">
             {reviews.map((item, i) => (
               <div
@@ -97,9 +105,7 @@ export default function Crousel() {
                 className="flex-[0_0_85%] sm:flex-[0_0_60%] md:flex-[0_0_45%] lg:flex-[0_0_31%] pl-4"
               >
                 <div className="border border-gray-200 rounded-3xl p-6 bg-white h-full transition hover:shadow-lg flex flex-col">
-                  {/* USER INFO SECTION */}
                   <div className="flex items-center gap-3 mb-4">
-                    {/* AVATAR */}
                     <div className="w-10 h-10 rounded-full bg-yellow-400 flex items-center justify-center font-bold text-sm text-black shrink-0">
                       {item.name
                         .split(" ")
@@ -108,7 +114,6 @@ export default function Crousel() {
                         .toUpperCase()}
                     </div>
 
-                    {/* NAME & DATE CONTAINER */}
                     <div className="flex flex-col">
                       <h3 className="font-bold text-gray-900 leading-tight">
                         {item.name}
@@ -119,7 +124,6 @@ export default function Crousel() {
                     </div>
                   </div>
 
-                  {/* 5 GREEN STARS */}
                   <div className="flex gap-1 mb-3">
                     {[...Array(5)].map((_, index) => (
                       <svg
@@ -132,7 +136,6 @@ export default function Crousel() {
                     ))}
                   </div>
 
-                  {/* REVIEW TEXT */}
                   <p className="text-gray-600 text-sm sm:text-base leading-relaxed italic">
                     "{item.text}"
                   </p>
@@ -142,9 +145,8 @@ export default function Crousel() {
           </div>
         </div>
 
-        {/* DOTS */}
         <div className="flex justify-center gap-2 mt-8 sm:mt-10">
-          {reviews.map((_, i) => (
+          {scrollSnaps.map((_, i) => (
             <button
               key={i}
               onClick={() => emblaApi && emblaApi.scrollTo(i)}

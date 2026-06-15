@@ -18,7 +18,7 @@ const Adventures = async () => {
   const CountryList = uniqueCountries.sort(() => 0.5 - Math.random());
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
+    <section className="max-w-[1450px] mx-auto px-4 sm:px-6 py-16">
       <h1 className="font-semibold text-3xl ml-4 sm:text-5xl">
         Pick Your Adventure
       </h1>
