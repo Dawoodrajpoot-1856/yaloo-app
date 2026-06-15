@@ -98,7 +98,7 @@ export default function Crousel() {
 
   return (
     <section className="py-10 sm:py-16 bg-white w-full overflow-hidden">
-      <div className="max-w-[1400px] mx-auto px-6 sm:px-12 md:px-16 w-full">
+      <div className="max-w-[1500px] mx-auto px-6 sm:px-12 md:px-16 w-full">
         {/* HEADER SECTION */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-8 sm:mb-12">
           <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold leading-tight text-black">
