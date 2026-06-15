@@ -50,7 +50,7 @@ const Page = () => {
       </div>
 
       {/* CARDS SECTION */}
-      <div className="max-w-[1220px] mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="max-w-[1420px] mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* WhatsApp Card */}
         <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 p-6 md:p-8 rounded-2xl bg-white shadow-sm border border-transparent transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:border-amber-400">
           <img
@@ -83,16 +83,16 @@ const Page = () => {
       </div>
 
       {/* EMAIL BUTTON */}
-      <div className="max-w-[1220px] mx-auto px-4 pb-12">
+      <div className="max-w-[1420px] mx-auto px-4 pb-12">
         <div className="bg-yellow-400 text-center py-4 sm:py-5 rounded-2xl font-medium text-sm sm:text-base">
           For Business: <span className="font-bold">sales@yaalo.com</span>
         </div>
       </div>
 
       {/* IMAGE + FORM SECTION */}
-      <div className="max-w-[1220px] mx-auto px-4 py-8 md:py-16 flex flex-col lg:flex-row items-start gap-12">
+      <div className="max-w-[1420px] mx-auto px-4 py-8 md:py-16 flex flex-col lg:flex-row items-start gap-12">
         {/* Left Image - Hidden on very small screens or resized */}
-        <div className="w-full lg:w-1/2 flex justify-center">
+        <div className="w-full lg:w-1/2 flex justify-between">
           <img
             src="https://yaalo.com/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2Fcontact.03ff1c67.png&w=640&q=75"
             alt="Contact"

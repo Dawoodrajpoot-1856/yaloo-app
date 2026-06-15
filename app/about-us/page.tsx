@@ -4,7 +4,7 @@ import { Headphones, Leaf, Wifi } from "lucide-react";
 import Footer from "../components/Footer";
 
 const Page = () => {
-  const containerClass = "max-w-[1220px] mx-auto px-6";
+  const containerClass = "max-w-[1420px] mx-auto px-6";
 
   return (
     <>

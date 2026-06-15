@@ -53,7 +53,7 @@ const page = async () => {
       </div>
 
       {/* CATEGORIES SECTION */}
-      <div className="max-w-[1320px] w-full bg-gray-50 border border-gray-200 rounded-2xl mt-5 mx-auto overflow-hidden">
+      <div className="max-w-[1420px] w-full bg-gray-50 border border-gray-200 rounded-2xl mt-5 mx-auto overflow-hidden">
         <div className="flex gap-3 p-4 overflow-x-auto no-scrollbar scroll-smooth">
           <button className="px-5 py-3 bg-white text-black rounded-lg shadow-sm hover:shadow-md transition-shadow shrink-0">
             All Blogs
@@ -92,7 +92,7 @@ const page = async () => {
       </div>
 
       {/* BLOG GRID SECTION */}
-      <div className="max-w-[1320px] w-full mx-auto mt-10 px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="max-w-[1420px] w-full mx-auto mt-10 px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {blogList.map((item: any, index: any) => (
           <div
             key={index}

@@ -82,7 +82,7 @@ export default function Header() {
       >
         <header
           className={`
-            w-full max-w-[1380px] flex items-center justify-between
+            w-full max-w-[1400px] flex items-center justify-between
             px-4 sm:px-6 lg:px-8 xl:px-12 py-3 mt-0
             transition-all duration-500 ease-out
             ${

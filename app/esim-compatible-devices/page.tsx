@@ -73,7 +73,7 @@ const Page = () => {
       </div>
 
       {/* MAIN CONTENT WRAPPER */}
-      <div className="max-w-[1230px] mx-auto px-6 py-12 md:py-20">
+      <div className="max-w-[1400px] mx-auto px-6 py-12 md:py-20">
         {/* COMPATIBILITY INTRO */}
         <div className="mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">

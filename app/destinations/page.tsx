@@ -43,7 +43,7 @@ const Page = async () => {
       </div>
 
       {/* SECTION */}
-      <section className="max-w-7xl mx-auto px-6 sm:px-10 py-12 sm:py-16">
+      <section className="max-w-[1440px] mx-auto px-6 sm:px-10 py-12 sm:py-16">
         <h1 className="font-semibold text-2xl sm:text-4xl lg:text-5xl">
           Pick Your Adventure
         </h1>
