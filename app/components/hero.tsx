@@ -113,7 +113,7 @@ const Hero = () => {
 
       {/* FEATURES INFO GRID */}
       <div className="w-full bg-gray-50/50 py-10 sm:py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-[1400px] mx-auto grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 md:gap-8">
+        <div className="max-w-[1380px] mx-auto grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 md:gap-8">
           {featureCards.map((card, i) => (
             <div
               key={i}

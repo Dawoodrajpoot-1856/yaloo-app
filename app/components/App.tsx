@@ -4,7 +4,7 @@ const App = () => {
   return (
     <div
       className="
-      bg-[#393a36] w-full max-w-[1400px] mx-auto mb-10
+      bg-[#393a36] w-full max-w-[1380px] mx-auto mb-10
       px-6 md:px-16 py-12 md:py-20 overflow-hidden
 
       rounded-none md:rounded-[40px]
