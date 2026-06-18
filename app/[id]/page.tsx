@@ -83,6 +83,7 @@ const cards = [
     icon: Timeline,
   },
 ];
+
 export default async function Page({ params }: PageProps) {
   const { id } = await params;
   console.log("Fetching data for ID on server:", id);
@@ -93,42 +94,51 @@ export default async function Page({ params }: PageProps) {
       `https://test.esimwhitelabel.com/api/packages/country/${id}`,
     );
     data = await res.json();
-    console.log(data?.packages);
   } catch (error) {
     console.error("API Fetch Error:", error);
   }
-  let country: any = null;
 
+  let country: any = null;
   try {
     const response = await fetch(
       "https://test.esimwhitelabel.com/api/packages/country",
     );
-
     const result = await response.json();
-
     // ✅ FILTER LOGIC (match id from params)
     country = result?.data?.find((item: any) => item.id === Number(id));
-
-    console.log("Matched Country:", country);
   } catch (error) {
-    console.log(error);
+    console.log("Country Fetch Error:", error);
   }
+
+  // Fallback state if data or country is missing
+  if (!country || !data) {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <p className="text-lg font-semibold text-gray-500">
+          Loading or Data Not Found...
+        </p>
+      </div>
+    );
+  }
+
   return (
     <>
       <Header />
 
-      <div className="mt-30">
+      <div className="mt-30 max-w-[1220px] mx-auto px-4">
         <div className="flex flex-col md:flex-row gap-8 mb-8">
           {/* Image Card */}
           <div className="w-full md:w-[550px] shrink-0 bg-white dark:bg-gray-900 p-4 rounded-2xl border border-gray-100 dark:border-gray-800 ">
-            <img
-              className="rounded-2xl w-full h-[500px] object-cover"
-              src={country.banner}
-              alt="eSIM Destination"
-            />
+            {country?.banner && (
+              <img
+                className="rounded-2xl w-full h-[500px] object-cover"
+                src={country.banner}
+                alt="eSIM Destination"
+              />
+            )}
           </div>
 
-          <div className="flex flex-col gap-4  md:w-[650px] ">
+          <div className="flex flex-col gap-4 flex-1">
             <h1 className="font-bold text-xl mb-3 text-gray-900 dark:text-white">
               Select the Best eSIM Plans for {country?.name}
             </h1>
@@ -148,10 +158,9 @@ export default async function Page({ params }: PageProps) {
                 <div className="flex items-center gap-3 flex-wrap">
                   <h1>{country?.name}</h1>
                   <span className="text-xl font-semibold">
-                    {data.data[0].data_unit}{" "}
+                    {data?.data?.[0]?.data_unit || ""}
                   </span>
                   <SheetDemo country={country} data={data} />
-                  ss
                 </div>
 
                 <div className="flex items-center justify-between flex-wrap gap-4">
@@ -179,16 +188,18 @@ export default async function Page({ params }: PageProps) {
                       </DropdownMenuContent>
                     </DropdownMenu>
 
-                    <img
-                      src={country?.flag}
-                      alt=""
-                      className="rounded-full h-6 w-6"
-                    />
+                    {country?.flag && (
+                      <img
+                        src={country.flag}
+                        alt=""
+                        className="rounded-full h-6 w-6"
+                      />
+                    )}
                   </div>
 
                   <div className="flex items-center gap-3">
                     <h1 className="font-bold text-2xl text-gray-900 dark:text-white">
-                      {data.data[0].price}
+                      {data?.data?.[0]?.price || "N/A"}
                     </h1>
 
                     <RadioGroupDemo />
@@ -200,7 +211,7 @@ export default async function Page({ params }: PageProps) {
         </div>
       </div>
 
-      <div className="p-3 w-[1220px] rounded-xl mx-auto mt-5 border border-gray-300">
+      <div className="p-3 w-full max-w-[1220px] rounded-xl mx-auto mt-5 border border-gray-300 px-4">
         <div className="flex flex-row gap-2">
           <button className="p-3 rounded-2xl font-semibold  bg-yellow-400">
             Technical Specs
@@ -213,7 +224,8 @@ export default async function Page({ params }: PageProps) {
           </button>
         </div>
       </div>
-      <div className="flex flex-col gap-2 w-[1220px] p-6 border border-gray-300 mx-auto rounded-xl">
+
+      <div className="flex flex-col gap-2 w-full max-w-[1220px] p-6 border border-gray-300 mx-auto rounded-xl my-5 px-4">
         <h1 className="font-semibold text-lg">
           Our Virtual SIM Specifications
         </h1>
@@ -222,7 +234,7 @@ export default async function Page({ params }: PageProps) {
           Tethering / Mobile Hotspot:
         </h1>
         <h1 className="font-semibold text-gray-600 text-sm">
-          Data Options:{data.activation_type_description}
+          Data Options: {data?.activation_type_description || "N/A"}
         </h1>
         <h1 className="font-semibold text-gray-600 text-sm">Usage Duration</h1>
         <h1 className="font-semibold text-gray-600 text-sm">Phone Number:</h1>
@@ -240,14 +252,18 @@ export default async function Page({ params }: PageProps) {
         </h1>
         <h1 className="font-semibold text-gray-600 text-sm">Shipping: </h1>
       </div>
-      <h1 className="ml-6 max-w-4xl font-semibold text-5xl">
-        How Yaalo eSIM Works? <br />
-        (Spoiler: It’s Ridiculously Simple)
-      </h1>
-      <p className="ml-6 mt-4 max-w-4xl font- medium text-gray-600 ">
-        Users often assume that technical processes are complex. But activating
-        Yaalo eSIM is like 1, 2, 3 and connected!
-      </p>
+
+      <div className="max-w-[1220px] mx-auto px-4 mt-10">
+        <h1 className="font-semibold text-3xl md:text-5xl">
+          How Yaalo eSIM Works? <br />
+          (Spoiler: It’s Ridiculously Simple)
+        </h1>
+        <p className="mt-4 font-medium text-gray-600 ">
+          Users often assume that technical processes are complex. But
+          activating Yaalo eSIM is like 1, 2, 3 and connected!
+        </p>
+      </div>
+
       <div className="max-w-[1220px] mx-auto px-4 py-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
@@ -298,15 +314,15 @@ export default async function Page({ params }: PageProps) {
           ))}
         </div>
       </div>
-      <div className="max-w-[1200px]  px-4 sm:px-6">
+
+      <div className="max-w-[1220px] mx-auto px-4 mt-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {cards.map((item, i) => {
             const Icon = item.icon;
-
             return (
               <div
                 key={i}
-                className="rounded-3xl border border-gray-200 bg-white p-6 min-h-[280px]l transition-all duration-300"
+                className="rounded-3xl border border-gray-200 bg-white p-6 min-h-[240px] transition-all duration-300"
               >
                 <div className="w-12 h-12 rounded-full bg-yellow-50 text-yellow-500 flex items-center justify-center mb-5">
                   <Icon size={22} />
@@ -325,21 +341,12 @@ export default async function Page({ params }: PageProps) {
         </div>
       </div>
 
-      <div
-        className=" mt-10 bg-[#393a36] w-full max-w-[1200px] mx-auto
-  px-6 md:px-14
-  py-12 md:py-16
-  rounded-[32px]
-  overflow-hidden
-  "
-      >
+      <div className="mt-10 bg-[#393a36] w-full max-w-[1220px] mx-auto px-6 md:px-14 py-12 md:py-16 rounded-[32px] overflow-hidden">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
-          {/* LEFT CONTENT */}
           <div className="max-w-[600px] text-center lg:text-left">
             <h2 className="text-white text-2xl md:text-4xl font-semibold leading-tight">
               Your Yaalo eSIM Arrives Instantly Without Any Hassle!
             </h2>
-
             <p className="text-gray-300 mt-5 text-sm md:text-lg leading-7">
               Once you complete your order, your Yaalo eSIM lands straight in
               your inbox or inside the Yaalo App. Just open, scan, and you're
@@ -348,33 +355,19 @@ export default async function Page({ params }: PageProps) {
               streaming wherever your trip takes you.
             </p>
           </div>
-
-          {/* RIGHT IMAGE */}
           <div className="flex justify-center">
             <img
               src="https://yaalo.com/_next/static/media/email-yellow.07mwl5kb.gdwj.svg"
               alt="Email Delivery"
-              className="w-full max-w-[0p35x] md:max-w-[400px] object-contain"
+              className="w-full max-w-[350px] object-contain"
             />
           </div>
         </div>
       </div>
-      <div
-        className="
-  mt-10
-  bg-[#393a36]
-  w-full max-w-[1200px]
-  mx-auto
-  px-6 md:px-14
-  py-12 md:py-16
-  rounded-[32px]
-  overflow-hidden
-  "
-      >
+
+      <div className="mt-10 bg-[#393a36] w-full max-w-[1220px] mx-auto px-6 md:px-14 py-12 md:py-16 rounded-[32px] overflow-hidden mb-10">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-10 md:gap-12">
-          {/* LEFT CONTENT */}
           <div className="max-w-xl text-center lg:text-left">
-            {/* badge */}
             <div className="flex items-center justify-center lg:justify-start gap-2 mb-5 md:mb-6">
               <img
                 className="h-5"
@@ -385,20 +378,13 @@ export default async function Page({ params }: PageProps) {
                 50000+ Downloads
               </h1>
             </div>
-
-            {/* heading */}
             <h1 className="text-white text-2xl sm:text-3xl md:text-5xl font-semibold leading-tight">
-              Download The <br />
-              App Now
+              Download The <br /> App Now
             </h1>
-
-            {/* paragraph */}
             <p className="text-white mt-4 md:mt-6 text-xs sm:text-sm md:text-lg leading-6">
               To use virtual number & international calling features. Buy, setup
               and manage your eSIMs easily.
             </p>
-
-            {/* buttons */}
             <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 md:gap-4 mt-6 md:mt-8">
               <a href="https://play.google.com/store/apps/details?id=com.activatewireless.app.yaalo">
                 <img
@@ -407,7 +393,6 @@ export default async function Page({ params }: PageProps) {
                   className="h-10 md:h-12 hover:scale-105 transition"
                 />
               </a>
-
               <a href="https://apps.apple.com/app/id6753675047">
                 <img
                   src="https://yaalo.com/_next/static/media/appleLink.0jfeh4f2_t3bl.svg"
@@ -417,8 +402,6 @@ export default async function Page({ params }: PageProps) {
               </a>
             </div>
           </div>
-
-          {/* RIGHT IMAGE */}
           <div className="w-full lg:w-1/2 flex justify-center">
             <img
               src="https://yaalo.com/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2FappInstallSS.729e81b9.png&w=1920&q=75"
@@ -428,53 +411,13 @@ export default async function Page({ params }: PageProps) {
           </div>
         </div>
       </div>
+
       <Faqs />
-
-      {/* <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mb-12">
-          {data?.data?.map((pkg: any) => (
-            <div
-              key={pkg.id}
-              className="flex flex-col justify-between rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-all hover:shadow-md dark:border-gray-800 dark:bg-gray-950"
-            >
-              <div>
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-                  {pkg.name}
-                </h3>
-                <div className="mt-4 space-y-2">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-gray-500">Data:</span>
-                    <span className="font-semibold text-gray-800 dark:text-gray-200">
-                      {pkg.data}
-                    </span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-gray-500">Validity:</span>
-                    <span className="font-semibold text-gray-800 dark:text-gray-200">
-                      {pkg.validity}
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-6 pt-4 border-t border-gray-100 dark:border-gray-800">
-                <div className="flex items-baseline justify-between">
-                  <span className="text-2xl font-extrabold text-gray-900 dark:text-white">
-                    ${pkg.price}
-                  </span>
-                  <button className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 transition-colors">
-                    Buy Now
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div> */}
-
       <Footer />
     </>
   );
 }
+
 export function SheetDemo({ country, data }: Props) {
   return (
     <Sheet>
@@ -492,30 +435,29 @@ export function SheetDemo({ country, data }: Props) {
       <SheetContent className="w-full sm:max-w-4xl">
         <SheetHeader>
           <SheetTitle>{country?.name} Plans</SheetTitle>
-
           <SheetDescription>
             Check available eSIM plans for {country?.name}
           </SheetDescription>
         </SheetHeader>
 
-        {/* COUNTRY INFO */}
-        <div className="flex items-center gap-3 px-4 mt-4">
-          <img src={country?.flag} className="w-10 h-10 rounded-full" />
-          <h2 className="font-semibold">{country?.name}</h2>
-        </div>
+        {country?.flag && (
+          <div className="flex items-center gap-3 px-4 mt-4">
+            <img src={country.flag} className="w-10 h-10 rounded-full" alt="" />
+            <h2 className="font-semibold">{country?.name}</h2>
+          </div>
+        )}
 
-        <div className="grid gap-4 px-4 my-6">
-          {data.data.map((pkg, i) => (
+        <div className="grid gap-4 px-4 my-6 overflow-y-auto max-h-[60vh]">
+          {data?.data?.map((pkg: any, i: number) => (
             <div
               key={i}
               className="border rounded-xl p-4 hover:shadow-md transition"
             >
-              <h2>{pkg.name}</h2>
-
-              <p>Data: {pkg.data}</p>
-              <p>Price: {pkg.price}</p>
-              <p>Validity: {pkg.package_validity}</p>
-              <p>connectivity:{pkg.connectivity}</p>
+              <h2 className="font-bold">{pkg?.name}</h2>
+              <p>Data: {pkg?.data}</p>
+              <p>Price: {pkg?.price}</p>
+              <p>Validity: {pkg?.package_validity}</p>
+              <p>Connectivity: {pkg?.connectivity}</p>
             </div>
           ))}
         </div>
