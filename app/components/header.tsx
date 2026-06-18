@@ -82,15 +82,16 @@ export default function Header() {
       >
         <header
           className={`
-            w-full max-w-[1400px] flex items-center justify-between
-            px-4 sm:px-6 lg:px-8 xl:px-12 py-3 mt-0
-            transition-all duration-500 ease-out
-            ${
-              scrolled
-                ? "bg-white/90 backdrop-blur-xl border border-white/40 shadow-lg rounded-2xl mt-3 sm:mt-4"
-                : "bg-transparent backdrop-blur-0 border-transparent shadow-none rounded-none"
-            }
-          `}
+    w-full max-w-[1400px] mx-auto
+    flex items-center justify-between
+    px-4 sm:px-6 lg:px-8 xl:px-12 py-3 mt-0
+    transition-all duration-500 ease-out
+    ${
+      scrolled
+        ? "bg-white/90 backdrop-blur-xl border border-white/40 shadow-lg rounded-2xl mt-3 sm:mt-4"
+        : "bg-transparent backdrop-blur-0 border-transparent shadow-none rounded-none"
+    }
+  `}
         >
           {/* Logo Section */}
           <Link href="/" className="flex-shrink-0">

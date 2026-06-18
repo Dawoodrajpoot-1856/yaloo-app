@@ -90,7 +90,7 @@ const Page = async () => {
         hover:shadow-lg hover:-translate-y-1 transition-all duration-300 bg-white cursor-pointer group"
               >
                 <div>
-                  <img
+                                    <img
                     src={
                       item.image ||
                       `https://flagcdn.com/w80/${item.slug?.slice(0, 2).toLowerCase()}.png`

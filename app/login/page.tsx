@@ -1,12 +1,65 @@
 "use client";
 
+import React, { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
-import React from "react";
 import Header from "../components/header";
 import Footer from "../components/Footer";
 import Link from "next/link";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleLogin = async () => {
+    if (!email || !password) {
+      alert("Please fill all fields");
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      const res = await fetch("https://test.esimwhitelabel.com/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+
+      const data = await res.json();
+
+      console.log("LOGIN RESPONSE:", data);
+
+      if (res.ok) {
+        // Save token if returned
+        if (data?.token) {
+          localStorage.setItem("token", data.token);
+        }
+
+        if (data?.user) {
+          localStorage.setItem("user", JSON.stringify(data.user));
+        }
+
+        alert("Login Successful");
+
+        window.location.href = "/";
+      } else {
+        alert(data?.message || "Invalid credentials");
+      }
+    } catch (error) {
+      console.log(error);
+      alert("Server Error");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       {/* PAGE AREA */}
@@ -47,24 +100,35 @@ const Login = () => {
               Sign in
             </h1>
 
-            {/* INPUTS */}
+            {/* EMAIL */}
             <label className="text-sm font-medium text-black">Email</label>
+
             <input
               type="email"
               placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="w-full mb-4 mt-1 p-3 rounded-xl bg-white text-black outline-none"
             />
 
+            {/* PASSWORD */}
             <label className="text-sm font-medium text-black">Password</label>
+
             <input
               type="password"
               placeholder="Enter password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="w-full mb-4 mt-1 p-3 rounded-xl bg-white text-black outline-none"
             />
 
             {/* SUBMIT */}
-            <button className="group w-full py-3 rounded-xl bg-yellow-400 text-black font-semibold hover:bg-black hover:text-white transition flex items-center justify-center gap-2">
-              Submit
+            <button
+              onClick={handleLogin}
+              disabled={loading}
+              className="group w-full py-3 rounded-xl bg-yellow-400 text-black font-semibold hover:bg-black hover:text-white transition flex items-center justify-center gap-2 disabled:opacity-60"
+            >
+              {loading ? "Signing In..." : "Submit"}
               <ArrowUpRight />
             </button>
           </div>

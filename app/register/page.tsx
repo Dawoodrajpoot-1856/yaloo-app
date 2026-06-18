@@ -1,16 +1,27 @@
 "use client";
 
 import React, { useState } from "react";
-import { ArrowUpRight } from "lucide-react";
 import Header from "../components/header";
 import Footer from "../components/Footer";
 import Link from "next/link";
-import ReCAPTCHA from "react-google-recaptcha"; // Standard import
+import ReCAPTCHA from "react-google-recaptcha";
 
 const GlassForm = () => {
   const [captchaValue, setCaptchaValue] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [step, setStep] = useState<"form" | "otp">("form");
+  const [loading, setLoading] = useState(false);
+
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const [otp, setOtp] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!captchaValue) {
@@ -18,12 +29,90 @@ const GlassForm = () => {
       return;
     }
 
-    console.log("Form submitted");
+    if (form.password !== form.confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      const res = await fetch("https://test.esimwhitelabel.com/api/send-otp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          password: form.password,
+          "g-recaptcha-response": captchaValue,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        alert("OTP sent!");
+        setStep("otp");
+      } else {
+        alert(data?.message || "Failed to send OTP");
+      }
+    } catch (err) {
+      console.log(err);
+      alert("Server error");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleVerifyOtp = async () => {
+    if (!otp) {
+      alert("Enter OTP");
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      const res = await fetch("https://test.esimwhitelabel.com/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "User-Agent": "insomnia/9.2.0",
+        },
+        body: JSON.stringify({
+          email: form.email,
+          password: form.password,
+          name: form.name,
+          otp: otp,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        alert("Account verified!");
+        setStep("form");
+        setForm({
+          name: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
+        });
+        setOtp("");
+        setCaptchaValue(null);
+      } else {
+        alert(data?.message || "Invalid OTP");
+      }
+    } catch (err) {
+      console.log(err);
+      alert("Server error");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="min-h-screen flex flex-col relative">
-      {/* BACKGROUND - Pure Responsive */}
+    <div className="min-h-screen flex flex-col">
       <div className="fixed inset-0 -z-10">
         <img
           src="https://yaalo.com/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2FloginBg.a05beed4.png&w=1920&q=100"
@@ -36,18 +125,18 @@ const GlassForm = () => {
       {/* HEADER */}
       <Header />
 
-      {/* FORM SECTION - Adjusted for all screens */}
-      <div className="flex-1 flex items-center justify-center px-4 py-10 md:py-20">
+      {/* CONTENT AREA (IMPORTANT FIX) */}
+      <div className="flex-1 flex items-center justify-center px-4 py-10 md:py-20 relative z-10">
         <form
-          onSubmit={handleSubmit}
-          className="w-full mt-5 max-w-lg p-5 sm:p-8 rounded-3xl bg-white/20 backdrop-blur-xl border border-white/30 shadow-2xl"
+          onSubmit={step === "form" ? handleSubmit : (e) => e.preventDefault()}
+          className="w-full max-w-lg p-5 sm:p-8 rounded-3xl bg-white/20 backdrop-blur-xl border border-white/30 shadow-2xl"
         >
           {/* TABS */}
           <div className="flex mb-6 bg-white/30 rounded-2xl p-1">
             <Link href="/login" className="w-1/2">
               <button
                 type="button"
-                className="w-full py-2 rounded-xl font-semibold hover:bg-white/40 transition text-sm sm:text-base"
+                className="w-full py-2 rounded-xl font-semibold"
               >
                 Login
               </button>
@@ -56,7 +145,7 @@ const GlassForm = () => {
             <Link href="/register" className="w-1/2">
               <button
                 type="button"
-                className="w-full py-2 rounded-xl font-semibold bg-white text-sm sm:text-base shadow-sm"
+                className="w-full py-2 rounded-xl font-semibold bg-white"
               >
                 Register
               </button>
@@ -64,84 +153,94 @@ const GlassForm = () => {
           </div>
 
           {/* TITLE */}
-          <h1 className="text-3xl sm:text-4xl font-bold text-center mb-6 text-black">
-            Sign up now
+          <h1 className="text-3xl font-bold text-center mb-6 text-black">
+            {step === "form" ? "Sign up now" : "Verify OTP"}
           </h1>
 
-          {/* FORM FIELDS */}
-          <div className="space-y-4">
-            <div>
-              <label className="block mb-1.5 text-sm font-medium text-black ml-1">
-                Full Name
-              </label>
+          {/* FORM */}
+          {step === "form" && (
+            <>
+              <div className="space-y-4">
+                <input
+                  className="w-full p-3 rounded-xl bg-white border"
+                  placeholder="Enter your name"
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                />
+
+                <input
+                  className="w-full p-3 rounded-xl bg-white border"
+                  placeholder="Enter your email"
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                />
+
+                <input
+                  type="password"
+                  className="w-full p-3 rounded-xl bg-white border"
+                  placeholder="Enter password"
+                  onChange={(e) =>
+                    setForm({ ...form, password: e.target.value })
+                  }
+                />
+
+                <input
+                  type="password"
+                  className="w-full p-3 rounded-xl bg-white border"
+                  placeholder="Confirm password"
+                  onChange={(e) =>
+                    setForm({ ...form, confirmPassword: e.target.value })
+                  }
+                />
+              </div>
+
+              <div className="mt-6 flex justify-center">
+                <div
+                  style={{
+                    transform: "scale(0.95)",
+                    transformOrigin: "center",
+                  }}
+                >
+                  <ReCAPTCHA
+                    sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                    onChange={(v) => setCaptchaValue(v)}
+                  />
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="mt-6 w-full py-3 rounded-xl bg-yellow-400 font-bold"
+              >
+                {loading ? "Sending..." : "Submit"}
+              </button>
+            </>
+          )}
+
+          {/* OTP STEP */}
+          {step === "otp" && (
+            <>
               <input
-                required
-                type="text"
-                className="w-full p-3 rounded-xl bg-white outline-none border border-gray-200 focus:border-black transition-all"
-                placeholder="Enter your name"
+                className="w-full p-3 rounded-xl bg-white border"
+                placeholder="Enter OTP"
+                onChange={(e) => setOtp(e.target.value)}
               />
-            </div>
 
-            <div>
-              <label className="block mb-1.5 text-sm font-medium text-black ml-1">
-                Email Address
-              </label>
-              <input
-                required
-                type="email"
-                className="w-full p-3 rounded-xl bg-white outline-none border border-gray-200 focus:border-black transition-all"
-                placeholder="Enter your email"
-              />
-            </div>
-
-            <div>
-              <label className="block mb-1.5 text-sm font-medium text-black ml-1">
-                Password
-              </label>
-              <input
-                required
-                type="password"
-                className="w-full p-3 rounded-xl bg-white outline-none border border-gray-200 focus:border-black transition-all"
-                placeholder="Enter password"
-              />
-            </div>
-
-            <div>
-              <label className="block mb-1.5 text-sm font-medium text-black ml-1">
-                Confirm Password
-              </label>
-              <input
-                required
-                type="password"
-                className="w-full p-3 rounded-xl bg-white outline-none border border-gray-200 focus:border-black transition-all"
-                placeholder="Confirm password"
-              />
-            </div>
-          </div>
-
-          {/* RECAPTCHA - Scaled for small screens */}
-          <div className="mt-6 flex justify-center overflow-hidden">
-            <div className="scale-75 sm:scale-100 origin-center">
-              <ReCAPTCHA
-                sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
-                onChange={(v) => setCaptchaValue(v)}
-              />
-            </div>
-          </div>
-
-          {/* SUBMIT */}
-          <button
-            type="submit"
-            className="mt-6 w-full py-3.5 rounded-xl bg-yellow-400 font-bold hover:bg-black hover:text-white transition-all flex items-center justify-center gap-2 shadow-lg"
-          >
-            Submit
-            <ArrowUpRight size={20} />
-          </button>
+              <button
+                type="button"
+                onClick={handleVerifyOtp}
+                disabled={loading}
+                className="mt-6 w-full py-3 rounded-xl bg-green-500 text-white font-bold"
+              >
+                {loading ? "Verifying..." : "Verify OTP"}
+              </button>
+            </>
+          )}
         </form>
       </div>
 
-      {/* FOOTER */}
-      <Footer />
+      <div className="relative z-20 bg-transparent">
+        <Footer />
+      </div>
     </div>
   );
 };

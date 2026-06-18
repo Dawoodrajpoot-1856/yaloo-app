@@ -131,7 +131,7 @@ export default function Crousel() {
           </div>
         </div>
 
-        {/* CAROUSEL CONTAINER */}
+     
         <div className="overflow-hidden w-full" ref={emblaRef}>
           <div className="flex -ml-6">
             {reviews.map((item, i) => (
