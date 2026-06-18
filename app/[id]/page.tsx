@@ -46,11 +46,104 @@ import Faqs from "../components/Faqs";
 interface PageProps {
   params: Promise<{ id: string }>;
 }
+
+// ✅ Props ki Sahi definition
 type Props = {
   country: any;
-  packages: any[];
   data: any;
 };
+
+// ✅ 1. SheetDemo ko Page ke UPAR shift kar diya taake "not found" ka error khatam ho jaye
+export function SheetDemo({ country, data }: Props) {
+  const packagesArray = Array.isArray(data?.data) ? data.data : [];
+
+  return (
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button
+          variant="ghost"
+          size="lg"
+          className="gap-1 border border-gray-200 dark:border-gray-800 rounded-2xl text-sm text-gray-600 dark:text-gray-400 hover:bg-transparent hover:text-gray-900 dark:hover:text-white"
+        >
+          Plan
+          <ArrowUpRight className="h-3 w-3" />
+        </Button>
+      </SheetTrigger>
+
+      <SheetContent className="w-full sm:max-w-4xl">
+        <SheetHeader>
+          <SheetTitle>{country?.name || "Destination"} Plans</SheetTitle>
+          <SheetDescription>
+            Check available eSIM plans for {country?.name || "this country"}.
+          </SheetDescription>
+        </SheetHeader>
+
+        {country?.flag && (
+          <div className="flex items-center gap-3 px-4 mt-4">
+            <img
+              src={country.flag}
+              className="w-10 h-10 rounded-full"
+              alt="Flag"
+            />
+            <h2 className="font-semibold">{country?.name}</h2>
+          </div>
+        )}
+
+        <div className="grid gap-4 px-4 my-6 overflow-y-auto max-h-[60vh]">
+          {packagesArray.length > 0 ? (
+            packagesArray.map((pkg: any, i: number) => (
+              <div
+                key={pkg?.id || i}
+                className="border rounded-xl p-4 hover:shadow-md transition bg-white dark:bg-gray-950"
+              >
+                <h2 className="font-bold text-gray-900 dark:text-white">
+                  {pkg?.name || "Standard Plan"}
+                </h2>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Data: {pkg?.data || "N/A"}
+                </p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Price: {pkg?.price || "N/A"}
+                </p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Validity: {pkg?.package_validity || "N/A"}
+                </p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Connectivity: {pkg?.connectivity || "N/A"}
+                </p>
+              </div>
+            ))
+          ) : (
+            <p className="text-gray-500 text-sm px-4">
+              No packages available for this country.
+            </p>
+          )}
+        </div>
+
+        <SheetFooter>
+          <SheetClose asChild>
+            <Button className="w-full sm:w-auto">Close</Button>
+          </SheetClose>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
+  );
+}
+
+// ✅ 2. Radio Group component bhi upar kar diya
+export function RadioGroupDemo() {
+  return (
+    <RadioGroup defaultValue="comfortable" className="w-fit">
+      <div className="flex items-center gap-3">
+        <RadioGroupItem
+          value="default"
+          id="r1"
+          className="border-yellow-400 text-yellow-400 fill-yellow-400 focus-visible:ring-yellow-400 data-[state=checked]:border-yellow-400 data-[state=checked]:bg-yellow-400"
+        />
+      </div>
+    </RadioGroup>
+  );
+}
 
 const cards = [
   {
@@ -70,21 +163,22 @@ const cards = [
   },
   {
     title: "Travel Light, Stay Connected",
-    desc: "Instant coverage in 200+ countries. Get online in seconds anywhere.Get online in seconds anywhere.",
+    desc: "Instant coverage in 200+ countries. Get online in seconds anywhere.",
     icon: Handshake,
   },
   {
     title: "Travel Light, Stay Connected",
-    desc: "Instant coverage in 200+ countries. Get online in seconds anywhere.Get online in seconds anywhere.",
+    desc: "Instant coverage in 200+ countries. Get online in seconds anywhere.",
     icon: DollarSign,
   },
   {
     title: "Travel Light, Stay Connected",
-    desc: "Instant coverage in 200+ countries. Get online in seconds anywhere.Get online in seconds anywhere.",
+    desc: "Instant coverage in 200+ countries. Get online in seconds anywhere.",
     icon: Timeline,
   },
 ];
 
+// ✅ 3. Main default export function
 export default async function Page({ params }: PageProps) {
   const { id } = await params;
   console.log("Fetching data for ID on server:", id);
@@ -105,13 +199,11 @@ export default async function Page({ params }: PageProps) {
       "https://test.esimwhitelabel.com/api/packages/country",
     );
     const result = await response.json();
-    // ✅ FILTER LOGIC (match id from params)
     country = result?.data?.find((item: any) => item.id === Number(id));
   } catch (error) {
     console.log("Country Fetch Error:", error);
   }
 
-  // Fallback state if data or country is missing
   if (!country || !data) {
     return (
       <div className="flex h-screen items-center justify-center">
@@ -128,7 +220,6 @@ export default async function Page({ params }: PageProps) {
 
       <div className="mt-30 max-w-[1220px] mx-auto px-4">
         <div className="flex flex-col md:flex-row gap-8 mb-8">
-          {/* Image Card */}
           <div className="w-full md:w-[550px] shrink-0 bg-white dark:bg-gray-900 p-4 rounded-2xl border border-gray-100 dark:border-gray-800 ">
             {country?.banner && (
               <img
@@ -161,6 +252,8 @@ export default async function Page({ params }: PageProps) {
                   <span className="text-xl font-semibold">
                     {data?.data?.[0]?.data_unit || ""}
                   </span>
+
+                  {/* ✅ Yahan SheetDemo smoothly render ho jayega */}
                   <SheetDemo country={country} data={data} />
                 </div>
 
@@ -416,73 +509,5 @@ export default async function Page({ params }: PageProps) {
       <Faqs />
       <Footer />
     </>
-  );
-}
-
-export function SheetDemo({ country, data }: Props) {
-  return (
-    <Sheet>
-      <SheetTrigger asChild>
-        <Button
-          variant="ghost"
-          size="lg"
-          className="gap-1 border border-gray-200 dark:border-gray-800 rounded-2xl text-sm text-gray-600 dark:text-gray-400 hover:bg-transparent hover:text-gray-900 dark:hover:text-white"
-        >
-          Plan
-          <ArrowUpRight className="h-3 w-3" />
-        </Button>
-      </SheetTrigger>
-
-      <SheetContent className="w-full sm:max-w-4xl">
-        <SheetHeader>
-          <SheetTitle>{country?.name} Plans</SheetTitle>
-          <SheetDescription>
-            Check available eSIM plans for {country?.name}
-          </SheetDescription>
-        </SheetHeader>
-
-        {country?.flag && (
-          <div className="flex items-center gap-3 px-4 mt-4">
-            <img src={country.flag} className="w-10 h-10 rounded-full" alt="" />
-            <h2 className="font-semibold">{country?.name}</h2>
-          </div>
-        )}
-
-        <div className="grid gap-4 px-4 my-6 overflow-y-auto max-h-[60vh]">
-          {data?.data?.map((pkg: any, i: number) => (
-            <div
-              key={i}
-              className="border rounded-xl p-4 hover:shadow-md transition"
-            >
-              <h2 className="font-bold">{pkg?.name}</h2>
-              <p>Data: {pkg?.data}</p>
-              <p>Price: {pkg?.price}</p>
-              <p>Validity: {pkg?.package_validity}</p>
-              <p>Connectivity: {pkg?.connectivity}</p>
-            </div>
-          ))}
-        </div>
-
-        <SheetFooter>
-          <SheetClose asChild>
-            <Button className="w-full sm:w-auto">Close</Button>
-          </SheetClose>
-        </SheetFooter>
-      </SheetContent>
-    </Sheet>
-  );
-}
-
-export function RadioGroupDemo() {
-  return (
-    <RadioGroup defaultValue="comfortable" className="w-fit">
-      <div className="flex items-center gap-3">
-        <RadioGroupItem
-          value="default"
-          id="r1"
-          className="border-yellow-400 text-yellow-400 fill-yellow-400 focus-visible:ring-yellow-400 data-[state=checked]:border-yellow-400 data-[state=checked]:bg-yellow-400"
-        />
-      </div>
-    </RadioGroup>
   );
 }
