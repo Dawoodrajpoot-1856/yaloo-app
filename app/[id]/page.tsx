@@ -49,6 +49,7 @@ interface PageProps {
 type Props = {
   country: any;
   packages: any[];
+  data: any;
 };
 
 const cards = [
