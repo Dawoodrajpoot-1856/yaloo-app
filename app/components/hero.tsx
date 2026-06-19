@@ -160,13 +160,10 @@ const Hero = () => {
           side="top"
           className="w-full max-w-4xl mx-auto h-screen max-h-screen rounded-none overflow-y-auto pb-8 shadow-xl border-none bg-white flex flex-col justify-start items-center"
         >
-          {/* Custom Top Right Close Button — kyuki full height par default button miss ho jata hai */}
           <button
             onClick={() => setIsSearchOpen(false)}
             className="absolute right-6 top-6 p-2 rounded-full text-gray-500 hover:bg-gray-100 active:scale-95 transition-all z-50"
-          >
-            <X size={22} />
-          </button>
+          ></button>
 
           {/* Content Container — isko max-w-xl par lock kiya hai taake text aur input clean lagein */}
           <div className="w-full max-w-xl px-4 pt-12 md:pt-16 flex flex-col gap-6">
