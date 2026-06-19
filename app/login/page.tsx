@@ -36,7 +36,7 @@ const Login = () => {
 
       console.log("LOGIN RESPONSE:", data);
 
-      if (res.ok) {
+      if (data.status) {
         // Save token if returned
         if (data?.token) {
           localStorage.setItem("token", data.token);
@@ -62,9 +62,7 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* PAGE AREA */}
       <div className="relative flex-1">
-        {/* BACKGROUND */}
         <div className="absolute inset-0 -z-10">
           <img
             src="https://yaalo.com/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2FloginBg.a05beed4.png&w=1920&q=100"

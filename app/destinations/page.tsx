@@ -42,7 +42,6 @@ const Page = async () => {
         </div>
       </div>
 
-      {/* SECTION */}
       <section className="max-w-[1440px] mx-auto px-6 sm:px-10 py-12 sm:py-16">
         <h1 className="font-semibold text-2xl sm:text-4xl lg:text-5xl">
           Pick Your Adventure
@@ -79,18 +78,16 @@ const Page = async () => {
           </div>
         </div>
 
-        {/* CARDS GRID - DYNAMIC DATA */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-10">
           {CountryList.length > 0 ? (
             CountryList.map((item: any, i: number) => (
               <div
                 key={i}
-                /* Yahan se 'items-center' hata diya hai */
                 className="border border-gray-100 rounded-2xl p-5 flex justify-between
         hover:shadow-lg hover:-translate-y-1 transition-all duration-300 bg-white cursor-pointer group"
               >
                 <div>
-                                    <img
+                  <img
                     src={
                       item.image ||
                       `https://flagcdn.com/w80/${item.slug?.slice(0, 2).toLowerCase()}.png`
@@ -109,7 +106,6 @@ const Page = async () => {
                   </p>
                 </div>
 
-                {/* self-end se arrow niche right corner mein set ho jayega */}
                 <span className="w-9 h-9 bg-amber-200 rounded-full flex items-center justify-center self-end transition-colors">
                   <ChevronRight size={16} className="text-black" />
                 </span>

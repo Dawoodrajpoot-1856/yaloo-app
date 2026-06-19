@@ -11,6 +11,8 @@ import {
   Menu,
   X,
   Globe,
+  Wallet,
+  LogOut,
 } from "lucide-react";
 
 import Link from "next/link";
@@ -62,10 +64,19 @@ const NavItem = ({
 export default function Header() {
   const [cartOpen, setCartOpen] = useState(false);
   const [open, setOpen] = useState(false);
+  const [accountOpen, setAccountOpen] = useState(false); // Account Dropdown State
   const [mobileMenu, setMobileMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
+    // LocalStorage se login status check karna
+    const userToken =
+      localStorage.getItem("token") || localStorage.getItem("user");
+    if (userToken) {
+      setIsLoggedIn(true);
+    }
+
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -75,23 +86,26 @@ export default function Header() {
     document.body.style.overflow = mobileMenu || cartOpen ? "hidden" : "unset";
   }, [mobileMenu, cartOpen]);
 
+  // Logout handle karne ka function
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setIsLoggedIn(false);
+    setAccountOpen(false);
+    setMobileMenu(false);
+  };
+
   return (
     <>
       <div
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out flex justify-center w-full px-4 sm:px-6 md:px-8`}
       >
         <header
-          className={`
-    w-full max-w-[1400px] mx-auto
-    flex items-center justify-between
-    px-4 sm:px-6 lg:px-8 xl:px-12 py-3 mt-0
-    transition-all duration-500 ease-out
-    ${
-      scrolled
-        ? "bg-white/90 backdrop-blur-xl border border-white/40 shadow-lg rounded-2xl mt-3 sm:mt-4"
-        : "bg-transparent backdrop-blur-0 border-transparent shadow-none rounded-none"
-    }
-  `}
+          className={`w-full max-w-[1400px] mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 xl:px-12 py-3 mt-0 transition-all duration-500 ease-out ${
+            scrolled
+              ? "bg-white/90 backdrop-blur-xl border border-white/40 shadow-lg rounded-2xl mt-3 sm:mt-4"
+              : "bg-transparent backdrop-blur-0 border-transparent shadow-none rounded-none"
+          }`}
         >
           {/* Logo Section */}
           <Link href="/" className="flex-shrink-0">
@@ -173,12 +187,71 @@ export default function Header() {
             </li>
           </ul>
 
-          {/* Desktop Right Side CTA Actions */}
           <div className="hidden lg:flex items-center gap-4 xl:gap-6">
             <NavItem icon={Search} label="Search" hoverColor="text-blue-400" />
-            <Link href="/login">
-              <NavItem icon={User} label="Login" hoverColor="text-indigo-500" />
-            </Link>
+
+            {isLoggedIn ? (
+              <div
+                className="relative cursor-pointer list-none"
+                onMouseEnter={() => setAccountOpen(true)}
+                onMouseLeave={() => setAccountOpen(false)}
+              >
+                <div className="relative h-7 overflow-hidden z-10 transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(99,102,241,0.5)]">
+                  <div
+                    className={`relative transition-transform duration-500 ease-out ${accountOpen ? "-translate-y-7" : ""}`}
+                  >
+                    <div className="flex items-center gap-2 h-7 text-black font-semibold text-sm xl:text-base">
+                      <User size={18} />
+                      <span>Account</span>
+                      <ChevronDown
+                        size={14}
+                        className="transition-transform duration-300"
+                      />
+                    </div>
+                    <div className="flex items-center gap-2 h-7 text-indigo-500 font-semibold text-sm xl:text-base">
+                      <User size={18} />
+                      <span>Account</span>
+                      <ChevronDown
+                        size={14}
+                        className="rotate-180 text-indigo-500"
+                      />
+                    </div>
+                  </div>
+                </div>
+                {accountOpen && (
+                  <div className="absolute top-8 right-0 bg-white rounded-2xl p-3 w-48 space-y-1 border border-gray-100 shadow-xl z-20">
+                    <Link
+                      href="/my-esims"
+                      className="flex items-center gap-2 px-4 py-2 text-xs text-black hover:bg-indigo-50 hover:text-indigo-600 rounded-xl cursor-pointer transition-all font-bold"
+                    >
+                      <CardSim size={14} /> My eSIM
+                    </Link>
+                    <Link
+                      href="/wallet"
+                      className="flex items-center gap-2 px-4 py-2 text-xs text-black hover:bg-indigo-50 hover:text-indigo-600 rounded-xl cursor-pointer transition-all font-bold"
+                    >
+                      <Wallet size={14} /> Wallet
+                    </Link>
+                    <hr className="border-gray-100 my-1" />
+                    <button
+                      onClick={handleLogout}
+                      className="w-full flex items-center gap-2 px-4 py-2 text-xs text-red-500 hover:bg-red-50 rounded-xl cursor-pointer transition-all font-bold text-left"
+                    >
+                      <LogOut size={14} /> Logout
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link href="/login">
+                <NavItem
+                  icon={User}
+                  label="Login"
+                  hoverColor="text-indigo-500"
+                />
+              </Link>
+            )}
+
             <div className="flex items-center gap-4 border-l pl-4 xl:pl-6 border-gray-200">
               {/* Desktop Cart Trigger */}
               <button
@@ -196,9 +269,7 @@ export default function Header() {
             </div>
           </div>
 
-          {/* Tablets and Mobile Quick Actions */}
           <div className="flex lg:hidden items-center gap-3 sm:gap-5">
-            {/* Mobile Cart Trigger */}
             <button
               onClick={() => setCartOpen(true)}
               className="relative p-2 text-black active:scale-95 transition-transform"
@@ -227,7 +298,7 @@ export default function Header() {
         onClick={() => setCartOpen(false)}
       />
 
-      {/* CART PANEL (Fully Responsive Drawer Width & Height) */}
+      {/* CART PANEL */}
       <div
         className={`fixed right-0 bottom-0 top-0 sm:right-3 sm:top-3 sm:bottom-3 w-full sm:w-[90%] sm:max-w-[450px] h-full sm:h-[calc(100vh-24px)] bg-white z-[101] rounded-none sm:rounded-2xl shadow-2xl transition-all duration-300 ease-in-out ${
           cartOpen
@@ -255,12 +326,15 @@ export default function Header() {
         </div>
       </div>
 
+      {/* MOBILE DRAWER OVERLAY */}
       <div
         className={`fixed inset-0 z-[110] bg-black/50 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
           mobileMenu ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
         onClick={() => setMobileMenu(false)}
       />
+
+      {/* MOBILE DRAWER */}
       <div
         className={`fixed top-0 right-0 h-full w-[85%] sm:w-[70%] max-w-[360px] bg-white z-[120] shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] lg:hidden flex flex-col ${
           mobileMenu ? "translate-x-0" : "translate-x-full"
@@ -311,6 +385,42 @@ export default function Header() {
               Affiliate Partner
             </Link>
 
+            {/* If logged in on mobile, inject eSIM and Wallet options directly into drawer links */}
+            {isLoggedIn && (
+              <>
+                <hr className="my-3 border-gray-100" />
+                <p className="px-4 py-1 text-[10px] uppercase tracking-widest text-gray-400 font-bold">
+                  Dashboard
+                </p>
+                <Link
+                  href="/my-esims"
+                  onClick={() => setMobileMenu(false)}
+                  className="flex items-center gap-4 px-4 py-3.5 text-black font-bold hover:bg-indigo-50 rounded-xl transition-all text-sm sm:text-base"
+                >
+                  <CardSim
+                    size={20}
+                    className="text-indigo-500 flex-shrink-0"
+                  />{" "}
+                  My eSIM
+                </Link>
+                <Link
+                  href="/wallet"
+                  onClick={() => setMobileMenu(false)}
+                  className="flex items-center gap-4 px-4 py-3.5 text-black font-bold hover:bg-indigo-50 rounded-xl transition-all text-sm sm:text-base"
+                >
+                  <Wallet size={20} className="text-indigo-500 flex-shrink-0" />{" "}
+                  Wallet
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center gap-4 px-4 py-3.5 text-red-500 font-bold hover:bg-red-50 rounded-xl transition-all text-sm sm:text-base text-left"
+                >
+                  <LogOut size={20} className="text-red-500 flex-shrink-0" />{" "}
+                  Logout
+                </button>
+              </>
+            )}
+
             <hr className="my-3 border-gray-100" />
 
             <p className="px-4 py-1 text-[10px] uppercase tracking-widest text-gray-400 font-bold">
@@ -339,13 +449,25 @@ export default function Header() {
           <button className="flex items-center justify-center gap-2 bg-white border border-gray-200 py-2.5 sm:py-3 rounded-xl font-bold text-xs sm:text-sm shadow-sm active:scale-95 transition-all">
             <Search size={16} /> Search
           </button>
-          <Link
-            href="/login"
-            onClick={() => setMobileMenu(false)}
-            className="flex items-center justify-center gap-2 bg-black text-white py-2.5 sm:py-3 rounded-xl font-bold text-xs sm:text-sm shadow-lg active:scale-95 transition-all"
-          >
-            <User size={16} /> Login
-          </Link>
+
+          {/* Conditional Mobile Login / Account Button */}
+          {isLoggedIn ? (
+            <Link
+              href="/my-esims"
+              onClick={() => setMobileMenu(false)}
+              className="flex items-center justify-center gap-2 bg-indigo-600 text-white py-2.5 sm:py-3 rounded-xl font-bold text-xs sm:text-sm shadow-lg active:scale-95 transition-all"
+            >
+              <User size={16} /> Account
+            </Link>
+          ) : (
+            <Link
+              href="/login"
+              onClick={() => setMobileMenu(false)}
+              className="flex items-center justify-center gap-2 bg-black text-white py-2.5 sm:py-3 rounded-xl font-bold text-xs sm:text-sm shadow-lg active:scale-95 transition-all"
+            >
+              <User size={16} /> Login
+            </Link>
+          )}
           <button className="col-span-2 flex items-center justify-center gap-2 py-1 text-gray-500 font-bold text-xs">
             <Globe size={14} /> Language: EN (English)
           </button>

@@ -26,7 +26,7 @@ const Adventures = async () => {
       <p className="mt-4 ml-4 font-medium text-gray-700">
         Find Yaalo eSIMs built for your route
       </p>
-      
+
       {/* TABS & SEARCH */}
       <div className="flex flex-col ml-4 lg:flex-row lg:justify-between gap-6 mt-8">
         <div className="border border-gray-200 p-1 rounded-2xl flex flex-wrap gap-1 w-full sm:w-[415px]">
@@ -60,7 +60,6 @@ const Adventures = async () => {
         </Link>
       </div>
 
-      {/* CARDS SECTION - Unique 16 Countries */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-12 px-4">
         {CountryList.slice(0, 20).map((item: any, i: number) => (
           <Link key={item.id || i} href={String(item.id)}>
