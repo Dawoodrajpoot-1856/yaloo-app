@@ -1,9 +1,18 @@
 "use client";
 
-import { Search } from "lucide-react";
-import React from "react";
+import { Search, X } from "lucide-react";
+import React, { useState } from "react";
 
-// FIX: Sabhi images ke complete, verifiable URLs ko exact format me define kar diya hai.
+import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
+
 const featureCards = [
   {
     img: "https://yaalo.com/_next/static/media/earth.0r-58oumuo_cp.svg",
@@ -22,11 +31,14 @@ const featureCards = [
   },
   {
     img: "https://yaalo.com/_next/static/media/sim.162uxbhfzy_kg.svg",
+    title: "Always Online",
     desc: "Always available",
   },
 ];
 
 const Hero = () => {
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
   return (
     <>
       {/* HERO SECTION */}
@@ -57,9 +69,14 @@ const Hero = () => {
               <input
                 type="text"
                 placeholder="Where are you flying next?"
-                className="w-full h-full pl-5 pr-12 py-2 sm:py-3 border border-gray-200 rounded-3xl bg-white outline-none text-xs sm:text-sm md:text-base focus:border-yellow-400 transition-colors text-black placeholder-gray-400"
+                readOnly
+                onClick={() => setIsSearchOpen(true)}
+                className="w-full h-full pl-5 pr-12 py-2 sm:py-3 border border-gray-200 rounded-3xl bg-white outline-none text-xs sm:text-sm md:text-base focus:border-yellow-400 transition-colors text-black placeholder-gray-400 cursor-pointer"
               />
-              <div className="absolute right-4 top-1/2 -translate-y-1/2 bg-yellow-400 sm:bg-transparent p-1.5 sm:p-0 rounded-full text-black cursor-pointer active:scale-95 transition-transform">
+              <div
+                onClick={() => setIsSearchOpen(true)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 bg-yellow-400 sm:bg-transparent p-1.5 sm:p-0 rounded-full text-black cursor-pointer active:scale-95 transition-transform"
+              >
                 <Search size={18} className="sm:w-5 sm:h-5" />
               </div>
             </div>
@@ -122,9 +139,6 @@ const Hero = () => {
               <div className="w-7 h-7 sm:w-12 sm:h-12 flex items-center justify-center mb-1.5 sm:mb-3 bg-yellow-50/50 rounded-full">
                 <img
                   className="w-4 h-4 sm:w-6 sm:h-6 object-contain"
-                  /* FIX: Ab `src` seedha pure URL se map ho rahi hai 
-                    jisse template interpolation ki koi glitch ya double-domain link nahi banega.
-                  */
                   src={card.img}
                   alt={card.title}
                 />
@@ -139,6 +153,83 @@ const Hero = () => {
           ))}
         </div>
       </div>
+
+      {/* DYNAMIC TOP SEARCH SHEET */}
+      <Sheet open={isSearchOpen} onOpenChange={setIsSearchOpen}>
+        <SheetContent
+          side="top"
+          className="w-full max-w-4xl mx-auto h-screen max-h-screen rounded-none overflow-y-auto pb-8 shadow-xl border-none bg-white flex flex-col justify-start items-center"
+        >
+          {/* Custom Top Right Close Button — kyuki full height par default button miss ho jata hai */}
+          <button
+            onClick={() => setIsSearchOpen(false)}
+            className="absolute right-6 top-6 p-2 rounded-full text-gray-500 hover:bg-gray-100 active:scale-95 transition-all z-50"
+          >
+            <X size={22} />
+          </button>
+
+          {/* Content Container — isko max-w-xl par lock kiya hai taake text aur input clean lagein */}
+          <div className="w-full max-w-xl px-4 pt-12 md:pt-16 flex flex-col gap-6">
+            <SheetHeader className="text-left">
+              <SheetTitle className="text-xl md:text-2xl font-bold text-black">
+                Search Destination
+              </SheetTitle>
+              <SheetDescription className="text-xs md:text-sm text-gray-500">
+                Find instant eSIM packages for your next route.
+              </SheetDescription>
+            </SheetHeader>
+
+            {/* Search Input UI */}
+            <div className="relative h-12 md:h-14 w-full shadow-sm rounded-2xl border border-gray-200 bg-white focus-within:border-yellow-400 transition-all">
+              <input
+                type="text"
+                autoFocus
+                placeholder="Where are you flying next?"
+                className="w-full h-full pl-5 pr-12 rounded-2xl bg-white outline-none text-sm text-black placeholder-gray-400"
+              />
+              <Search
+                size={20}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"
+              />
+            </div>
+
+            {/* Suggestions list */}
+            <div className="w-full">
+              <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-3">
+                Popular Countries
+              </p>
+              <div className="grid grid-cols-2 gap-2.5">
+                {[
+                  "United States",
+                  "United Kingdom",
+                  "Germany",
+                  "Turkey",
+                  "Thailand",
+                  "Canada",
+                ].map((country, index) => (
+                  <div
+                    key={index}
+                    className="p-3 bg-gray-50/80 hover:bg-yellow-50 hover:text-black border border-gray-100 hover:border-yellow-200 rounded-xl cursor-pointer transition-all text-xs md:text-sm font-medium text-gray-700"
+                  >
+                    {country}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Bottom Footer Action */}
+            <div className="mt-4 flex justify-end">
+              <Button
+                variant="outline"
+                className="rounded-xl px-6 h-10 text-xs font-medium border-gray-200"
+                onClick={() => setIsSearchOpen(false)}
+              >
+                Close
+              </Button>
+            </div>
+          </div>
+        </SheetContent>
+      </Sheet>
     </>
   );
 };
