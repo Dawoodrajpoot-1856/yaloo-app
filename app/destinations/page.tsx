@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../components/header";
 import Footer from "../components/Footer";
 import { Search, ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 const Page = async () => {
   let CountryList = [];
@@ -78,41 +79,40 @@ const Page = async () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mt-10">
+        {/* COUNTRIES GRID */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-12 px-4">
           {CountryList.length > 0 ? (
+            /* 🔴 .slice() method yahan se hata diya hai taake saari countries render hon */
             CountryList.map((item: any, i: number) => (
-              <div
-                key={i}
-                className="border border-gray-100 rounded-2xl p-5 flex justify-between
-        hover:shadow-lg hover:-translate-y-1 transition-all duration-300 bg-white cursor-pointer group"
-              >
-                <div>
-                  <img
-                    src={
-                      item.image ||
-                      `https://flagcdn.com/w80/${item.slug?.slice(0, 2).toLowerCase()}.png`
-                    }
-                    className="h-6 w-9 object-cover rounded-sm shadow-sm"
-                    alt={item.name}
-                  />
-                  <p className="mt-3 text-sm font-bold text-gray-900">
-                    {item.name}
-                  </p>
-                  <p className="text-xs text-gray-500 mt-0.5">
-                    Starts at{" "}
-                    <span className="text-black font-semibold">
-                      {item.starting_price || "$5"}
-                    </span>
-                  </p>
-                </div>
+              <Link key={item.id || i} href={`/destinations/${item.id}`}>
+                <div className="w-full border border-gray-200 rounded-2xl p-5 flex justify-between hover:shadow-lg hover:-translate-y-1 transition-all duration-300 bg-white group cursor-pointer">
+                  <div className="flex flex-col items-start">
+                    <img
+                      src={
+                        item.image ||
+                        `https://flagcdn.com/w80/${item.slug?.slice(0, 2).toLowerCase()}.png`
+                      }
+                      className="h-7 w-10 rounded object-cover shadow-sm mb-3"
+                      alt={item.name}
+                    />
+                    <p className="text-sm font-bold text-gray-900">
+                      {item.name}
+                    </p>
+                    <p className="text-xs text-gray-500 font-medium">
+                      Starts at {item.starting_price || "$5"}
+                    </p>
+                  </div>
 
-                <span className="w-9 h-9 bg-amber-200 rounded-full flex items-center justify-center self-end transition-colors">
-                  <ChevronRight size={16} className="text-black" />
-                </span>
-              </div>
+                  <span className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center self-end transition-colors group-hover:bg-amber-200">
+                    <ChevronRight size={18} className="text-black" />
+                  </span>
+                </div>
+              </Link>
             ))
           ) : (
-            <p className="text-gray-500">Loading destinations...</p>
+            <p className="text-gray-500 col-span-full text-center py-10">
+              Loading destinations...
+            </p>
           )}
         </div>
       </section>
