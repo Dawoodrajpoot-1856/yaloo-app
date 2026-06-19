@@ -79,12 +79,10 @@ const Page = async () => {
           </div>
         </div>
 
-        {/* COUNTRIES GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-12 px-4">
           {CountryList.length > 0 ? (
-            /* 🔴 .slice() method yahan se hata diya hai taake saari countries render hon */
             CountryList.map((item: any, i: number) => (
-              <Link key={item.id || i} href={`/destinations/${item.id}`}>
+              <Link key={item.id || i} href={`${item.id}`}>
                 <div className="w-full border border-gray-200 rounded-2xl p-5 flex justify-between hover:shadow-lg hover:-translate-y-1 transition-all duration-300 bg-white group cursor-pointer">
                   <div className="flex flex-col items-start">
                     <img
