@@ -2,8 +2,7 @@ import React from "react";
 import Header from "../components/header";
 import Footer from "../components/Footer";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+
 import {
   Sheet,
   SheetClose,
@@ -15,8 +14,6 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import {
-  ArrowDown,
-  ArrowDownLeft,
   ArrowUpRight,
   ChevronDown,
   DollarSign,
@@ -38,7 +35,6 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import Cards from "../components/Cards";
 
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import Faqs from "../components/Faqs";
@@ -208,7 +204,7 @@ export default async function Page({ params }: PageProps) {
     return (
       <div className="flex h-screen items-center justify-center">
         <p className="text-lg font-semibold text-gray-500">
-          Loading or Data Not Found...
+          Loading or Data Not Found... 😒
         </p>
       </div>
     );
@@ -219,11 +215,11 @@ export default async function Page({ params }: PageProps) {
       <Header />
 
       <div className="mt-30 max-w-[1220px] mx-auto px-4">
-        <div className="flex flex-col md:flex-row gap-8 mb-8">
-          <div className="w-full md:w-[550px] shrink-0 bg-white dark:bg-gray-900 p-4 rounded-2xl border border-gray-100 dark:border-gray-800 ">
+        <div className="flex flex-col md:flex-row gap-4 mb-8">
+          <div className="w-full md:w-[500px] shrink-0 bg-white dark:bg-gray-900  rounded-4xl border border-gray-100 dark:border-gray-800 ">
             {country?.banner && (
               <img
-                className="rounded-2xl w-full h-[500px] object-cover"
+                className="rounded-xl w-full h-[600px] object-cover"
                 src={country.banner}
                 alt="eSIM Destination"
               />
@@ -245,59 +241,69 @@ export default async function Page({ params }: PageProps) {
               </button>
             </div>
 
-            <div className="flex-1 bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800">
-              <div className="flex flex-col gap-4 rounded-2xl border p-4">
-                <div className="flex items-center gap-3 flex-wrap">
-                  <h1>{country?.name}</h1>
-                  <span className="text-xl font-semibold">
-                    {data?.data?.[0]?.data_unit || ""}
-                  </span>
+            <div className="flex-1 ">
+              <div className="h-[500px] bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 overflow-hidden">
+                <div className="h-full overflow-y-auto p-4 ">
+                  {data?.data?.map((pkg: any, index: number) => (
+                    <div
+                      key={pkg.id || index}
+                      className="rounded-2xl border p-4 bg-white dark:bg-gray-900"
+                    >
+                      <div className="flex items-center gap-3 flex-wrap">
+                        <h1>{country?.name}</h1>
 
-                  {/* ✅ Yahan SheetDemo smoothly render ho jayega */}
-                  <SheetDemo country={country} data={data} />
-                </div>
+                        <span className="text-xl font-semibold">
+                          {pkg?.data_unit || ""}
+                        </span>
 
-                <div className="flex items-center justify-between flex-wrap gap-4">
-                  <div className="flex items-center gap-3">
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button
-                          variant="outline"
-                          className="rounded-xl font-semibold"
-                        >
-                          1 Day <ChevronDown />
-                        </Button>
-                      </DropdownMenuTrigger>
+                        <SheetDemo country={country} data={{ data: [pkg] }} />
+                      </div>
 
-                      <DropdownMenuContent className="w-44">
-                        <DropdownMenuLabel>Validity Period</DropdownMenuLabel>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuGroup>
-                          <DropdownMenuItem>1 Day</DropdownMenuItem>
-                          <DropdownMenuItem>3 Days</DropdownMenuItem>
-                          <DropdownMenuItem>7 Days</DropdownMenuItem>
-                          <DropdownMenuItem>15 Days</DropdownMenuItem>
-                          <DropdownMenuItem>30 Days</DropdownMenuItem>
-                        </DropdownMenuGroup>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
+                      <div className="flex items-center justify-between flex-wrap gap-4 mt-4">
+                        <div className="flex items-center gap-3">
+                          <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                              <Button
+                                variant="outline"
+                                className="rounded-xl font-semibold"
+                              >
+                                {pkg?.package_validity || "1 Day"}
+                                <ChevronDown />
+                              </Button>
+                            </DropdownMenuTrigger>
 
-                    {country?.flag && (
-                      <img
-                        src={country.flag}
-                        alt=""
-                        className="rounded-full h-6 w-6"
-                      />
-                    )}
-                  </div>
+                            <DropdownMenuContent className="w-44">
+                              <DropdownMenuLabel>
+                                Validity Period
+                              </DropdownMenuLabel>
+                              <DropdownMenuSeparator />
+                              <DropdownMenuGroup>
+                                <DropdownMenuItem>
+                                  {pkg?.package_validity}
+                                </DropdownMenuItem>
+                              </DropdownMenuGroup>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
 
-                  <div className="flex items-center gap-3">
-                    <h1 className="font-bold text-2xl text-gray-900 dark:text-white">
-                      {data?.data?.[0]?.price || "N/A"}
-                    </h1>
+                          {country?.flag && (
+                            <img
+                              src={country.flag}
+                              alt=""
+                              className="rounded-full h-6 w-6"
+                            />
+                          )}
+                        </div>
 
-                    <RadioGroupDemo />
-                  </div>
+                        <div className="flex items-center gap-3">
+                          <h1 className="font-bold text-2xl text-gray-900 dark:text-white">
+                            {pkg?.price || "N/A"}
+                          </h1>
+
+                          <RadioGroupDemo />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
