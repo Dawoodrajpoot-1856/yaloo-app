@@ -68,6 +68,18 @@ export default function Header() {
   const [mobileMenu, setMobileMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [cart, setCart] = useState<any[]>([]);
+
+  useEffect(() => {
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      try {
+        setCart(JSON.parse(savedCart));
+      } catch (error) {
+        console.error("Error parsing cart data:", error);
+      }
+    }
+  }, []);
 
   useEffect(() => {
     // LocalStorage se login status check karna
@@ -86,6 +98,16 @@ export default function Header() {
     document.body.style.overflow = mobileMenu || cartOpen ? "hidden" : "unset";
   }, [mobileMenu, cartOpen]);
 
+  const handleRemove = (id: string) => {
+    // 1. Cart se us item ko filter out karein jiski ID match ho rahi hai
+    const updatedCart = cart.filter((item: any) => item.id !== id);
+
+    // 2. React state ko update karein taake UI usi waqt refresh ho jaye
+    setCart(updatedCart);
+
+    // 3. LocalStorage mein bhi update save karein taake page refresh par wapas na aaye
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  };
   // Logout handle karne ka function
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -253,19 +275,44 @@ export default function Header() {
             )}
 
             <div className="flex items-center gap-4 border-l pl-4 xl:pl-6 border-gray-200">
-              {/* Desktop Cart Trigger */}
-              <button
-                onClick={() => setCartOpen(true)}
-                className="relative group p-1 flex-shrink-0"
-              >
+              {/* SHOPPING CART BUTTON */}
+              <button className="relative group p-1 flex-shrink-0">
                 <ShoppingCart className="w-5 h-5 cursor-pointer group-hover:text-blue-500 transition-colors" />
                 <span className="absolute -top-1 -right-1 bg-yellow-400 text-black text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
                   0
                 </span>
               </button>
-              <button className="flex items-center gap-1 font-semibold text-sm xl:text-base whitespace-nowrap">
-                EN <ChevronDown size={14} />
-              </button>
+
+              {/* 👑 NO-STATE LANGUAGE DROPDOWN (HOVER DROPDOWN) */}
+              <div className="relative group py-2">
+                {/* Trigger Button */}
+                <button className="flex items-center gap-1 font-semibold text-sm xl:text-base whitespace-nowrap text-gray-700 pointer-events-none">
+                  EN{" "}
+                  <ChevronDown
+                    size={14}
+                    className="transition-transform duration-200 group-hover:rotate-180"
+                  />
+                </button>
+
+                {/* Dropdown Menu Panel (Hidden by default, flex on group-hover) */}
+                <div className="absolute right-0 top-full mt-1 w-40 bg-white border border-gray-100 rounded-xl shadow-xl py-1.5 z-50 hidden group-hover:block">
+                  <button className="w-full px-4 py-2 text-left text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+                    English
+                  </button>
+                  <button className="w-full px-4 py-2 text-left text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+                    Español
+                  </button>
+                  <button className="w-full px-4 py-2 text-left text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+                    Français
+                  </button>
+                  <button className="w-full px-4 py-2 text-left text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+                    Deutsch
+                  </button>
+                  <button className="w-full px-4 py-2 text-left text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+                    العربية
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -291,6 +338,7 @@ export default function Header() {
       </div>
 
       {/* CART OVERLAY */}
+      {/* BACKDROP OVERLAY */}
       <div
         className={`fixed inset-0 z-[100] bg-black/40 backdrop-blur-sm transition-opacity duration-300 ${
           cartOpen ? "opacity-100 visible" : "opacity-0 invisible"
@@ -306,15 +354,80 @@ export default function Header() {
             : "translate-x-full opacity-0 pointer-events-none"
         } flex flex-col overflow-hidden`}
       >
-        {/* Cart Header */}
-        <div className="flex items-center justify-between p-4 sm:p-5 border-b border-gray-100">
+        {/* 1. Cart Header (Keep layout items clean) */}
+        <div className="flex items-center justify-between p-4 sm:p-5 border-b border-gray-100 shrink-0">
           <h2 className="font-bold text-base sm:text-lg text-black">My Cart</h2>
+
           <button
             onClick={() => setCartOpen(false)}
             className="p-2 hover:bg-gray-100 rounded-full transition-colors"
           >
             <X size={18} className="text-gray-500" />
           </button>
+        </div>
+
+        {/* 2. Cart Body / Items List (Moved here for clean scrolling) */}
+        <div className="flex-1 overflow-y-auto p-4 sm:p-5">
+          {cart.length === 0 ? (
+            <div className="flex flex-col items-center justify-center h-full text-center">
+              <p className="text-gray-500 font-medium">Your cart is empty</p>
+            </div>
+          ) : (
+            <div className="flex flex-col gap-4">
+              {cart.map((item, index) => (
+                <div
+                  key={`${item.id}-${index}`}
+                  className="border border-gray-100 rounded-2xl p-4 bg-gray-50/50"
+                >
+                  <h3 className="font-semibold text-base text-gray-900">
+                    {item.packageName}
+                  </h3>
+                  <div className="mt-2 text-sm text-gray-500 space-y-0.5">
+                    <p>
+                      Country:{" "}
+                      <span className="font-medium text-gray-800">
+                        {item.country}
+                      </span>
+                    </p>
+                    <p>
+                      Quantity:{" "}
+                      <span className="font-medium text-gray-800">
+                        {item.quantity}
+                      </span>
+                    </p>
+                    <p>
+                      Price:{" "}
+                      <span className="font-medium text-gray-800">
+                        {item.price}
+                      </span>
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => handleRemove(item.id)}
+                    className="p-2 text-red-500 hover:bg-red-50 active:scale-95 rounded-xl transition-all duration-200 flex items-center justify-center border border-transparent hover:border-red-100"
+                    title="Remove Item"
+                  >
+                    {/* Agar lucide-react install hai toh <Trash2 /> laga lein, nahi toh trash icon text chalega */}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M3 6h18" />
+                      <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+                      <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                    </svg>
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Cart Content Area */}

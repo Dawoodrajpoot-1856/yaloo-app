@@ -1,5 +1,5 @@
-import Header from "@/app/components/header";
-import Footer from "@/app/components/Footer";
+import Header from "@/components/header";
+import Footer from "@/components/Footer";
 import { ArrowRight, ArrowUp, ArrowUpRight } from "lucide-react";
 
 const BlogDetail = async ({

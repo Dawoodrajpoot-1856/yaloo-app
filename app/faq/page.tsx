@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "../components/header";
+import Header from "@/components/header";
 import { ChevronDown } from "lucide-react";
-import Footer from "../components/Footer";
+import Footer from "@/components/Footer";
 
 const Page = () => {
   const faqs = [

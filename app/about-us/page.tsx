@@ -1,7 +1,7 @@
 import React from "react";
-import Header from "../components/header";
+import Header from "@/components/header";
 import { Headphones, Leaf, Wifi } from "lucide-react";
-import Footer from "../components/Footer";
+import Footer from "@/components/Footer";
 
 const Page = () => {
   const containerClass = "max-w-[1420px] mx-auto px-6";

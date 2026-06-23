@@ -2,8 +2,8 @@
 
 import React, { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
-import Header from "../components/header";
-import Footer from "../components/Footer";
+import Header from "@/components/header";
+import Footer from "@/components/Footer";
 import Link from "next/link";
 
 const Login = () => {

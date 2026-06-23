@@ -1,9 +1,9 @@
 import React from "react";
-import Header from "../components/header";
-import Footer from "../components/Footer";
+import Header from "@/components/header";
+import Footer from "@/components/Footer";
 import { ArrowUpRight, ArrowRight, Wifi, Laptop, Plane } from "lucide-react";
-import Affiliate from "../components/affiliate";
-import Faqs from "../components/Faqs";
+import Affiliate from "@/components/affiliate";
+import Faqs from "@/components/Faqs";
 
 const Page = () => {
   return (

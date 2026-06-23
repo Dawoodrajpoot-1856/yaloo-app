@@ -94,7 +94,7 @@ const Adventures = async () => {
       <div className="mt-20 px-4">
         <h2 className="text-3xl sm:text-5xl font-semibold leading-tight text-gray-900">
           How Yaalo eSIM Works? <br />
-          <span className="text-gray-400">
+          <span className="text-black">
             (Spoiler: It’s Ridiculously Simple)
           </span>
         </h2>

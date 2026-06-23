@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "../components/header";
-import Footer from "../components/Footer";
+import Header from "@/components/header";
+import Footer from "@/components/Footer";
 import { Search, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
