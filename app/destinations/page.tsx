@@ -26,42 +26,42 @@ const Page = async () => {
       <div
         className="h-[60vh] sm:h-[70vh] lg:h-[80vh] 
         brightness-110 bg-cover bg-center bg-no-repeat 
-        flex items-center justify-center relative"
+        flex items-center justify-center relative pt-16 sm:pt-20 md:pt-24" // Responsive padding top for fixed header
         style={{
           backgroundImage:
             "url('https://yaalo.com/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2FheroBackground.92b9c510.png&w=1920&q=100')",
         }}
       >
         <div className="absolute inset-0 bg-black/10" />
-        <div className="relative z-10 w-full text-center px-4 sm:px-6">
-          <h1 className="font-bold text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight text-black">
+        <div className="relative z-10 w-full text-center px-4 sm:px-6 max-w-5xl mx-auto">
+          <h1 className="font-bold text-xl sm:text-3xl md:text-5xl lg:text-6xl leading-tight text-black break-words">
             Roam the World With Yaalo - Seamless Connectivity Worldwide!
           </h1>
-          <div className="text-black mt-4 px-3 py-2 rounded-2xl text-sm sm:text-lg w-fit mx-auto">
+          <div className="text-black mt-4 px-3 py-2 rounded-2xl text-xs sm:text-lg w-fit mx-auto bg-white/10 backdrop-blur-xs">
             Buying an eSIM online was never that easy before
           </div>
         </div>
       </div>
 
-      <section className="max-w-[1440px] mx-auto px-6 sm:px-10 py-12 sm:py-16">
-        <h1 className="font-semibold text-2xl sm:text-4xl lg:text-5xl">
+      <section className="max-w-[1460px] mx-auto px-4 sm:px-10 py-12 sm:py-16">
+        <h1 className="font-semibold text-2xl sm:text-4xl lg:text-5xl text-gray-900">
           Pick Your Adventure
         </h1>
 
-        <p className="mt-3 sm:mt-4 font-medium text-gray-700 text-sm sm:text-base">
+        <p className="mt-2 sm:mt-4 font-medium text-gray-700 text-sm sm:text-base">
           Find Yaalo eSIMs built for your route
         </p>
 
         {/* TOP BAR */}
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mt-8">
-          <div className="border border-gray-200 rounded-2xl p-1.5 flex flex-wrap gap-2 w-full lg:w-fit">
-            <button className="bg-yellow-400 font-medium px-4 sm:px-6 py-2 rounded-xl text-sm sm:text-base">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 sm:gap-6 mt-8">
+          <div className="border border-gray-200 rounded-2xl p-1.5 flex flex-wrap gap-2 w-full lg:w-fit bg-white">
+            <button className="bg-yellow-400 font-medium px-4 sm:px-6 py-2 rounded-xl text-sm sm:text-base flex-1 sm:flex-initial">
               Local
             </button>
-            <button className="px-4 sm:px-6 py-2 rounded-xl hover:bg-gray-100 text-sm sm:text-base transition-colors">
+            <button className="px-4 sm:px-6 py-2 rounded-xl hover:bg-gray-100 text-sm sm:text-base transition-colors flex-1 sm:flex-initial">
               Regional
             </button>
-            <button className="px-4 sm:px-6 py-2 rounded-xl hover:bg-gray-100 text-sm sm:text-base transition-colors">
+            <button className="px-4 sm:px-6 py-2 rounded-xl hover:bg-gray-100 text-sm sm:text-base transition-colors flex-1 sm:flex-initial">
               Global
             </button>
           </div>
@@ -79,36 +79,36 @@ const Page = async () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-12 px-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 mt-12">
           {CountryList.length > 0 ? (
             CountryList.map((item: any, i: number) => (
               <Link key={item.id || i} href={`${item.id}`}>
-                <div className="w-full border border-gray-200 rounded-2xl p-5 flex justify-between hover:shadow-lg hover:-translate-y-1 transition-all duration-300 bg-white group cursor-pointer">
-                  <div className="flex flex-col items-start">
+                <div className="w-full border border-gray-200 rounded-2xl p-4 sm:p-5 flex justify-between items-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300 bg-white group cursor-pointer h-full">
+                  <div className="flex flex-col items-start min-w-0 flex-1 pr-2">
                     <img
                       src={
                         item.image ||
                         `https://flagcdn.com/w80/${item.slug?.slice(0, 2).toLowerCase()}.png`
                       }
-                      className="h-7 w-10 rounded object-cover shadow-sm mb-3"
+                      className="h-7 w-10 rounded object-cover shadow-sm mb-3 border border-gray-100"
                       alt={item.name}
                     />
-                    <p className="text-sm font-bold text-gray-900">
+                    <p className="text-sm font-bold text-gray-900 truncate w-full">
                       {item.name}
                     </p>
-                    <p className="text-xs text-gray-500 font-medium">
+                    <p className="text-xs text-gray-500 font-medium truncate w-full mt-0.5">
                       Starts at {item.starting_price || "$5"}
                     </p>
                   </div>
 
-                  <span className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center self-end transition-colors group-hover:bg-amber-200">
+                  <span className="w-9 h-9 sm:w-10 sm:h-10 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0 transition-colors group-hover:bg-amber-200">
                     <ChevronRight size={18} className="text-black" />
                   </span>
                 </div>
               </Link>
             ))
           ) : (
-            <p className="text-gray-500 col-span-full text-center py-10">
+            <p className="text-gray-500 col-span-full text-center py-10 font-medium">
               Loading destinations...
             </p>
           )}
