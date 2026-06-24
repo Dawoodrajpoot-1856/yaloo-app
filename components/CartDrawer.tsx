@@ -4,8 +4,7 @@ import React from "react";
 
 import { Trash2, ShoppingBag, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useAppSelector, useAppDispatch } from "@/app/redux/hooks";
-import { removeFromCart } from "@/app/redux/cartSlice";
+import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 import {
   Sheet,
   SheetContent,

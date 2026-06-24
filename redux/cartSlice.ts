@@ -23,7 +23,7 @@ const cartSlice = createSlice({
     addToCart: (state, action: PayloadAction<CartItem>) => {
       const currentTotal = state.items.reduce((sum, item) => sum + item.quantity, 0);
 
-      // 5 packages ki limit ka check
+     
       if (currentTotal + action.payload.quantity > 5) {
         alert("Aap maximum 5 packages hi add kar sakte hain!");
         return;

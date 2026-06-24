@@ -1,6 +1,6 @@
 "use client";
-import { useAppDispatch, useAppSelector } from "@/app/redux/hooks";
-import { removeFromCart } from "@/app/redux/cartSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { removeFromCart } from "@/redux/cartSlice";
 
 import {
   CardSim,
@@ -67,9 +67,7 @@ const NavItem = ({
 export default function Header() {
   const dispatch = useAppDispatch();
 
-  const cartItems = useAppSelector(
-    (state) => state.cart.cart || state.cart.items || [],
-  );
+  const cartItems = useAppSelector((state) => state.cart.items);
 
   const [cartOpen, setCartOpen] = useState(false);
   const [open, setOpen] = useState(false);

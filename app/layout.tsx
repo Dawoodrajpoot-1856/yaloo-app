@@ -2,7 +2,7 @@ import "./globals.css";
 import NextTopLoader from "nextjs-toploader";
 import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
-import ReduxProvider from "./redux/Reduxprovider";
+import ReduxProvider from "../redux/Reduxprovider";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 

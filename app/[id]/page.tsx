@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import Header from "@/components/header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/redux/cartSlice";
 
 import {
   Sheet,
@@ -230,6 +232,8 @@ export default function Page({ params }: PageProps) {
   const [quantity, setQuantity] = useState(1);
   const [selectedPackage, setSelectedPackage] = useState<any>(null);
 
+  const dispatch = useDispatch();
+
   // Unwrap params safely in client
   useEffect(() => {
     params.then((res) => setUnwrappedParams(res));
@@ -270,8 +274,7 @@ export default function Page({ params }: PageProps) {
 
     fetchData();
   }, [unwrappedParams]);
-
-  const addToCart = () => {
+  const handleAddToCart = () => {
     if (!selectedPackage) {
       alert("Please select a plan first!");
       return;
@@ -279,28 +282,16 @@ export default function Page({ params }: PageProps) {
 
     const cartItem = {
       id: selectedPackage.id,
-      packageName: selectedPackage.name,
-      country: country?.name || "Unknown Country",
+      packageName: selectedPackage.package_name,
+      country: country?.name,
       quantity,
       price: selectedPackage.price,
     };
 
-    const existingCart = JSON.parse(localStorage.getItem("cart") || "[]");
-    existingCart.push(cartItem);
-    localStorage.setItem("cart", JSON.stringify(existingCart));
+    dispatch(addToCart(cartItem));
+
     alert("Added to cart successfully!");
   };
-
-  if (loading) {
-    return (
-      <div className="flex h-screen items-center justify-center">
-        <p className="text-lg font-semibold text-gray-500">
-          Loading or Data Not Found... 😒
-        </p>
-      </div>
-    );
-  }
-
   return (
     <>
       <Header />
@@ -425,7 +416,7 @@ export default function Page({ params }: PageProps) {
               </div>
 
               <button
-                onClick={addToCart}
+                onClick={handleAddToCart}
                 className="h-10 w-50 p-7 bg-white hover:bg-yellow-100 shadow-sm text-black font-semibold rounded-xl transition-colors flex items-center justify-center"
               >
                 Add to Cart
