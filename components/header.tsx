@@ -1,4 +1,6 @@
 "use client";
+import { useAppDispatch, useAppSelector } from "@/app/redux/hooks";
+import { removeFromCart } from "@/app/redux/cartSlice";
 
 import {
   CardSim,
@@ -17,6 +19,7 @@ import {
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Button } from "./ui/button";
 
 const NavItem = ({
   icon: Icon,
@@ -62,27 +65,20 @@ const NavItem = ({
 );
 
 export default function Header() {
+  const dispatch = useAppDispatch();
+
+  const cartItems = useAppSelector(
+    (state) => state.cart.cart || state.cart.items || [],
+  );
+
   const [cartOpen, setCartOpen] = useState(false);
   const [open, setOpen] = useState(false);
-  const [accountOpen, setAccountOpen] = useState(false); // Account Dropdown State
+  const [accountOpen, setAccountOpen] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [cart, setCart] = useState<any[]>([]);
 
   useEffect(() => {
-    const savedCart = localStorage.getItem("cart");
-    if (savedCart) {
-      try {
-        setCart(JSON.parse(savedCart));
-      } catch (error) {
-        console.error("Error parsing cart data:", error);
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    // LocalStorage se login status check karna
     const userToken =
       localStorage.getItem("token") || localStorage.getItem("user");
     if (userToken) {
@@ -98,17 +94,16 @@ export default function Header() {
     document.body.style.overflow = mobileMenu || cartOpen ? "hidden" : "unset";
   }, [mobileMenu, cartOpen]);
 
+  // 👑 REDUX DISPATCH FOR REMOVE
   const handleRemove = (id: string) => {
-    // 1. Cart se us item ko filter out karein jiski ID match ho rahi hai
-    const updatedCart = cart.filter((item: any) => item.id !== id);
-
-    // 2. React state ko update karein taake UI usi waqt refresh ho jaye
-    setCart(updatedCart);
-
-    // 3. LocalStorage mein bhi update save karein taake page refresh par wapas na aaye
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    if (removeFromCart) {
+      dispatch(removeFromCart(id));
+    } else {
+      // Agar slice me action ka naam alag h toh fallback action dispatch hoga
+      dispatch({ type: "cart/removeFromCart", payload: id });
+    }
   };
-  // Logout handle karne ka function
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
@@ -138,7 +133,7 @@ export default function Header() {
             />
           </Link>
 
-          {/* Desktop & Laptop Navigation Menu */}
+          {/* Desktop Navigation Menu */}
           <ul className="hidden lg:flex items-center gap-4 xl:gap-8 font-semibold list-none m-0 p-0">
             <Link href="/destinations">
               <NavItem
@@ -275,17 +270,19 @@ export default function Header() {
             )}
 
             <div className="flex items-center gap-4 border-l pl-4 xl:pl-6 border-gray-200">
-              {/* SHOPPING CART BUTTON */}
-              <button className="relative group p-1 flex-shrink-0">
+              {/* Dynamic Redux Counter Badge */}
+              <button
+                onClick={() => setCartOpen(true)}
+                className="relative group p-1 flex-shrink-0"
+              >
                 <ShoppingCart className="w-5 h-5 cursor-pointer group-hover:text-blue-500 transition-colors" />
                 <span className="absolute -top-1 -right-1 bg-yellow-400 text-black text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
-                  0
+                  {cartItems.length}
                 </span>
               </button>
 
-              {/* 👑 NO-STATE LANGUAGE DROPDOWN (HOVER DROPDOWN) */}
+              {/* Language Dropdown */}
               <div className="relative group py-2">
-                {/* Trigger Button */}
                 <button className="flex items-center gap-1 font-semibold text-sm xl:text-base whitespace-nowrap text-gray-700 pointer-events-none">
                   EN{" "}
                   <ChevronDown
@@ -293,29 +290,23 @@ export default function Header() {
                     className="transition-transform duration-200 group-hover:rotate-180"
                   />
                 </button>
-
-                {/* Dropdown Menu Panel (Hidden by default, flex on group-hover) */}
                 <div className="absolute right-0 top-full mt-1 w-40 bg-white border border-gray-100 rounded-xl shadow-xl py-1.5 z-50 hidden group-hover:block">
-                  <button className="w-full px-4 py-2 text-left text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
-                    English
-                  </button>
-                  <button className="w-full px-4 py-2 text-left text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
-                    Español
-                  </button>
-                  <button className="w-full px-4 py-2 text-left text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
-                    Français
-                  </button>
-                  <button className="w-full px-4 py-2 text-left text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
-                    Deutsch
-                  </button>
-                  <button className="w-full px-4 py-2 text-left text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
-                    العربية
-                  </button>
+                  {["English", "Español", "Français", "Deutsch", "العربية"].map(
+                    (lang) => (
+                      <button
+                        key={lang}
+                        className="w-full px-4 py-2 text-left text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                      >
+                        {lang}
+                      </button>
+                    ),
+                  )}
                 </div>
               </div>
             </div>
           </div>
 
+          {/* Mobile Actions */}
           <div className="flex lg:hidden items-center gap-3 sm:gap-5">
             <button
               onClick={() => setCartOpen(true)}
@@ -323,7 +314,7 @@ export default function Header() {
             >
               <ShoppingCart className="w-6 h-6" />
               <span className="absolute top-0 right-0 bg-yellow-400 text-black text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
-                0
+                {cartItems.length}
               </span>
             </button>
             <button
@@ -338,7 +329,6 @@ export default function Header() {
       </div>
 
       {/* CART OVERLAY */}
-      {/* BACKDROP OVERLAY */}
       <div
         className={`fixed inset-0 z-[100] bg-black/40 backdrop-blur-sm transition-opacity duration-300 ${
           cartOpen ? "opacity-100 visible" : "opacity-0 invisible"
@@ -354,10 +344,8 @@ export default function Header() {
             : "translate-x-full opacity-0 pointer-events-none"
         } flex flex-col overflow-hidden`}
       >
-        {/* 1. Cart Header (Keep layout items clean) */}
         <div className="flex items-center justify-between p-4 sm:p-5 border-b border-gray-100 shrink-0">
           <h2 className="font-bold text-base sm:text-lg text-black">My Cart</h2>
-
           <button
             onClick={() => setCartOpen(false)}
             className="p-2 hover:bg-gray-100 rounded-full transition-colors"
@@ -366,48 +354,72 @@ export default function Header() {
           </button>
         </div>
 
-        {/* 2. Cart Body / Items List (Moved here for clean scrolling) */}
-        <div className="flex-1 overflow-y-auto p-4 sm:p-5">
-          {cart.length === 0 ? (
-            <div className="flex flex-col items-center justify-center h-full text-center">
-              <p className="text-gray-500 font-medium">Your cart is empty</p>
+        {/* 👑 REDUX DYNAMIC CONDITIONAL RENDERING */}
+        <div className="flex-1 overflow-y-auto p-4 sm:p-5 flex flex-col">
+          {cartItems.length === 0 ? (
+            <div className="flex-1 flex flex-col items-center justify-center text-center">
+              <div className="w-14 h-14 bg-gray-50 dark:bg-gray-900 rounded-full flex items-center justify-center mb-4 shadow-sm border border-gray-50 dark:border-gray-800">
+                <ShoppingCart
+                  size={24}
+                  className="text-gray-400 dark:text-gray-600"
+                />
+              </div>
+              <p className="text-gray-900 dark:text-white font-bold text-base mb-1">
+                Your cart is empty
+              </p>
+              <p className="text-gray-500 text-xs max-w-[200px] mb-5">
+                Looks like you haven't added any eSIM plans yet.
+              </p>
+              <Button
+                onClick={() => {
+                  setCartOpen(false);
+                  const element = document.getElementById("packages-section");
+                  if (element) {
+                    element.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
+                className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold rounded-xl px-6 py-2 text-sm shadow-sm transition-all duration-200"
+              >
+                Explore Plans
+              </Button>
             </div>
           ) : (
             <div className="flex flex-col gap-4">
-              {cart.map((item, index) => (
+              {cartItems.map((item: any, index: number) => (
                 <div
                   key={`${item.id}-${index}`}
-                  className="border border-gray-100 rounded-2xl p-4 bg-gray-50/50"
+                  className="border border-gray-100 rounded-2xl p-4 bg-gray-50/50 flex justify-between items-center"
                 >
-                  <h3 className="font-semibold text-base text-gray-900">
-                    {item.packageName}
-                  </h3>
-                  <div className="mt-2 text-sm text-gray-500 space-y-0.5">
-                    <p>
-                      Country:{" "}
-                      <span className="font-medium text-gray-800">
-                        {item.country}
-                      </span>
-                    </p>
-                    <p>
-                      Quantity:{" "}
-                      <span className="font-medium text-gray-800">
-                        {item.quantity}
-                      </span>
-                    </p>
-                    <p>
-                      Price:{" "}
-                      <span className="font-medium text-gray-800">
-                        {item.price}
-                      </span>
-                    </p>
+                  <div>
+                    <h3 className="font-semibold text-base text-gray-900">
+                      {item.packageName}
+                    </h3>
+                    <div className="mt-2 text-sm text-gray-500 space-y-0.5">
+                      <p>
+                        Country:{" "}
+                        <span className="font-medium text-gray-800">
+                          {item.country}
+                        </span>
+                      </p>
+                      <p>
+                        Quantity:{" "}
+                        <span className="font-medium text-gray-800">
+                          {item.quantity}
+                        </span>
+                      </p>
+                      <p>
+                        Price:{" "}
+                        <span className="font-medium text-gray-800">
+                          {item.price}
+                        </span>
+                      </p>
+                    </div>
                   </div>
                   <button
                     onClick={() => handleRemove(item.id)}
-                    className="p-2 text-red-500 hover:bg-red-50 active:scale-95 rounded-xl transition-all duration-200 flex items-center justify-center border border-transparent hover:border-red-100"
+                    className="p-2 text-red-500 hover:bg-red-50 active:scale-95 rounded-xl transition-all duration-200 border border-transparent hover:border-red-100 flex-shrink-0"
                     title="Remove Item"
                   >
-                    {/* Agar lucide-react install hai toh <Trash2 /> laga lein, nahi toh trash icon text chalega */}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="18"
@@ -429,31 +441,16 @@ export default function Header() {
             </div>
           )}
         </div>
-
-        {/* Cart Content Area */}
-        <div className="flex-1 p-6 sm:p-8 flex flex-col items-center justify-center text-center">
-          <div className="w-14 h-14 bg-gray-50 rounded-full flex items-center justify-center mb-3">
-            <ShoppingCart size={24} className="text-gray-300" />
-          </div>
-          <p className="text-black font-semibold text-sm">Your cart is empty</p>
-        </div>
       </div>
-
-      {/* MOBILE DRAWER OVERLAY */}
-      <div
-        className={`fixed inset-0 z-[110] bg-black/50 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
-          mobileMenu ? "opacity-100 visible" : "opacity-0 invisible"
-        }`}
-        onClick={() => setMobileMenu(false)}
-      />
 
       {/* MOBILE DRAWER */}
       <div
-        className={`fixed top-0 right-0 h-full w-[85%] sm:w-[70%] max-w-[360px] bg-white z-[120] shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] lg:hidden flex flex-col ${
-          mobileMenu ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`fixed inset-0 z-[110] bg-black/50 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${mobileMenu ? "opacity-100 visible" : "opacity-0 invisible"}`}
+        onClick={() => setMobileMenu(false)}
+      />
+      <div
+        className={`fixed top-0 right-0 h-full w-[85%] sm:w-[70%] max-w-[360px] bg-white z-[120] shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] lg:hidden flex flex-col ${mobileMenu ? "translate-x-0" : "translate-x-full"}`}
       >
-        {/* Mobile Header */}
         <div className="flex items-center justify-between p-5 sm:p-6 border-b border-gray-100">
           <img
             src="https://yaalo.com/_next/static/media/yaalo-logo-dark.43dca0d6.svg"
@@ -467,8 +464,6 @@ export default function Header() {
             <X size={22} className="text-gray-600" />
           </button>
         </div>
-
-        {/* Scrollable Navigation Items */}
         <div className="flex-1 overflow-y-auto py-3">
           <nav className="flex flex-col px-3 gap-0.5">
             <Link
@@ -479,7 +474,6 @@ export default function Header() {
               <CardSim size={20} className="text-blue-500 flex-shrink-0" /> Buy
               eSIM
             </Link>
-
             <Link
               href="/contact-us"
               onClick={() => setMobileMenu(false)}
@@ -488,7 +482,6 @@ export default function Header() {
               <Mail size={20} className="text-green-500 flex-shrink-0" />{" "}
               Contact Info
             </Link>
-
             <Link
               href="/affiliate-partner"
               onClick={() => setMobileMenu(false)}
@@ -497,93 +490,7 @@ export default function Header() {
               <Handshake size={20} className="text-red-500 flex-shrink-0" />{" "}
               Affiliate Partner
             </Link>
-
-            {/* If logged in on mobile, inject eSIM and Wallet options directly into drawer links */}
-            {isLoggedIn && (
-              <>
-                <hr className="my-3 border-gray-100" />
-                <p className="px-4 py-1 text-[10px] uppercase tracking-widest text-gray-400 font-bold">
-                  Dashboard
-                </p>
-                <Link
-                  href="/my-esims"
-                  onClick={() => setMobileMenu(false)}
-                  className="flex items-center gap-4 px-4 py-3.5 text-black font-bold hover:bg-indigo-50 rounded-xl transition-all text-sm sm:text-base"
-                >
-                  <CardSim
-                    size={20}
-                    className="text-indigo-500 flex-shrink-0"
-                  />{" "}
-                  My eSIM
-                </Link>
-                <Link
-                  href="/wallet"
-                  onClick={() => setMobileMenu(false)}
-                  className="flex items-center gap-4 px-4 py-3.5 text-black font-bold hover:bg-indigo-50 rounded-xl transition-all text-sm sm:text-base"
-                >
-                  <Wallet size={20} className="text-indigo-500 flex-shrink-0" />{" "}
-                  Wallet
-                </Link>
-                <button
-                  onClick={handleLogout}
-                  className="flex items-center gap-4 px-4 py-3.5 text-red-500 font-bold hover:bg-red-50 rounded-xl transition-all text-sm sm:text-base text-left"
-                >
-                  <LogOut size={20} className="text-red-500 flex-shrink-0" />{" "}
-                  Logout
-                </button>
-              </>
-            )}
-
-            <hr className="my-3 border-gray-100" />
-
-            <p className="px-4 py-1 text-[10px] uppercase tracking-widest text-gray-400 font-bold">
-              Quick Links
-            </p>
-            {[
-              { name: "About Us", link: "/about-us" },
-              { name: "Compatible Phones", link: "/esim-compatible-devices" },
-              { name: "FAQ", link: "/faq" },
-              { name: "Blog", link: "/blog" },
-            ].map((item) => (
-              <Link
-                key={item.name}
-                href={item.link}
-                onClick={() => setMobileMenu(false)}
-                className="block px-4 py-2.5 text-sm text-gray-700 hover:text-orange-600 font-bold transition-colors"
-              >
-                {item.name}
-              </Link>
-            ))}
           </nav>
-        </div>
-
-        {/* Footer Actions inside Mobile Drawer */}
-        <div className="p-4 sm:p-6 bg-gray-50 border-t border-gray-100 grid grid-cols-2 gap-3">
-          <button className="flex items-center justify-center gap-2 bg-white border border-gray-200 py-2.5 sm:py-3 rounded-xl font-bold text-xs sm:text-sm shadow-sm active:scale-95 transition-all">
-            <Search size={16} /> Search
-          </button>
-
-          {/* Conditional Mobile Login / Account Button */}
-          {isLoggedIn ? (
-            <Link
-              href="/my-esims"
-              onClick={() => setMobileMenu(false)}
-              className="flex items-center justify-center gap-2 bg-indigo-600 text-white py-2.5 sm:py-3 rounded-xl font-bold text-xs sm:text-sm shadow-lg active:scale-95 transition-all"
-            >
-              <User size={16} /> Account
-            </Link>
-          ) : (
-            <Link
-              href="/login"
-              onClick={() => setMobileMenu(false)}
-              className="flex items-center justify-center gap-2 bg-black text-white py-2.5 sm:py-3 rounded-xl font-bold text-xs sm:text-sm shadow-lg active:scale-95 transition-all"
-            >
-              <User size={16} /> Login
-            </Link>
-          )}
-          <button className="col-span-2 flex items-center justify-center gap-2 py-1 text-gray-500 font-bold text-xs">
-            <Globe size={14} /> Language: EN (English)
-          </button>
         </div>
       </div>
     </>
