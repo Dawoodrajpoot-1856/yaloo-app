@@ -5,7 +5,7 @@ const App = () => {
     <div
       className="
   bg-[#393a36]
-  w-full max-w-[1200px]
+  w-full max-w-[1400px]
   mx-auto mb-10
   px-6 md:px-16
   py-12 md:py-20
