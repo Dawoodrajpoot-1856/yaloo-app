@@ -471,7 +471,6 @@ export default function Page({ params }: PageProps) {
             </p>
           </div>
 
-          {/* Cards Grid layout responsive up to 1400px screen sizes */}
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {cards.map((item, i) => {
               const Icon = item.icon;
