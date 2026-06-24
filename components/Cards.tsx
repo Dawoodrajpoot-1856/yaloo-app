@@ -7,7 +7,7 @@ import React from "react";
 const Page = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 pb-20">
-      <div className="max-w-[1220px] mx-auto px-4 py-6">
+      <div className="max-w-[1420px] mx-auto px-4 py-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
             {
