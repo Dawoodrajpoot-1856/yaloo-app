@@ -43,7 +43,7 @@ const Hero = () => {
     <>
       {/* HERO SECTION */}
       <div
-        className="min-h-[50svh] sm:min-h-[60svh] lg:min-h-[65vh] brightness-100 bg-cover bg-center bg-no-repeat flex items-center justify-center w-full pt-12 sm:pt-16 pb-8"
+        className="min-h-[60svh] sm:min-h-[60svh] lg:min-h-[65vh] brightness-100 bg-cover bg-center bg-no-repeat flex items-center justify-center w-full pt-12 sm:pt-16 pb-8"
         style={{
           backgroundImage:
             "url('https://yaalo.com/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2FheroBackground.92b9c510.png&w=1920&q=100')",
