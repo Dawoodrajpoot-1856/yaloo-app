@@ -18,6 +18,7 @@ import {
   HelpCircle,
   FileText,
   Info,
+  ArrowRight,
 } from "lucide-react";
 
 import Link from "next/link";
@@ -82,6 +83,19 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  // Calculate Subtotal (Assuming item.price is a string like "$10.00" or number)
+  const calculateTotal = () => {
+    return cartItems
+      .reduce((total: number, item: any) => {
+        const priceNum =
+          typeof item.price === "string"
+            ? parseFloat(item.price.replace(/[^0-9.]/g, ""))
+            : item.price;
+        return total + priceNum * (item.quantity || 1);
+      }, 0)
+      .toFixed(2);
+  };
+
   useEffect(() => {
     const userToken =
       localStorage.getItem("token") || localStorage.getItem("user");
@@ -134,7 +148,7 @@ export default function Header() {
             />
           </Link>
 
-          {/* Desktop Navigation Menu (Visible on lg: 1024px and above) */}
+          {/* Desktop Navigation Menu */}
           <ul className="hidden lg:flex items-center gap-3 xl:gap-6 font-semibold list-none m-0 p-0">
             <Link href="/destinations">
               <NavItem
@@ -302,7 +316,7 @@ export default function Header() {
             </div>
           </div>
 
-          {/* Mobile & Tablet Actions (Visible below 1024px) */}
+          {/* Mobile & Tablet Actions */}
           <div className="flex lg:hidden items-center gap-2 sm:gap-4">
             <button
               onClick={() => setCartOpen(true)}
@@ -435,6 +449,29 @@ export default function Header() {
             </div>
           )}
         </div>
+
+        {/* BOTTOM CHECKOUT SECTION (Sticky at bottom when items exist) */}
+        {cartItems.length > 0 && (
+          <div className="p-4 sm:p-5 border-t border-gray-100 bg-white shrink-0 shadow-[0_-4px_12px_rgba(0,0,0,0.03)] rounded-b-none sm:rounded-b-2xl">
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-gray-500 text-sm font-medium">
+                Subtotal
+              </span>
+              <span className="text-xl font-bold text-gray-900">
+                ${calculateTotal()}
+              </span>
+            </div>
+            <Link href="/cart" onClick={() => setCartOpen(false)}>
+              <button className="w-full bg-yellow-400 hover:bg-black text-black hover:text-white font-bold py-3 px-4 rounded-xl shadow-sm transition-all duration-300 flex items-center justify-center gap-2 group active:scale-[0.99]">
+                <span>Proceed to Checkout</span>
+                <ArrowRight
+                  size={16}
+                  className="transition-transform group-hover:translate-x-1"
+                />
+              </button>
+            </Link>
+          </div>
+        )}
       </div>
 
       {/* MOBILE DRAWER */}

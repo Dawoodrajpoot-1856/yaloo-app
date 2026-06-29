@@ -391,10 +391,11 @@ export default function Page({ params }: PageProps) {
               >
                 Add to Cart
               </button>
-
-              <button className="h-12 flex-1 sm:flex-none sm:w-48 bg-yellow-400 hover:bg-yellow-500 text-black font-semibold rounded-xl transition-colors flex items-center justify-center gap-1 shadow-sm">
-                Buy Now <ArrowUpRight className="h-4 w-4" />
-              </button>
+              <Link href="/cart">
+                <button className="h-12 flex-1 sm:flex-none sm:w-48 bg-yellow-400 hover:bg-yellow-500 text-black font-semibold rounded-xl transition-colors flex items-center justify-center gap-1 shadow-sm">
+                  Buy Now <ArrowUpRight className="h-4 w-4" />
+                </button>
+              </Link>
             </div>
           </div>
         </div>
