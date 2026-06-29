@@ -248,7 +248,6 @@ export default function Page({ params }: PageProps) {
     };
 
     dispatch(addToCart(cartItem));
-    alert("Added to cart successfully!");
   };
 
   return (
