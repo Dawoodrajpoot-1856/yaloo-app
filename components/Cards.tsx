@@ -7,7 +7,8 @@ import React from "react";
 const Page = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 pb-20">
-      <div className="max-w-[1420px] mx-auto px-4 py-6">
+      {/* 3 Step Cards Container */}
+      <div className="w-full max-w-[1400px] mx-auto 2xl:px-0 px-8 py-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
             {
@@ -58,18 +59,11 @@ const Page = () => {
         </div>
       </div>
 
-      <div className="w-full">
-        <div
-          className=" bg-[#1a1a1ad5]    px-8 sm:px-12    py-12    w-full     mx-auto  flex justify-center
-    
-    "
-        >
-          <div
-            className="w-[1400px] flex flex-col lg:flex-row items-center justify-between 
-    gap-10 
-    overflow-hidden"
-          >
-            <div className="max-w-xl text-center lg:text-left z-10">
+      {/* eSIM Ready Section */}
+      <div className="w-full max-w-[1400px] mx-auto  2xl:px-0 px-8   mt-10">
+        <div className="bg-[#1a1a1ad5] px-6 sm:px-12 py-12 rounded-2xl w-full mx-auto">
+          <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-10 overflow-hidden">
+            <div className="w-full lg:max-w-xl text-center lg:text-left z-10">
               <h2 className="text-white text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-6">
                 Is Your Phone{" "}
                 <span className="text-amber-400">eSIM-Ready?</span>
@@ -90,11 +84,11 @@ const Page = () => {
               </Link>
             </div>
 
-            {/* 3. Image container ki width ko manage karein */}
+            {/* Image container width managed properly */}
             <div className="w-full lg:w-1/2 flex justify-center lg:justify-end z-10">
               <img
                 src="https://yaalo.com/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2FesimSS.07771902.png&w=640&q=70"
-                className="max-w-full h-auto drop-shadow-2xl"
+                className="max-w-full h-auto max-h-[350px] lg:max-h-[400px] object-contain drop-shadow-2xl"
                 alt="Compatibility Check"
               />
             </div>
