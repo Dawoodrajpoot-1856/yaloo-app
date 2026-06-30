@@ -49,11 +49,11 @@ export default function Page() {
 
               {/* Product */}
               <div className="rounded-3xl border bg-gray-100 p-2 ">
-                <div className="flex flex-col gap-6 sm:flex-row">
+                <div className="flex flex-col gap-6 items-center  sm:flex-row">
                   <img
                     src="https://yaalo.com/_next/image/?url=https%3A%2F%2Fflagcdn.com%2Fw80%2Fca.png&w=1920&q=75"
                     alt="Canada"
-                    className="h-24 w-32 rounded-2xl border object-cover"
+                    className="h-20 w-20 rounded-2xl border object-cover"
                   />
 
                   <div className="flex flex-1 flex-col justify-between">
