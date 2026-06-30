@@ -17,22 +17,22 @@ const featureCards = [
   {
     img: "https://yaalo.com/_next/static/media/earth.0r-58oumuo_cp.svg",
     title: "Local Rates",
-    desc: "No roaming premiums",
+    desc: "Data plans focusing on travellers’ style, not roaming premiums.",
   },
   {
     img: "https://yaalo.com/_next/static/media/clock.0zt0hanvn-ijj.svg",
     title: "Plug & Online",
-    desc: "Instant activation",
+    desc: "Data that Travels With You-and-Play Simplicity",
   },
   {
     img: "https://yaalo.com/_next/static/media/trophy.0kd2_cg1av3hp.svg",
     title: "Buy Online",
-    desc: "No SIM swap",
+    desc: "Paris to Prague to Porto without switching SIMs.",
   },
   {
     img: "https://yaalo.com/_next/static/media/sim.162uxbhfzy_kg.svg",
     title: "Always Online",
-    desc: "Always available",
+    desc: "ANeed help at 2 AM? We’re awake.",
   },
 ];
 
@@ -41,16 +41,15 @@ const Hero = () => {
 
   return (
     <>
-      {/* HERO SECTION */}
       <div
-        className="min-h-[60svh] sm:min-h-[60svh] lg:min-h-[65vh] brightness-100 bg-cover bg-center bg-no-repeat flex items-center justify-center w-full pt-12 sm:pt-16 pb-8"
+        className="relative min-h-[85svh] lg:min-h-[85vh] bg-cover bg-center bg-no-repeat flex items-center justify-center w-full pt-16 sm:pt-20 pb-12"
         style={{
           backgroundImage:
             "url('https://yaalo.com/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2FheroBackground.92b9c510.png&w=1920&q=100')",
         }}
       >
-        <div className="w-full bg-black/5 py-8 sm:py-12 md:py-16">
-          {/* Badge */}
+        {/* यहाँ से bg-black/5 हटा दिया है */}
+        <div className="w-full py-8 sm:py-12 md:py-16">
           <div className="w-90 max-w-[90%] bg-gray-300 text-black font-medium py-1.5 px-4 rounded-full mx-auto text-[6px] sm:text-xs md:text-sm text-center tracking-wide shadow-sm backdrop-blur-sm">
             Digital Freedom With 3-Step Activation
           </div>
@@ -134,11 +133,11 @@ const Hero = () => {
           {featureCards.map((card, i) => (
             <div
               key={i}
-              className="border border-gray-100 rounded-xl sm:rounded-2xl p-3 sm:p-5 h-24 sm:h-32 md:h-36 text-center hover:-translate-y-1.5 transition-all duration-300 bg-white shadow-sm hover:shadow-md flex flex-col items-center justify-center"
+              className="border border-gray-300 rounded-xl sm:rounded-2xl p-3 sm:p-5 h-26 sm:h-32 md:h-40 text-center  bg-white  flex flex-col items-center justify-center"
             >
               <div className="w-7 h-7 sm:w-12 sm:h-12 flex items-center justify-center mb-1.5 sm:mb-3 bg-yellow-50/50 rounded-full">
                 <img
-                  className="w-4 h-4 sm:w-6 sm:h-6 object-contain"
+                  className="w-6 h-6 sm:w-6 sm:h-6 object-contain"
                   src={card.img}
                   alt={card.title}
                 />
@@ -165,7 +164,6 @@ const Hero = () => {
             className="absolute right-6 top-6 p-2 rounded-full text-gray-500 hover:bg-gray-100 active:scale-95 transition-all z-50"
           ></button>
 
-          {/* Content Container — isko max-w-xl par lock kiya hai taake text aur input clean lagein */}
           <div className="w-full max-w-xl px-4 pt-12 md:pt-16 flex flex-col gap-6">
             <SheetHeader className="text-left">
               <SheetTitle className="text-xl md:text-2xl font-bold text-black">
@@ -176,7 +174,6 @@ const Hero = () => {
               </SheetDescription>
             </SheetHeader>
 
-            {/* Search Input UI */}
             <div className="relative h-12 md:h-14 w-full shadow-sm rounded-2xl border border-gray-200 bg-white focus-within:border-yellow-400 transition-all">
               <input
                 type="text"
@@ -190,7 +187,6 @@ const Hero = () => {
               />
             </div>
 
-            {/* Suggestions list */}
             <div className="w-full">
               <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-3">
                 Popular Countries
@@ -214,7 +210,6 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* Bottom Footer Action */}
             <div className="mt-4 flex justify-end">
               <Button
                 variant="outline"

@@ -52,7 +52,7 @@ const paymentIcons = [
 const Footer = () => {
   return (
     <footer className="max-w-[1450px] mx-auto px-4 sm:px-6 mt-14 sm:mt-20 pb-10">
-      <div className="bg-gray-100 rounded-[2.5rem] p-6 sm:p-10 lg:p-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
+      <div className="bg-gray-100 rounded-[2.5rem] p-6 sm:p-10 lg:p-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-12">
         <div className="flex flex-col items-start">
           <Link href="/">
             <img
@@ -95,7 +95,7 @@ const Footer = () => {
             Popular Destinations
           </h3>
 
-          <div className="grid grid-cols-1 gap-4">
+          <div className="grid grid-cols-1 gap-3">
             {destinations.map((item) => (
               <Link
                 key={item}
@@ -110,7 +110,7 @@ const Footer = () => {
 
         {/* Quick Links + Support */}
         <div>
-          <h3 className="font-bold text-lg sm:text-xl mb-6 text-gray-900">
+          <h3 className="font-bold text-lg sm:text-xl mb-2 text-gray-900">
             Quick Links
           </h3>
 
@@ -126,7 +126,7 @@ const Footer = () => {
             ))}
           </div>
 
-          <h3 className="font-bold text-lg sm:text-xl mt-8 mb-6 text-gray-900">
+          <h3 className="font-bold text-lg sm:text-xl mt-2 mb-3 text-gray-900">
             Support
           </h3>
 
@@ -145,7 +145,7 @@ const Footer = () => {
 
         {/* Contact */}
         <div>
-          <h3 className="font-bold text-lg sm:text-xl mb-6 text-gray-900">
+          <h3 className="font-bold text-lg sm:text-xl mb-4 text-gray-900">
             Contact Info
           </h3>
 

@@ -65,7 +65,7 @@ const Adventures = async () => {
           <Link key={item.id || i} href={String(item.id)}>
             <div
               /* items-center yahan se hata diya hai taake content niche align ho sake */
-              className="w-full border border-gray-200 rounded-2xl p-5 flex justify-between hover:shadow-lg hover:-translate-y-1 transition-all duration-300 bg-white group cursor-pointer"
+              className="w-full border border-gray-200 hover:border-yellow-300 rounded-2xl p-5 flex justify-between hover:shadow-lg hover:-translate-y-1 transition-all duration-300 bg-white group cursor-pointer"
             >
               <div className="flex flex-col items-start">
                 <img
