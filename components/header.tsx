@@ -135,8 +135,8 @@ export default function Header() {
         <header
           className={`w-full max-w-[1400px] mx-auto flex items-center justify-between px-5 transition-all duration-500 ease-out pointer-events-auto border ${
             scrolled
-              ? "bg-white/95 backdrop-blur-xl border-gray-200/50 shadow-md rounded-2xl mt-2 sm:mt-4 py-4 sm:py-5"
-              : "bg-transparent border-transparent shadow-none rounded-none mt-0 py-5 sm:py-6"
+              ? "bg-white/70 backdrop-blur-md border-gray-200/50 shadow-md rounded-2xl mt-2 sm:mt-4 py-4 sm:py-5"
+              : "bg-white border-transparent shadow-none rounded-none mt-0 py-5 sm:py-6"
           }`}
         >
           {/* Logo Section */}
