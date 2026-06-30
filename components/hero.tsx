@@ -50,7 +50,7 @@ const Hero = () => {
       >
         {/* यहाँ से bg-black/5 हटा दिया है */}
         <div className="w-full py-8 sm:py-12 md:py-16">
-          <div className="w-90 max-w-[90%] bg-gray-300 text-black font-medium py-1.5 px-4 rounded-full mx-auto text-[6px] sm:text-xs md:text-sm text-center tracking-wide shadow-sm backdrop-blur-sm">
+          <div className="w-90 max-w-[90%] bg-[#c9d1d869] text-black font-medium py-1.5 px-4 rounded-full mx-auto text-[6px] sm:text-xs md:text-sm text-center tracking-wide backdrop-blur-sm">
             Digital Freedom With 3-Step Activation
           </div>
 
