@@ -48,22 +48,18 @@ const Hero = () => {
             "url('https://yaalo.com/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2FheroBackground.92b9c510.png&w=1920&q=100')",
         }}
       >
-        {/* यहाँ से bg-black/5 हटा दिया है */}
         <div className="w-full py-8 sm:py-12 md:py-16">
           <div className="w-90 max-w-[90%] bg-[#c9d1d869] text-black font-medium py-1.5 px-4 rounded-full mx-auto text-[6px] sm:text-xs md:text-sm text-center tracking-wide backdrop-blur-sm">
             Digital Freedom With 3-Step Activation
           </div>
 
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            {/* Heading */}
             <h1 className="font-semibold text-2xl sm:text-4xl md:text-5xl lg:text-6xl mt-5 sm:mt-8 leading-[1.2] sm:leading-tight text-black tracking-tight max-w-4xl mx-auto">
               <span className="text-yellow-400 drop-shadow-sm">Yaalo eSIM</span>
               <br className="block sm:hidden" /> Roam the{" "}
               <br className="hidden sm:block" />
               World, Not the Fees
             </h1>
-
-            {/* Search Bar Container */}
             <div className="relative h-11 sm:h-14 w-full max-w-xl md:max-w-2xl mx-auto mt-6 sm:mt-8 shadow-md rounded-3xl">
               <input
                 type="text"
@@ -80,14 +76,12 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* Description */}
             <p className="font-medium mt-6 sm:mt-8 text-gray-800 text-xs sm:text-sm md:text-base max-w-2xl mx-auto leading-relaxed px-2">
               Your trips just got easier. With Yaalo eSIM, you land, connect,
               and get <br className="hidden md:block" /> instant 5G data in 200+
               destinations at local rates.
             </p>
 
-            {/* App Download Headline */}
             <h2 className="font-bold text-xs sm:text-sm md:text-base mt-8 sm:mt-12 text-black uppercase tracking-wider">
               Download the App Now
             </h2>
@@ -127,7 +121,6 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* FEATURES INFO GRID */}
       <div className="w-full bg-gray-50/50 py-10 sm:py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-[1380px] mx-auto grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 md:gap-8">
           {featureCards.map((card, i) => (
@@ -153,7 +146,6 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* DYNAMIC TOP SEARCH SHEET */}
       <Sheet open={isSearchOpen} onOpenChange={setIsSearchOpen}>
         <SheetContent
           side="top"
