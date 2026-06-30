@@ -130,13 +130,12 @@ export default function Header() {
 
   return (
     <>
-      {/* Wrapper to control screen boundaries */}
       <div className="fixed top-0 left-0 right-0 z-50 flex justify-center w-full px-3 sm:px-6 lg:px-8 pointer-events-none">
         <header
-          className={`w-full max-w-[1400px] mx-auto flex items-center justify-between px-5 transition-all duration-500 ease-out pointer-events-auto border ${
+          className={`w-full max-w-[1400px] mx-auto flex items-center justify-between px-5 transition-all duration-500 ease-out pointer-events-auto border backdrop-blur-md ${
             scrolled
-              ? "bg-white/70 backdrop-blur-md border-gray-200/50 shadow-md rounded-2xl mt-2 sm:mt-4 py-4 sm:py-5"
-              : "bg-white border-transparent shadow-none rounded-none mt-0 py-5 sm:py-6"
+              ? "bg-white/70 border-gray-200/50 shadow-md rounded-2xl mt-2 sm:mt-4 py-4 sm:py-5"
+              : "bg-white/40 border-transparent shadow-none rounded-none mt-0 py-5 sm:py-6"
           }`}
         >
           {/* Logo Section */}
