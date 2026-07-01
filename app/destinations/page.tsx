@@ -9,7 +9,6 @@ const Page = async () => {
   try {
     const response = await fetch(
       "https://test.esimwhitelabel.com/api/packages/country",
-      { next: { revalidate: 3600 } },
     );
     const res = await response.json();
     CountryList = res.blogs?.data || res.data || [];
