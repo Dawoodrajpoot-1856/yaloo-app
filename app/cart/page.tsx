@@ -139,7 +139,7 @@ export default function Page() {
 
             {/* ================= RIGHT SIDE: SUMMARY ================= */}
             <div>
-              <div className="sticky top-28 rounded-3xl p-8 border bg-white shadow-sm">
+              <div className="sticky top-28 rounded-3xl p-8 border bg-white ">
                 <h2 className="text-2xl font-bold">Summary</h2>
 
                 <div className="mt-8 space-y-5">
