@@ -38,7 +38,7 @@ export default function Page() {
             {/* ================= LEFT SIDE: PRODUCTS ================= */}
             <div className="space-y-8">
               {/* Wallet Section */}
-              <div className="rounded-3xl border border-yellow-100 bg-yellow-50 p-6 shadow-sm">
+              <div className="rounded-3xl border border-yellow-100 bg-yellow-50 p-6 ">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm text-gray-500">Current Balance</p>
@@ -139,7 +139,7 @@ export default function Page() {
 
             {/* ================= RIGHT SIDE: SUMMARY ================= */}
             <div>
-              <div className="sticky top-28 rounded-3xl p-8 border bg-white ">
+              <div className="sticky top-28 rounded-3xl p-8  bg-white ">
                 <h2 className="text-2xl font-bold">Summary</h2>
 
                 <div className="mt-8 space-y-5">
