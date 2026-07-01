@@ -3,15 +3,8 @@ import React from "react";
 const App = () => {
   return (
     <div
-      className="
-  bg-[#393a36]
-  w-full 2xl:max-w-[1400px] max-w-[1200px]
-  mx-auto mb-10
-  px-6 md:px-16
-  py-12 md:py-20
-  overflow-hidden
-  rounded-none md:rounded-[40px]
-  "
+      className="bg-[#393a36] w-full 2xl:max-w-[1400px] max-w-[1200px] mx-auto mb-10 px-6 md:px-16
+  py-12 md:py-20  overflow-hidden  rounded-none md:rounded-[40px]"
     >
       <div className="flex flex-col lg:flex-row items-center justify-between gap-10 md:gap-12">
         {/* LEFT CONTENT */}

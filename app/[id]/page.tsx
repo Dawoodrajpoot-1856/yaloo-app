@@ -500,7 +500,7 @@ export default function Page({ params }: PageProps) {
       </section>
 
       {/* Instant Delivery Banner */}
-      <div className="w-full max-w-[1440px] mt-10 mx-auto px-4 md:px-6">
+      <div className="w-full max-w-[1400px] mt-10 mx-auto px-8 2xl:px-0 md:px-6">
         <div className="bg-[#393a36] rounded-[2rem] p-8 md:p-12 lg:p-16 flex justify-center shadow-xl">
           <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-10">
             <div className="max-w-2xl text-center lg:text-left">
@@ -527,65 +527,68 @@ export default function Page({ params }: PageProps) {
       </div>
 
       {/* App Download Section */}
-      <div className="mt-16 bg-[#393a36] w-full max-w-[1400px] mx-auto mb-16 px-6 md:px-12 lg:px-16 py-12 lg:py-16 overflow-hidden rounded-3xl">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
+
+      <div
+        className="bg-[#393a36] mt-5 w-full 2xl:max-w-[1400px] max-w-[1200px] mx-auto mb-10 px-6 md:px-16
+  py-12 md:py-20  overflow-hidden  rounded-none md:rounded-[40px]"
+      >
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-10 md:gap-12">
+          {/* LEFT CONTENT */}
           <div className="max-w-xl text-center lg:text-left">
-            <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
+            {/* badge */}
+            <div className="flex items-center justify-center lg:justify-start gap-2 mb-5 md:mb-6">
               <img
                 className="h-5"
                 src="https://yaalo.com/_next/static/media/5Star.a8d15048.svg"
-                alt="5 Stars"
+                alt=""
               />
-              <h1 className="text-white text-xs sm:text-sm font-medium">
+              <h1 className="text-white text-xs sm:text-sm md:text-base font-medium">
                 50000+ Downloads
               </h1>
             </div>
 
-            <h1 className="text-white text-3xl sm:text-4xl lg:text-5xl font-semibold leading-tight">
-              Download The <br /> App Now
+            {/* heading */}
+            <h1 className="text-white text-2xl sm:text-3xl md:text-5xl font-semibold leading-tight">
+              Download The <br />
+              App Now
             </h1>
 
-            <p className="text-gray-300 mt-4 text-sm sm:text-base leading-relaxed">
+            {/* paragraph */}
+            <p className="text-white mt-4 md:mt-6 text-xs sm:text-sm md:text-lg leading-6">
               To use virtual number & international calling features. Buy, setup
               and manage your eSIMs easily.
             </p>
 
-            <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 mt-8">
-              <a
-                href="https://play.google.com/store/apps/details?id=com.activatewireless.app.yaalo"
-                target="_blank"
-                rel="noreferrer"
-              >
+            {/* buttons */}
+            <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 md:gap-4 mt-6 md:mt-8">
+              <a href="https://play.google.com/store/apps/details?id=com.activatewireless.app.yaalo">
                 <img
                   src="https://yaalo.com/_next/static/media/playLink.0hhnjxn3~uuaj.svg"
                   alt="Google Play"
-                  className="h-12 hover:scale-105 transition"
+                  className="h-10 md:h-12 hover:scale-105 transition"
                 />
               </a>
-              <a
-                href="https://apps.apple.com/app/id6753675047"
-                target="_blank"
-                rel="noreferrer"
-              >
+
+              <a href="https://apps.apple.com/app/id6753675047">
                 <img
                   src="https://yaalo.com/_next/static/media/appleLink.0jfeh4f2_t3bl.svg"
                   alt="App Store"
-                  className="h-12 hover:scale-105 transition"
+                  className="h-10 md:h-12 hover:scale-105 transition"
                 />
               </a>
             </div>
           </div>
 
+          {/* RIGHT IMAGE */}
           <div className="w-full lg:w-1/2 flex justify-center">
             <img
               src="https://yaalo.com/_next/image/?url=%2F_next%2Fstatic%2Fmedia%2FappInstallSS.729e81b9.png&w=1920&q=75"
               alt="App preview"
-              className="w-full max-w-[400px] lg:max-w-[450px] object-contain"
+              className="w-full max-w-[420px] md:max-w-[500px] object-contain"
             />
           </div>
         </div>
       </div>
-
       <Faqs />
       <Footer />
     </>
