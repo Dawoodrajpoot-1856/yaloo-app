@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 const socialLinks = [
   { name: "Twitter", icon: "twitterx", href: "#" },
@@ -22,25 +23,6 @@ const destinations = [
   "Spain",
 ];
 
-const quickLinks = [
-  { name: "Home", path: "/" },
-  { name: "About Us", path: "/about-us" },
-  { name: "Buy eSIM", path: "/destinations" },
-  { name: "Affiliate Partner", path: "/affiliate-partner" },
-  { name: "Blog", path: "/blog" },
-];
-
-const supportLinks = [
-  {
-    name: "eSIM Compatible Phones",
-    path: "/esim-compatible-devices",
-  },
-  {
-    name: "FAQs",
-    path: "/faq",
-  },
-];
-
 const paymentIcons = [
   "https://yaalo.com/_next/static/media/applePay.123km-kkjusoj.svg",
   "https://yaalo.com/_next/static/media/googlePay.0n3is1ts00unt.svg",
@@ -50,8 +32,35 @@ const paymentIcons = [
 ];
 
 const Footer = () => {
+  const t = useTranslations("footer");
+
+  const quickLinks = [
+    { name: t("links.home"), path: "/" },
+    { name: t("links.aboutUs"), path: "/about-us" },
+    { name: t("links.buyEsim"), path: "/destinations" },
+    { name: t("links.affiliatePartner"), path: "/affiliate-partner" },
+    { name: t("links.blog"), path: "/blog" },
+  ];
+
+  const supportLinks = [
+    {
+      name: t("links.compatiblePhones"),
+      path: "/esim-compatible-devices",
+    },
+    {
+      name: t("links.faqs"),
+      path: "/faq",
+    },
+  ];
+
+  const bottomLinks = [
+    { name: t("links.terms"), path: "/terms" },
+    { name: t("links.privacy"), path: "/privacy" },
+    { name: t("links.refund"), path: "/refund" },
+  ];
+
   return (
-    <footer className="max-w-[1400px] mx-auto  2xl:px-0 px-8  mt-14 sm:mt-20 pb-10">
+    <footer className="max-w-[1400px] mx-auto 2xl:px-0 px-8 mt-14 sm:mt-20 pb-10">
       <div className="bg-gray-100 rounded-[2.5rem] p-6 sm:p-10 lg:p-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-12">
         <div className="flex flex-col items-start">
           <Link href="/">
@@ -63,7 +72,7 @@ const Footer = () => {
           </Link>
 
           <h3 className="text-lg sm:text-xl mt-8 font-bold text-gray-900">
-            Follow us
+            {t("followUs")}
           </h3>
 
           <div className="mt-4 space-y-4">
@@ -73,10 +82,10 @@ const Footer = () => {
                 href={item.href}
                 className="flex items-center gap-3 text-gray-600 hover:text-black transition-colors group"
               >
-                <div className="p-1 bg-yellow-100 rounded-lg  transition-all">
+                <div className="p-1 bg-yellow-100 rounded-lg transition-all">
                   <img
                     src={`https://img.icons8.com/material-outlined/24/${item.icon}.png`}
-                    className="w-5 h-5 "
+                    className="w-5 h-5"
                     alt={item.name}
                   />
                 </div>
@@ -92,7 +101,7 @@ const Footer = () => {
         {/* Destinations */}
         <div>
           <h3 className="font-bold text-lg sm:text-xl mb-6 text-gray-900">
-            Popular Destinations
+            {t("popularDestinations")}
           </h3>
 
           <div className="grid grid-cols-1 gap-3">
@@ -111,10 +120,10 @@ const Footer = () => {
         {/* Quick Links + Support */}
         <div>
           <h3 className="font-bold text-lg sm:text-xl mb-2 text-gray-900">
-            Quick Links
+            {t("quickLinks")}
           </h3>
 
-          <div className="space-y-4">
+          <div className="space-y-4 mb-6">
             {quickLinks.map((item) => (
               <Link
                 key={item.name}
@@ -127,7 +136,7 @@ const Footer = () => {
           </div>
 
           <h3 className="font-bold text-lg sm:text-xl mt-2 mb-3 text-gray-900">
-            Support
+            {t("support")}
           </h3>
 
           <div className="space-y-4">
@@ -146,7 +155,7 @@ const Footer = () => {
         {/* Contact */}
         <div>
           <h3 className="font-bold text-lg sm:text-xl mb-4 text-gray-900">
-            Contact Info
+            {t("contactInfo")}
           </h3>
 
           <div className="space-y-4 text-sm sm:text-base text-gray-600 font-medium">
@@ -216,7 +225,7 @@ const Footer = () => {
       {/* Bottom Bar */}
       <div className="bg-gray-100 border border-gray-100 rounded-[1.5rem] mt-6 p-4 flex flex-col md:flex-row items-center justify-between gap-6">
         <p className="text-sm sm:text-base text-gray-500 font-medium">
-          © {new Date().getFullYear()} Yaalo. All Rights Reserved
+          © {new Date().getFullYear()} Yaalo. {t("rightsReserved")}
         </p>
 
         <div className="flex items-center gap-5 flex-wrap justify-center px-6 py-3 rounded-xl">
@@ -224,20 +233,20 @@ const Footer = () => {
             <img
               key={index}
               src={img}
-              alt="Payment Provider"
+              alt={t("paymentMethodAlt")}
               className="h-6 sm:h-7 transition-all"
             />
           ))}
         </div>
 
         <div className="flex gap-8 text-sm sm:text-base text-gray-500">
-          {["Terms", "Privacy", "Refund"].map((item) => (
+          {bottomLinks.map((item) => (
             <Link
-              key={item}
-              href={`/${item.toLowerCase()}`}
+              key={item.name}
+              href={item.path}
               className="hover:text-black font-semibold transition-colors"
             >
-              {item}
+              {item.name}
             </Link>
           ))}
         </div>

@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
 export interface CartItem {
   id: string | number;
   packageName: string;
@@ -21,15 +20,19 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<CartItem>) => {
-      const currentTotal = state.items.reduce((sum, item) => sum + item.quantity, 0);
+      const currentTotal = state.items.reduce(
+        (sum, item) => sum + item.quantity,
+        0,
+      );
 
-     
       if (currentTotal + action.payload.quantity > 5) {
         alert("Aap maximum 5 packages hi add kar sakte hain!");
         return;
       }
 
-      const existingItem = state.items.find((item) => item.id === action.payload.id);
+      const existingItem = state.items.find(
+        (item) => item.id === action.payload.id,
+      );
       if (existingItem) {
         existingItem.quantity += action.payload.quantity;
       } else {

@@ -13,7 +13,6 @@ export default function Page() {
 
   const walletBalance = 0.0;
 
-  // 1. Safe Price Converter Function (Taaki code bar bar repeat na ho aur crash safe rahe)
   const getNumericPrice = (price: any): number => {
     const priceString = String(price || "0");
     return parseFloat(priceString.replace(/[^0-9.]/g, "")) || 0;

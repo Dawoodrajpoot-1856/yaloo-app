@@ -12,31 +12,35 @@ import {
   ChevronLeft,
 } from "lucide-react";
 import Link from "next/link";
-
-const cards = [
-  {
-    title: "Budget-Friendly, Borderless",
-    desc: "Track usage, top-up anywhere, switch plans on the fly. Travel-tech made it easy with the Yaalo App Dashboard.",
-    icon: Globe2,
-  },
-  {
-    title: "Tether & Hotspot",
-    desc: "People care for their planet, and Yaalo makes sure you go green. So, no more plastic waste from physical SIM cards. Stress-free purchasing and usage.",
-    icon: UserRound,
-  },
-  {
-    title: "Your Data Passport",
-    desc: "Track usage, top-up anywhere, switch plans on the fly. Travel-tech made it easy with the Yaalo App Dashboard. Available on Apple and Google Play Stores!",
-    icon: Plane,
-  },
-  {
-    title: "Travel Light, Stay Connected",
-    desc: "Instant coverage in 200+ countries. Get online in seconds anywhere.",
-    icon: Handshake,
-  },
-];
+import { useTranslations } from "next-intl";
 
 export default function Travels() {
+  const t = useTranslations("travels");
+
+  // Array ko andar rakh Diya taaki 't' smoothly use ho sake bina kisi syntax error ke
+  const cards = [
+    {
+      title: t("cards.card1.title"),
+      desc: t("cards.card1.desc"),
+      icon: Globe2,
+    },
+    {
+      title: t("cards.card2.title"),
+      desc: t("cards.card2.desc"),
+      icon: UserRound,
+    },
+    {
+      title: t("cards.card3.title"),
+      desc: t("cards.card3.desc"),
+      icon: Plane,
+    },
+    {
+      title: t("cards.card4.title"),
+      desc: t("cards.card4.desc"),
+      icon: Handshake,
+    },
+  ];
+
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: "start",
@@ -58,17 +62,16 @@ export default function Travels() {
 
   return (
     <section className="w-full py-12 sm:py-16 lg:py-20 overflow-hidden">
-      <div className="max-w-[1400px] mx-auto   2xl:px-0 px-8 lg:px-12">
+      <div className="max-w-[1400px] mx-auto 2xl:px-0 px-8 lg:px-12">
         {/* HEADER */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
           <div className="max-w-3xl">
             <h2 className="text-3xl sm:text-4xl lg:text-6xl font-semibold leading-tight">
-              Why Are Travellers Switching to Yaalo?
+              {t("heading")}
             </h2>
 
             <p className="mt-4 text-gray-600 text-sm sm:text-base">
-              Because of zero roaming fees and international travel eSIM for
-              200+ destinations, Yaalo is the best choice.
+              {t("subheading")}
             </p>
           </div>
 
@@ -76,6 +79,7 @@ export default function Travels() {
             <button
               onClick={scrollPrev}
               className="w-11 h-11 rounded-full bg-yellow-400 flex items-center justify-center hover:scale-105 transition"
+              aria-label="Previous slide"
             >
               <ChevronLeft size={20} />
             </button>
@@ -83,6 +87,7 @@ export default function Travels() {
             <button
               onClick={scrollNext}
               className="w-11 h-11 rounded-full bg-yellow-400 flex items-center justify-center hover:scale-105 transition"
+              aria-label="Next slide"
             >
               <ChevronRight size={20} />
             </button>
@@ -133,7 +138,7 @@ export default function Travels() {
           <Link href="/destinations">
             <button className="group inline-flex items-center gap-2 px-6 h-12 rounded-2xl bg-yellow-300 hover:bg-black transition-all">
               <span className="text-sm font-medium text-black group-hover:text-white">
-                Show me eSIM plans
+                {t("ctaButton")}
               </span>
 
               <ArrowUpRight

@@ -1,6 +1,7 @@
 "use client";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { removeFromCart } from "@/redux/cartSlice";
+import { useLocale, useTranslations } from "next-intl";
 
 import {
   CardSim,
@@ -73,6 +74,7 @@ const NavItem = ({
 );
 
 export default function Header() {
+  const t = useTranslations("Header");
   const dispatch = useAppDispatch();
   const cartItems = useAppSelector((state) => state.cart.items);
 
@@ -82,8 +84,8 @@ export default function Header() {
   const [mobileMenu, setMobileMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const locale = useLocale();
 
-  // Calculate Subtotal (Assuming item.price is a string like "$10.00" or number)
   const calculateTotal = () => {
     return cartItems
       .reduce((total: number, item: any) => {
@@ -152,7 +154,7 @@ export default function Header() {
             <Link href="/destinations">
               <NavItem
                 icon={CardSim}
-                label="Buy eSIM"
+                label={t("buyEsim")}
                 hoverColor="text-blue-500"
                 glowColor="rgba(59,130,246,0.3)"
               />
@@ -160,7 +162,7 @@ export default function Header() {
             <Link href="/contact-us">
               <NavItem
                 icon={Mail}
-                label="Contact Info"
+                label={t("contactInfo")}
                 hoverColor="text-green-500"
                 glowColor="rgba(34,197,94,0.2)"
               />
@@ -168,7 +170,7 @@ export default function Header() {
             <Link href="/affiliate-partner">
               <NavItem
                 icon={Handshake}
-                label="Affiliate Partner"
+                label={t("affiliatePartner")}
                 hoverColor="text-red-500"
                 glowColor="rgba(239,68,68,0.18)"
               />
@@ -183,10 +185,10 @@ export default function Header() {
               <div className="relative h-7 overflow-hidden z-10 transition-all duration-300 group-hover:drop-shadow-[0_0_10px_rgba(249,115,22,0.6)]">
                 <div className="relative transition-transform duration-500 ease-out group-hover:-translate-y-7">
                   <div className="flex items-center gap-1 h-7 text-black font-semibold text-sm xl:text-base">
-                    <span>More</span> <ChevronDown size={16} />
+                    <span>{t("more")}</span> <ChevronDown size={16} />
                   </div>
                   <div className="flex items-center gap-1 h-7 text-black font-semibold text-sm xl:text-base">
-                    <span className="text-orange-500">More</span>{" "}
+                    <span className="text-orange-500">{t("more")}</span>{" "}
                     <ChevronDown
                       size={16}
                       className="text-orange-500 rotate-180"
@@ -197,13 +199,13 @@ export default function Header() {
               {open && (
                 <div className="absolute top-full left-0 mt-1 bg-white rounded-2xl p-2 w-56 space-y-0.5 border border-gray-100 shadow-xl z-20">
                   {[
-                    { name: "About Us", link: "/about-us" },
+                    { name: t("aboutUs"), link: "/about-us" },
                     {
-                      name: "eSIM Compatible Phones",
+                      name: t("compatiblePhones"),
                       link: "/esim-compatible-devices",
                     },
-                    { name: "FAQ", link: "/faq" },
-                    { name: "Blog", link: "/blog" },
+                    { name: t("faq"), link: "/faq" },
+                    { name: t("blog"), link: "/blog" },
                   ].map((item) => (
                     <a
                       href={item.link}
@@ -220,7 +222,11 @@ export default function Header() {
 
           {/* Desktop Right Side Utilities */}
           <div className="hidden lg:flex items-center gap-3 xl:gap-5">
-            <NavItem icon={Search} label="Search" hoverColor="text-blue-400" />
+            <NavItem
+              icon={Search}
+              label={t("search")}
+              hoverColor="text-blue-400"
+            />
 
             {isLoggedIn ? (
               <div
@@ -234,12 +240,12 @@ export default function Header() {
                   >
                     <div className="flex items-center gap-1.5 h-7 text-black font-semibold text-sm xl:text-base">
                       <User size={18} />
-                      <span>Account</span>
+                      <span>{t("account")}</span>
                       <ChevronDown size={14} />
                     </div>
                     <div className="flex items-center gap-1.5 h-7 text-indigo-500 font-semibold text-sm xl:text-base">
                       <User size={18} />
-                      <span>Account</span>
+                      <span>{t("account")}</span>
                       <ChevronDown size={14} className="rotate-180" />
                     </div>
                   </div>
@@ -250,20 +256,20 @@ export default function Header() {
                       href="/my-esims"
                       className="flex items-center gap-2 px-4 py-2 text-xs text-black hover:bg-indigo-50 hover:text-indigo-600 rounded-xl cursor-pointer transition-all font-bold"
                     >
-                      <CardSim size={14} /> My eSIM
+                      <CardSim size={14} /> {t("myEsim")}
                     </Link>
                     <Link
                       href="/wallet"
                       className="flex items-center gap-2 px-4 py-2 text-xs text-black hover:bg-indigo-50 hover:text-indigo-600 rounded-xl cursor-pointer transition-all font-bold"
                     >
-                      <Wallet size={14} /> Wallet
+                      <Wallet size={14} /> {t("wallet")}
                     </Link>
                     <hr className="border-gray-100 my-1" />
                     <button
                       onClick={handleLogout}
                       className="w-full flex items-center gap-2 px-4 py-2 text-xs text-red-500 hover:bg-red-50 rounded-xl cursor-pointer transition-all font-bold text-left"
                     >
-                      <LogOut size={14} /> Logout
+                      <LogOut size={14} /> {t("logout")}
                     </button>
                   </div>
                 )}
@@ -272,7 +278,7 @@ export default function Header() {
               <Link href="/login">
                 <NavItem
                   icon={User}
-                  label="Login"
+                  label={t("login")}
                   hoverColor="text-indigo-500"
                 />
               </Link>
@@ -293,23 +299,58 @@ export default function Header() {
               {/* Language Dropdown */}
               <div className="relative group py-1.5">
                 <button className="flex items-center gap-0.5 font-semibold text-sm xl:text-base text-gray-700">
-                  EN{" "}
+                  {locale.toUpperCase()}
                   <ChevronDown
                     size={14}
                     className="transition-transform duration-200 group-hover:rotate-180"
                   />
                 </button>
+
                 <div className="absolute right-0 top-full mt-1 w-36 bg-white border border-gray-100 rounded-xl shadow-xl py-1 z-50 hidden group-hover:block">
-                  {["English", "Español", "Français", "Deutsch", "العربية"].map(
-                    (lang) => (
-                      <button
-                        key={lang}
-                        className="w-full px-4 py-2 text-left text-xs font-semibold text-gray-700 hover:bg-gray-50 transition-colors"
-                      >
-                        {lang}
-                      </button>
-                    ),
-                  )}
+                  <Link
+                    href="/"
+                    className={`block px-4 py-2 text-xs font-semibold hover:bg-gray-50 ${
+                      locale === "en" ? "text-blue-600" : "text-gray-700"
+                    }`}
+                  >
+                    English
+                  </Link>
+
+                  <Link
+                    href="/es"
+                    className={`block px-4 py-2 text-xs font-semibold hover:bg-gray-50 ${
+                      locale === "es" ? "text-blue-600" : "text-gray-700"
+                    }`}
+                  >
+                    Español
+                  </Link>
+
+                  <Link
+                    href="/ar"
+                    className={`block px-4 py-2 text-xs font-semibold hover:bg-gray-50 ${
+                      locale === "ar" ? "text-blue-600" : "text-gray-700"
+                    }`}
+                  >
+                    العربية
+                  </Link>
+
+                  <Link
+                    href="/nl"
+                    className={`block px-4 py-2 text-xs font-semibold hover:bg-gray-50 ${
+                      locale === "nl" ? "text-blue-600" : "text-gray-700"
+                    }`}
+                  >
+                    Nederlands
+                  </Link>
+
+                  <Link
+                    href="/tr"
+                    className={`block px-4 py-2 text-xs font-semibold hover:bg-gray-50 ${
+                      locale === "tr" ? "text-blue-600" : "text-gray-700"
+                    }`}
+                  >
+                    Türkçe
+                  </Link>
                 </div>
               </div>
             </div>
@@ -355,7 +396,9 @@ export default function Header() {
         } flex flex-col overflow-hidden`}
       >
         <div className="flex items-center justify-between p-4 sm:p-5 border-b border-gray-100 shrink-0">
-          <h2 className="font-bold text-base sm:text-lg text-black">My Cart</h2>
+          <h2 className="font-bold text-base sm:text-lg text-black">
+            {t("myCart")}
+          </h2>
           <button
             onClick={() => setCartOpen(false)}
             className="p-2 hover:bg-gray-100 rounded-full transition-colors"
@@ -372,10 +415,10 @@ export default function Header() {
                 <ShoppingCart size={24} className="text-gray-400" />
               </div>
               <p className="text-gray-900 font-bold text-base mb-1">
-                Your cart is empty
+                {t("cartEmpty")}
               </p>
               <p className="text-gray-500 text-xs max-w-[200px] mb-5">
-                Looks like you haven't added any eSIM plans yet.
+                {t("cartEmptyDesc")}
               </p>
               <Button
                 onClick={() => {
@@ -387,7 +430,7 @@ export default function Header() {
                 }}
                 className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold rounded-xl px-6 py-2 text-sm shadow-sm transition-all"
               >
-                Explore Plans
+                {t("explorePlans")}
               </Button>
             </div>
           ) : (
@@ -403,19 +446,19 @@ export default function Header() {
                     </h3>
                     <div className="mt-1 text-xs sm:text-sm text-gray-500 space-y-0.5">
                       <p>
-                        Country:{" "}
+                        {t("country")}:{" "}
                         <span className="font-medium text-gray-800">
                           {item.country}
                         </span>
                       </p>
                       <p>
-                        Quantity:{" "}
+                        {t("quantity")}:{" "}
                         <span className="font-medium text-gray-800">
                           {item.quantity}
                         </span>
                       </p>
                       <p>
-                        Price:{" "}
+                        {t("price")}:{" "}
                         <span className="font-medium text-gray-800">
                           {item.price}
                         </span>
@@ -454,7 +497,7 @@ export default function Header() {
           <div className="p-4 sm:p-5 border-t border-gray-100 bg-white shrink-0 shadow-[0_-4px_12px_rgba(0,0,0,0.03)] rounded-b-none sm:rounded-b-2xl">
             <div className="flex items-center justify-between mb-4">
               <span className="text-gray-500 text-sm font-medium">
-                Subtotal
+                {t("subtotal")}
               </span>
               <span className="text-xl font-bold text-gray-900">
                 ${calculateTotal()}
@@ -462,7 +505,7 @@ export default function Header() {
             </div>
             <Link href="/cart" onClick={() => setCartOpen(false)}>
               <button className="w-full bg-yellow-400 hover:bg-black text-black hover:text-white font-bold py-3 px-4 rounded-xl shadow-sm transition-all duration-300 flex items-center justify-center gap-2 group active:scale-[0.99]">
-                <span>Proceed to Checkout</span>
+                <span>{t("checkout")}</span>
                 <ArrowRight
                   size={16}
                   className="transition-transform group-hover:translate-x-1"
@@ -504,7 +547,7 @@ export default function Header() {
         <div className="flex-1 overflow-y-auto p-4 space-y-6">
           <div className="space-y-1">
             <p className="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider">
-              Main Menu
+              {t("mainMenu")}
             </p>
             <nav className="flex flex-col gap-0.5">
               <Link
@@ -512,16 +555,16 @@ export default function Header() {
                 onClick={() => setMobileMenu(false)}
                 className="flex items-center gap-3 px-3 py-3 text-black font-bold hover:bg-gray-50 rounded-xl transition-all text-sm"
               >
-                <CardSim size={18} className="text-blue-500 shrink-0" /> Buy
-                eSIM
+                <CardSim size={18} className="text-blue-500 shrink-0" />{" "}
+                {t("buyEsim")}
               </Link>
               <Link
                 href="/contact-us"
                 onClick={() => setMobileMenu(false)}
                 className="flex items-center gap-3 px-3 py-3 text-black font-bold hover:bg-gray-50 rounded-xl transition-all text-sm"
               >
-                <Mail size={18} className="text-green-500 shrink-0" /> Contact
-                Info
+                <Mail size={18} className="text-green-500 shrink-0" />{" "}
+                {t("contactInfo")}
               </Link>
               <Link
                 href="/affiliate-partner"
@@ -529,7 +572,7 @@ export default function Header() {
                 className="flex items-center gap-3 px-3 py-3 text-black font-bold hover:bg-gray-50 rounded-xl transition-all text-sm"
               >
                 <Handshake size={18} className="text-red-500 shrink-0" />{" "}
-                Affiliate Partner
+                {t("affiliatePartner")}
               </Link>
             </nav>
           </div>
@@ -537,7 +580,7 @@ export default function Header() {
           {/* More Items section inside Mobile Drawer */}
           <div className="space-y-1">
             <p className="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider">
-              Company & Info
+              {t("companyInfo")}
             </p>
             <div className="flex flex-col gap-0.5">
               <Link
@@ -545,7 +588,8 @@ export default function Header() {
                 onClick={() => setMobileMenu(false)}
                 className="flex items-center gap-3 px-3 py-2.5 text-gray-700 font-semibold hover:bg-gray-50 rounded-xl transition-all text-sm"
               >
-                <Info size={16} className="text-orange-500 shrink-0" /> About Us
+                <Info size={16} className="text-orange-500 shrink-0" />{" "}
+                {t("aboutUs")}
               </Link>
               <Link
                 href="/esim-compatible-devices"
@@ -553,7 +597,7 @@ export default function Header() {
                 className="flex items-center gap-3 px-3 py-2.5 text-gray-700 font-semibold hover:bg-gray-50 rounded-xl transition-all text-sm"
               >
                 <Globe size={16} className="text-orange-500 shrink-0" />{" "}
-                Compatible Devices
+                {t("compatiblePhones")}
               </Link>
               <Link
                 href="/faq"
@@ -561,14 +605,15 @@ export default function Header() {
                 className="flex items-center gap-3 px-3 py-2.5 text-gray-700 font-semibold hover:bg-gray-50 rounded-xl transition-all text-sm"
               >
                 <HelpCircle size={16} className="text-orange-500 shrink-0" />{" "}
-                FAQ
+                {t("faq")}
               </Link>
               <Link
                 href="/blog"
                 onClick={() => setMobileMenu(false)}
                 className="flex items-center gap-3 px-3 py-2.5 text-gray-700 font-semibold hover:bg-gray-50 rounded-xl transition-all text-sm"
               >
-                <FileText size={16} className="text-orange-500 shrink-0" /> Blog
+                <FileText size={16} className="text-orange-500 shrink-0" />{" "}
+                {t("blog")}
               </Link>
             </div>
           </div>
@@ -582,20 +627,21 @@ export default function Header() {
                   onClick={() => setMobileMenu(false)}
                   className="flex items-center gap-3 px-3 py-2.5 text-sm font-bold text-gray-800 hover:bg-indigo-50 rounded-xl"
                 >
-                  <CardSim size={16} className="text-indigo-500" /> My eSIM
+                  <CardSim size={16} className="text-indigo-500" />{" "}
+                  {t("myEsim")}
                 </Link>
                 <Link
                   href="/wallet"
                   onClick={() => setMobileMenu(false)}
                   className="flex items-center gap-3 px-3 py-2.5 text-sm font-bold text-gray-800 hover:bg-indigo-50 rounded-xl"
                 >
-                  <Wallet size={16} className="text-indigo-500" /> Wallet
+                  <Wallet size={16} className="text-indigo-500" /> {t("wallet")}
                 </Link>
                 <button
                   onClick={handleLogout}
                   className="w-full flex items-center gap-3 px-3 py-2.5 text-sm font-bold text-red-500 hover:bg-red-50 rounded-xl text-left"
                 >
-                  <LogOut size={16} /> Logout
+                  <LogOut size={16} /> {t("logout")}
                 </button>
               </div>
             ) : (
@@ -604,7 +650,7 @@ export default function Header() {
                 onClick={() => setMobileMenu(false)}
                 className="flex items-center justify-center gap-2 w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-xl transition-colors text-sm shadow-sm"
               >
-                <User size={16} /> Login / Signup
+                <User size={16} /> {t("loginSignup")}
               </Link>
             )}
           </div>

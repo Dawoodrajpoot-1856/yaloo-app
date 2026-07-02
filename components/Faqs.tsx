@@ -1,44 +1,47 @@
 "use client";
 
 import { ChevronDown } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function Faqs() {
+  const t = useTranslations();
+
   const faqs = [
     {
-      q: "Is eSIM good for travel?",
-      a: "Yes! Yaalo eSIM is built for travellers with 200+ destinations and no roaming issues.",
+      q: t("faqs.items.0.q"),
+      a: t("faqs.items.0.a"),
     },
     {
-      q: "Which eSIM is best for travelling?",
-      a: "Yaalo offers flexible data plans including local, regional and global options.",
+      q: t("faqs.items.1.q"),
+      a: t("faqs.items.1.a"),
     },
     {
-      q: "Can you install eSIM before travelling?",
-      a: "Yes, you can install it before travel and it activates once you land.",
+      q: t("faqs.items.2.q"),
+      a: t("faqs.items.2.a"),
     },
     {
-      q: "Can I use eSIM in any country?",
-      a: "We support 200+ countries. Always check your selected plan before purchase.",
+      q: t("faqs.items.3.q"),
+      a: t("faqs.items.3.a"),
     },
     {
-      q: "Which devices are eSIM compatible?",
-      a: "Most modern Apple, Samsung and Google devices support eSIM.",
+      q: t("faqs.items.4.q"),
+      a: t("faqs.items.4.a"),
     },
     {
-      q: "How do I know if my eSIM is active?",
-      a: "When mobile data works after landing, your eSIM is active.",
+      q: t("faqs.items.5.q"),
+      a: t("faqs.items.5.a"),
     },
     {
-      q: "What if Yaalo eSIM can't work?",
-      a: "Contact support, we’ll fix it or provide a refund if needed.",
+      q: t("faqs.items.6.q"),
+      a: t("faqs.items.6.a"),
     },
     {
-      q: "Can I top up or extend a plan?",
-      a: "Yes, you can extend directly from the Yaalo app instantly.",
+      q: t("faqs.items.7.q"),
+      a: t("faqs.items.7.a"),
     },
     {
-      q: "Is my eSIM secure?",
-      a: "Yes, we use encrypted secure profile delivery.",
+      q: t("faqs.items.8.q"),
+      a: t("faqs.items.8.a"),
     },
   ];
 
@@ -47,11 +50,11 @@ export default function Faqs() {
       {/* HEADER */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 text-center mb-14">
         <h1 className="text-3xl sm:text-5xl font-medium leading-tight">
-          Any Ambiguity in Mind? These FAQs Will Help!
+          {t("faqs.heading")}
         </h1>
 
         <p className="mt-5 text-gray-600 text-base sm:text-lg">
-          Find quick answers to common queries.
+          {t("faqs.subHeading")}
         </p>
       </section>
 

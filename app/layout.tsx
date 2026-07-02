@@ -1,25 +1,31 @@
-import "./globals.css";
-import NextTopLoader from "nextjs-toploader";
-import { Geist } from "next/font/google";
-import { cn } from "@/lib/utils";
-import ReduxProvider from "../redux/Reduxprovider";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
+import { notFound } from "next/navigation";
+import "@/app/globals.css"; // Your styles
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
+const locales = ["en", "es"];
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: { locale?: string }; // Make it optional just in case
 }) {
+  const { locale = "en" } = await params;
+
+  if (!locales.includes(locale)) {
+    notFound();
+  }
+
+  const messages = await getMessages();
+
   return (
-    <html lang="en" className={cn("font-sans", geist.variable)}>
+    <html lang={locale} className="font-sans antialiased">
       <body>
-        <NextTopLoader
-          color="#FACC15" // yellow (shadcn + yaalo style)
-          height={3}
-          showSpinner={false}
-        />
-        <ReduxProvider>{children}</ReduxProvider>
+        <NextIntlClientProvider messages={messages}>
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );

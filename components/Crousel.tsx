@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import { useTranslations } from "next-intl";
 
 interface Review {
   name: string;
@@ -9,54 +10,19 @@ interface Review {
   date: string;
 }
 
-const reviews: Review[] = [
-  {
-    name: "Ali Khan",
-    text: "Yaalo eSIM saved me so much money while traveling Europe. Super easy setup!",
-    date: "May 12, 2024",
-  },
-  {
-    name: "Sara Ahmed",
-    text: "Instant activation and amazing speed. Worked in 5 countries.",
-    date: "April 20, 2024",
-  },
-  {
-    name: "John Smith",
-    text: "No roaming stress anymore. Works perfectly everywhere.",
-    date: "March 15, 2024",
-  },
-  {
-    name: "Ayesha Noor",
-    text: "Best travel decision ever. Very smooth internet abroad.",
-    date: "Feb 10, 2024",
-  },
-  {
-    name: "Luca Italy",
-    text: "Used from Rome to Berlin. Never lost signal once.",
-    date: "Jan 25, 2024",
-  },
-  {
-    name: "Ravi Kumar",
-    text: "Cheaper than roaming. Support is super fast.",
-    date: "Dec 14, 2023",
-  },
-  {
-    name: "Clara Spain",
-    text: "Activated on flight. Worked instantly after landing.",
-    date: "Nov 30, 2023",
-  },
-];
-
 export default function Crousel() {
+  const t = useTranslations();
+
+  const reviews = t.raw("reviews.items") as Review[];
+
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: "start",
   });
 
-  const [selectedIndex, setSelectedIndex] = useState<number>(0);
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
 
-  // Callback functions taake re-render par functions baar baar na banen
   const onInit = useCallback(() => {
     if (!emblaApi) return;
     setScrollSnaps(emblaApi.scrollSnapList() || []);
@@ -70,16 +36,13 @@ export default function Crousel() {
   useEffect(() => {
     if (!emblaApi) return;
 
-    // Pehle initial snaps aur index load karenge safely
     onInit();
     onSelect();
 
-    // Event listeners add kiye
     emblaApi.on("init", onInit);
     emblaApi.on("reInit", onInit);
     emblaApi.on("select", onSelect);
 
-    // Auto-scroll logic safely handles loop jumps
     const interval = setInterval(() => {
       if (emblaApi.canScrollNext()) {
         emblaApi.scrollNext();
@@ -99,12 +62,14 @@ export default function Crousel() {
   return (
     <section className="py-10 sm:py-16 bg-white w-full overflow-hidden">
       <div className="max-w-[1500px] mx-auto px-6 sm:px-12 md:px-16 w-full">
-        {/* HEADER SECTION */}
+        {/* HEADER */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-8 sm:mb-12">
           <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold leading-tight text-black">
-            Traveller Voices <br />
-            They are Using Yaalo forever!
+            {t("reviews.heading")}
+            <br />
+            {t("reviews.subHeading")}
           </h1>
+
           <div className="flex gap-3 sm:gap-4 shrink-0">
             <a
               href="https://play.google.com/store/apps/details?id=com.activatewireless.app.yaalo"
@@ -114,9 +79,10 @@ export default function Crousel() {
               <img
                 src="https://yaalo.com/_next/static/media/playLink.0hhnjxn3~uuaj.svg"
                 className="h-9 sm:h-12 hover:scale-105 transition"
-                alt="Play Store"
+                alt={t("reviews.playStoreAlt")}
               />
             </a>
+
             <a
               href="https://apps.apple.com/app/id6753675047"
               target="_blank"
@@ -125,12 +91,13 @@ export default function Crousel() {
               <img
                 src="https://yaalo.com/_next/static/media/appleLink.0jfeh4f2_t3bl.svg"
                 className="h-9 sm:h-12 hover:scale-105 transition"
-                alt="App Store"
+                alt={t("reviews.appStoreAlt")}
               />
             </a>
           </div>
         </div>
 
+        {/* CAROUSEL */}
         <div className="overflow-hidden w-full" ref={emblaRef}>
           <div className="flex -ml-6">
             {reviews.map((item, i) => (
@@ -153,6 +120,7 @@ export default function Crousel() {
                         <h3 className="font-bold text-gray-900 leading-tight">
                           {item.name}
                         </h3>
+
                         <span className="text-[11px] text-gray-400 font-medium">
                           {item.date}
                         </span>
@@ -181,12 +149,12 @@ export default function Crousel() {
           </div>
         </div>
 
-        {/* DOTS NAVIGATION */}
+        {/* DOTS */}
         <div className="flex justify-center gap-2 mt-8 sm:mt-10">
           {scrollSnaps.map((_, i) => (
             <button
               key={i}
-              onClick={() => emblaApi && emblaApi.scrollTo(i)}
+              onClick={() => emblaApi?.scrollTo(i)}
               className={`h-2 rounded-full transition-all duration-300 ${
                 i === selectedIndex ? "w-8 bg-yellow-400" : "w-2 bg-gray-300"
               }`}

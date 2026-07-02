@@ -1,0 +1,241 @@
+{
+    "Hero": {
+        "badgeText": "Digitale vrijheid met activatie in 3 stappen",
+        "brandName": "Yaalo eSIM ",
+        "titlePart1": "Reis de wereld rond, ",
+        "titlePart2": "betaal niet te veel",
+        "searchPlaceholder": "Waar vlieg je de volgende keer naartoe?",
+        "description": "Je reizen zijn nu nog makkelijker. Met Yaalo eSIM land je, maak je verbinding en krijg je direct 5G-data in meer dan 200 bestemmingen tegen lokale tarieven.",
+        "downloadApp": "Download de app nu",
+        "modalTitle": "Bestemming zoeken",
+        "modalDescription": "Vind direct eSIM-pakketten voor je volgende route.",
+        "popularCountriesTitle": "Populaire landen",
+        "closeSearch": "Zoeken sluiten",
+        "closeBtn": "Sluiten",
+        "features": {
+            "localRates": {
+                "title": "Lokale tarieven",
+                "desc": "Databonnementen gericht op de stijl van de reiziger, zonder extra roamingkosten."
+            },
+            "plugOnline": {
+                "title": "Plug & Online",
+                "desc": "Data die met je meereist - het gemak of plug-and-play."
+            },
+            "buyOnline": {
+                "title": "Online kopen",
+                "desc": "Van Parijs naar Praag naar Porto zonder van simkaart te wisselen."
+            },
+            "alwaysOnline": {
+                "title": "Altijd online",
+                "desc": "Hulp nodig om 2 uur 's nachts? Wij zijn wakker."
+            }
+        },
+        "countries": {
+            "us": "Verenigde Staten",
+            "uk": "Verenigd Koninkrijk",
+            "germany": "Duitsland",
+            "turkey": "Turkije",
+            "thailand": "Thailand",
+            "canada": "Canada"
+        }
+    },
+    "Adventures": {
+        "title": "Kies je avontuur",
+        "subtitle": "Vind Yaalo eSIM's die zijn gebouwd voor jouw route",
+        "searchDestination": "Zoek je bestemming",
+        "startingPrice": "Vanaf {price}",
+        "howItWorksTitle": "Hoe werkt Yaalo eSIM?",
+        "howItWorksSpoiler": "(Spoiler: Het is belachelijk eenvoudig)",
+        "howItWorksDesc": "Gebruikers gaan er vaak van uit dat technische processen ingewikkeld zijn. Maar het activeren van Yaalo eSIM is binnen 3 stappen zo gepiept en verbonden!",
+        "tabs": {
+            "local": "Lokaal",
+            "regional": "Regionaal",
+            "global": "Wereldwijd"
+        }
+    },
+    "Cards": {
+        "steps": [
+            {
+                "title": "Koop een dataplan",
+                "desc": "Zoek je bestemming en ontdek de beschikbare eSIM-abonnementen die aansluiten op jouw behoeften."
+            },
+            {
+                "title": "Installeer de eSIM",
+                "desc": "Volg de eenvoudige installatiehandleiding die naar je e-mail is gestuurd of scan de QR-code."
+            },
+            {
+                "title": "Activeer je plan",
+                "desc": "Zodra je aankomt, activeer je het dataplan om direct verbonden te blijven."
+            }
+        ],
+        "readyTitle": "Is jouw telefoon eSIM-ready?",
+        "readyDesc": "Controleer het in een paar seconden! De meeste moderne apparaten zijn compatibel met eSIM.",
+        "button": "Alle eSIM-compatibele telefoons"
+    },
+    "travels": {
+        "heading": "Waarom Reizigers Kiezen voor Yaalo",
+        "subheading": "Geniet van nul roamingkosten en betrouwbare eSIM-connectiviteit in meer dan 200 bestemmingen wereldwijd met Yaalo.",
+        "ctaButton": "Ontdek eSIM-abonnementen",
+        "cards": {
+            "card1": {
+                "title": "Betaalbare Wereldwijde Connectiviteit",
+                "desc": "Blijf verbonden zonder dure roamingkosten. Kies flexibele abonnementen die passen bij je reisbudget."
+            },
+            "card2": {
+                "title": "Hotspot & Tethering Ondersteuning",
+                "desc": "Deel je internetverbinding met meerdere apparaten waar je ook reist, zodat iedereen online blijft."
+            },
+            "card3": {
+                "title": "Beheer Alles met Gemak",
+                "desc": "Monitor je dataverbruik, waardeer op elk moment op en wissel moeiteloos van abonnement via de Yaalo-app."
+            },
+            "card4": {
+                "title": "Reis Vrijuit, Blijf Verbonden",
+                "desc": "Krijg direct dekking in meer dan 200 bestemmingen en activeer je eSIM binnen enkele minuten na aankomst."
+            }
+        }
+    },
+    "reviews": {
+        "heading": "Stemmen van Reizigers",
+        "subHeading": "Ze gebruiken Yaalo voor altijd!",
+        "playStoreAlt": "Play Store",
+        "appStoreAlt": "App Store",
+        "items": [
+            {
+                "name": "Ali Khan",
+                "text": "Yaalo eSIM heeft me zoveel geld bespaard tijdens het reizen in Europa. Super eenvoudige installatie!",
+                "date": "12 mei 2024"
+            },
+            {
+                "name": "Sara Ahmed",
+                "text": "Directe activatie en geweldige snelheid. Werkte in 5 landen.",
+                "date": "20 april 2024"
+            },
+            {
+                "name": "John Smith",
+                "text": "Geen roamingstress meer. Werkt overal perfect.",
+                "date": "15 maart 2024"
+            },
+            {
+                "name": "Ayesha Noor",
+                "text": "Beste reisbeslissing ooit. Zeer soepel internet in het buitenland.",
+                "date": "10 februari 2024"
+            },
+            {
+                "name": "Luca Italy",
+                "text": "Gebruikt van Rome naar Berlijn. Geen enkele keer het signaal verloren.",
+                "date": "25 januari 2024"
+            },
+            {
+                "name": "Ravi Kumar",
+                "text": "Goedkoper dan roaming. Klantenservice is super snel.",
+                "date": "14 december 2023"
+            },
+            {
+                "name": "Clara Spain",
+                "text": "Geactiveerd tijdens de vlucht. Werkte direct na de landing.",
+                "date": "30 november 2023"
+            }
+        ]
+    },
+    "downloadApp": {
+        "downloads": "50.000+ downloads",
+        "heading": "Download de",
+        "heading2": "App Nu",
+        "description": "Gebruik virtuele nummers en internationale belfuncties. Koop, installeer en beheer je eSIM's heel eenvoudig.",
+        "googlePlayAlt": "Google Play",
+        "appStoreAlt": "App Store",
+        "previewAlt": "App-voorbeeld"
+    },
+    "faqs": {
+        "heading": "Vragen in Gedachten? Deze FAQ Helpt Je Verder!",
+        "subHeading": "Vind snel antwoorden auf de meest gestelde vragen.",
+        "items": [
+            {
+                "q": "Is een eSIM geschikt voor reizen?",
+                "a": "Ja! Yaalo eSIM kan zonder roamingproblemen worden gebruikt in meer dan 200 bestemmingen."
+            },
+            {
+                "q": "Wat is de beste eSIM voor reizen?",
+                "a": "Yaalo biedt lokale, regionale en wereldwijde eSIM-plannen aan."
+            },
+            {
+                "q": "Kan ik de eSIM vóór mijn reis installeren?",
+                "a": "Ja. Je kunt hem vóór je reis installeren en bij aankomst activeren."
+            },
+            {
+                "q": "Kan ik de eSIM in elk land gebruiken?",
+                "a": "Yaalo ondersteunt meer dan 200 bestemmingen. Controleer de dekking van het plan voordat je het koopt."
+            },
+            {
+                "q": "Welke apparaten ondersteunen eSIM?",
+                "a": "De meeste nieuwe smartphones van Apple, Samsung, Google en andere merken ondersteunen eSIM-technologie."
+            },
+            {
+                "q": "Hoe weet ik of mijn eSIM actief is?",
+                "a": "Als mobiele data werkt, is je eSIM succesvol geactiveerd."
+            },
+            {
+                "q": "Wat moet ik doen als mijn Yaalo eSIM niet werkt?",
+                "a": "Neem contact op met ons ondersteuningsteam. We lossen het probleem op of zorgen indien nodig voor een terugbetaling."
+            },
+            {
+                "q": "Kan ik mijn plan verlengen of data opwaarderen?",
+                "a": "Ja. Je kunt eenvoudig extra data kopen of je plan verlengen via de Yaalo-app."
+            },
+            {
+                "q": "Is mijn eSIM veilig?",
+                "a": "Ja. Yaalo maakt gebruik van een veilige en gecodeerde levering van eSIM-profielen."
+            }
+        ]
+    },
+    "Header": {
+        "buyEsim": "eSIM Kopen",
+        "contactInfo": "Contact Info",
+        "affiliatePartner": "Affiliate Partner",
+        "more": "Meer",
+        "aboutUs": "Over Ons",
+        "compatiblePhones": "eSIM Compatibele Telefoons",
+        "faq": "Veelgestelde Vragen",
+        "blog": "Blog",
+        "search": "Zoeken",
+        "account": "Account",
+        "myEsim": "Mijn eSIM",
+        "wallet": "Portemonnee",
+        "logout": "Uitloggen",
+        "login": "Inloggen",
+        "loginSignup": "Inloggen / Aanmelden",
+        "myCart": "Mijn Winkelwagen",
+        "cartEmpty": "Je winkelwagen is leeg",
+        "cartEmptyDesc": "Het lijkt erop dat je nog geen eSIM-abonnementen hebt toegevoegd.",
+        "explorePlans": "Plannen Ontdekken",
+        "country": "Land",
+        "quantity": "Aantal",
+        "price": "Prijs",
+        "subtotal": "Subtotaal",
+        "checkout": "Doorgaan naar Afrekenen",
+        "mainMenu": "Hoofdmenu",
+        "companyInfo": "Bedrijf & Info"
+    },
+    "footer": {
+        "followUs": "Volg ons",
+        "popularDestinations": "Populaire Bestemmingen",
+        "quickLinks": "Snelle Links",
+        "support": "Ondersteuning",
+        "contactInfo": "Contactgegevens",
+        "rightsReserved": "Alle rechten voorbehouden",
+        "paymentMethodAlt": "Betalingsprovider",
+        "links": {
+            "home": "Home",
+            "aboutUs": "Over Ons",
+            "buyEsim": "eSIM Kopen",
+            "affiliatePartner": "Affiliate Partner",
+            "blog": "Blog",
+            "compatiblePhones": "eSIM Compatibele Telefoons",
+            "faqs": "Veelgestelde Vragen",
+            "terms": "Voorwaarden",
+            "privacy": "Privacy",
+            "refund": "Terugbetaling"
+        }
+    }
+}

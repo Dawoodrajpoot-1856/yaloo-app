@@ -1,0 +1,241 @@
+{
+    "Hero": {
+        "badgeText": "Digital Freedom With 3-Step Activation",
+        "brandName": "Yaalo eSIM",
+        "titlePart1": "Roam the",
+        "titlePart2": "World, Not the Fees",
+        "searchPlaceholder": "Where are you flying next?",
+        "description": "Your trips just got easier. With Yaalo eSIM, you land, connect, and get instant 5G data in 200+ destinations at local rates.",
+        "downloadApp": "Download the App Now",
+        "modalTitle": "Search Destination",
+        "modalDescription": "Find instant eSIM packages for your next route.",
+        "popularCountriesTitle": "Popular Countries",
+        "closeSearch": "Close search",
+        "closeBtn": "Close",
+        "features": {
+            "localRates": {
+                "title": "Local Rates",
+                "desc": "Data plans focusing on travellers’ style, not roaming premiums."
+            },
+            "plugOnline": {
+                "title": "Plug & Online",
+                "desc": "Data that Travels With You-and-Play Simplicity"
+            },
+            "buyOnline": {
+                "title": "Buy Online",
+                "desc": "Paris to Prague to Porto without switching SIMs."
+            },
+            "alwaysOnline": {
+                "title": "Always Online",
+                "desc": "Need help at 2 AM? We’re awake."
+            }
+        },
+        "countries": {
+            "us": "United States",
+            "uk": "United Kingdom",
+            "germany": "Germany",
+            "turkey": "Turkey",
+            "thailand": "Thailand",
+            "canada": "Canada"
+        }
+    },
+    "Adventures": {
+        "title": "Pick Your Adventure",
+        "subtitle": "Find Yaalo eSIMs built for your route",
+        "searchDestination": "Search your destination",
+        "startingPrice": "Starts at {price}",
+        "howItWorksTitle": "How Yaalo eSIM Works?",
+        "howItWorksSpoiler": "(Spoiler: It’s Ridiculously Simple)",
+        "howItWorksDesc": "Users often assume that technical processes are complex. But activating Yaalo eSIM is like 1, 2, 3 and connected!",
+        "tabs": {
+            "local": "Local",
+            "regional": "Regional",
+            "global": "Global"
+        }
+    },
+    "Cards": {
+        "steps": [
+            {
+                "title": "Buy a Data Plan",
+                "desc": "Search for your destination and choose the perfect eSIM plan that fits your travel needs."
+            },
+            {
+                "title": "Install Your eSIM",
+                "desc": "Follow the easy setup guide sent to your email or simply scan the QR code to install."
+            },
+            {
+                "title": "Activate & Connect",
+                "desc": "Activate your eSIM upon arrival and enjoy instant, seamless connectivity."
+            }
+        ],
+        "readyTitle": "Is Your Phone eSIM Ready?",
+        "readyDesc": "Check compatibility in seconds. Most modern smartphones support eSIM technology.",
+        "button": "View All eSIM Compatible Phones"
+    },
+    "travels": {
+        "heading": "Why Travelers Choose Yaalo",
+        "subheading": "Enjoy zero roaming fees and reliable eSIM connectivity across 200+ destinations worldwide with Yaalo.",
+        "ctaButton": "Explore eSIM Plans",
+        "cards": {
+            "card1": {
+                "title": "Affordable Worldwide Connectivity",
+                "desc": "Stay connected without expensive roaming charges. Choose flexible plans that match your travel budget."
+            },
+            "card2": {
+                "title": "Hotspot & Tethering Support",
+                "desc": "Share your internet connection with multiple devices wherever you travel, keeping everyone online."
+            },
+            "card3": {
+                "title": "Manage Everything with Ease",
+                "desc": "Monitor your data usage, top up anytime, and switch plans effortlessly through the Yaalo app."
+            },
+            "card4": {
+                "title": "Travel Freely, Stay Connected",
+                "desc": "Get instant coverage in over 200 destinations and activate your eSIM within minutes of arrival."
+            }
+        }
+    },
+    "reviews": {
+        "heading": "Traveller Voices",
+        "subHeading": "They are Using Yaalo forever!",
+        "playStoreAlt": "Play Store",
+        "appStoreAlt": "App Store",
+        "items": [
+            {
+                "name": "Ali Khan",
+                "text": "Yaalo eSIM saved me so much money while traveling Europe. Super easy setup!",
+                "date": "May 12, 2024"
+            },
+            {
+                "name": "Sara Ahmed",
+                "text": "Instant activation and amazing speed. Worked in 5 countries.",
+                "date": "April 20, 2024"
+            },
+            {
+                "name": "John Smith",
+                "text": "No roaming stress anymore. Works perfectly everywhere.",
+                "date": "March 15, 2024"
+            },
+            {
+                "name": "Ayesha Noor",
+                "text": "Best travel decision ever. Very smooth internet abroad.",
+                "date": "February 10, 2024"
+            },
+            {
+                "name": "Luca Italy",
+                "text": "Used from Rome to Berlin. Never lost signal once.",
+                "date": "January 25, 2024"
+            },
+            {
+                "name": "Ravi Kumar",
+                "text": "Cheaper than roaming. Support is super fast.",
+                "date": "December 14, 2023"
+            },
+            {
+                "name": "Clara Spain",
+                "text": "Activated on flight. Worked instantly after landing.",
+                "date": "November 30, 2023"
+            }
+        ]
+    },
+    "downloadApp": {
+        "downloads": "50,000+ Downloads",
+        "heading": "Download the",
+        "heading2": "App Now",
+        "description": "Use virtual numbers and international calling features. Buy, set up, and manage your eSIMs with ease.",
+        "googlePlayAlt": "Google Play",
+        "appStoreAlt": "App Store",
+        "previewAlt": "App Preview"
+    },
+    "faqs": {
+        "heading": "Any Ambiguity in Mind? These FAQs Will Help!",
+        "subHeading": "Find quick answers to common queries.",
+        "items": [
+            {
+                "q": "Is eSIM good for travel?",
+                "a": "Yes! Yaalo eSIM is built for travelers with coverage in 200+ destinations and no roaming hassles."
+            },
+            {
+                "q": "Which eSIM is best for traveling?",
+                "a": "Yaalo offers flexible local, regional, and global eSIM plans for every type of traveler."
+            },
+            {
+                "q": "Can I install my eSIM before traveling?",
+                "a": "Yes. Install it before your trip and activate it when you arrive at your destination."
+            },
+            {
+                "q": "Can I use eSIM in any country?",
+                "a": "Yaalo supports more than 200 destinations. Check your selected plan for coverage before purchasing."
+            },
+            {
+                "q": "Which devices support eSIM?",
+                "a": "Most recent Apple, Samsung, Google, and many other smartphones support eSIM technology."
+            },
+            {
+                "q": "How do I know if my eSIM is active?",
+                "a": "If mobile data starts working after activation, your eSIM is active."
+            },
+            {
+                "q": "What if my Yaalo eSIM doesn't work?",
+                "a": "Contact our support team. We'll help resolve the issue or provide a refund when applicable."
+            },
+            {
+                "q": "Can I top up or extend my plan?",
+                "a": "Yes. You can purchase additional data or extend your plan directly from the Yaalo app."
+            },
+            {
+                "q": "Is my eSIM secure?",
+                "a": "Yes. Yaalo uses secure and encrypted eSIM profile delivery."
+            }
+        ]
+    },
+    "Header": {
+        "buyEsim": "Buy eSIM",
+        "contactInfo": "Contact Info",
+        "affiliatePartner": "Affiliate Partner",
+        "more": "More",
+        "aboutUs": "About Us",
+        "compatiblePhones": "eSIM Compatible Phones",
+        "faq": "FAQ",
+        "blog": "Blog",
+        "search": "Search",
+        "account": "Account",
+        "myEsim": "My eSIM",
+        "wallet": "Wallet",
+        "logout": "Logout",
+        "login": "Login",
+        "loginSignup": "Login / Signup",
+        "myCart": "My Cart",
+        "cartEmpty": "Your cart is empty",
+        "cartEmptyDesc": "Looks like you haven't added any eSIM plans yet.",
+        "explorePlans": "Explore Plans",
+        "country": "Country",
+        "quantity": "Quantity",
+        "price": "Price",
+        "subtotal": "Subtotal",
+        "checkout": "Proceed to Checkout",
+        "mainMenu": "Main Menu",
+        "companyInfo": "Company & Info"
+    },
+    "footer": {
+        "followUs": "Follow us",
+        "popularDestinations": "Popular Destinations",
+        "quickLinks": "Quick Links",
+        "support": "Support",
+        "contactInfo": "Contact Info",
+        "rightsReserved": "All Rights Reserved",
+        "paymentMethodAlt": "Payment Provider",
+        "links": {
+            "home": "Home",
+            "aboutUs": "About Us",
+            "buyEsim": "Buy eSIM",
+            "affiliatePartner": "Affiliate Partner",
+            "blog": "Blog",
+            "compatiblePhones": "eSIM Compatible Phones",
+            "faqs": "FAQs",
+            "terms": "Terms",
+            "privacy": "Privacy",
+            "refund": "Refund"
+        }
+    }
+}
