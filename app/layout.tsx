@@ -10,8 +10,10 @@ export default async function RootLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: { locale?: string }; // Make it optional just in case
+  // Sahi tareeqa: params ko batao ki yeh ek Promise hai jo object return karega
+  params: Promise<{ locale?: string }>;
 }) {
+  // Ab yeh await bilkul sahi tareeqe se type-check ho jayega
   const { locale = "en" } = await params;
 
   if (!locales.includes(locale)) {
